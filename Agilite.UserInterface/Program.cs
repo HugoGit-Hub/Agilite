@@ -1,4 +1,4 @@
-using Agilite.UI;
+using Agilite.UserInterface;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
