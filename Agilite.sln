@@ -9,11 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.Entities", "Agilite
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.DataTransferObject", "Agilite.DataTransferObject\Agilite.DataTransferObject.csproj", "{1A240969-14D9-4AA8-A2FE-AB06DE767894}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UserInterface", "Agilite.UserInterface\Agilite.UserInterface.csproj", "{D8837987-51E8-4A59-8BF7-8F36189AC478}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UnitOfWork", "Agilite.UnitOfWork\Agilite.UnitOfWork.csproj", "{BB263177-84EC-435F-8441-E23F1640109F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.Repositories", "Agilite.Repositories\Agilite.Repositories.csproj", "{24BFB3C7-7474-42C1-99F7-6107537F9DC5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.Services", "Agilite.Services\Agilite.Services.csproj", "{A670BBAE-60D2-44D5-AB92-FB2FF01BA5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agilite.Mapper", "Agilite.Mapper\Agilite.Mapper.csproj", "{21917B39-FDF0-434F-9C89-4A185C011C04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +35,6 @@ Global
 		{1A240969-14D9-4AA8-A2FE-AB06DE767894}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A240969-14D9-4AA8-A2FE-AB06DE767894}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A240969-14D9-4AA8-A2FE-AB06DE767894}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8837987-51E8-4A59-8BF7-8F36189AC478}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8837987-51E8-4A59-8BF7-8F36189AC478}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8837987-51E8-4A59-8BF7-8F36189AC478}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8837987-51E8-4A59-8BF7-8F36189AC478}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BB263177-84EC-435F-8441-E23F1640109F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB263177-84EC-435F-8441-E23F1640109F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB263177-84EC-435F-8441-E23F1640109F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,6 +43,14 @@ Global
 		{24BFB3C7-7474-42C1-99F7-6107537F9DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24BFB3C7-7474-42C1-99F7-6107537F9DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24BFB3C7-7474-42C1-99F7-6107537F9DC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A670BBAE-60D2-44D5-AB92-FB2FF01BA5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A670BBAE-60D2-44D5-AB92-FB2FF01BA5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A670BBAE-60D2-44D5-AB92-FB2FF01BA5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A670BBAE-60D2-44D5-AB92-FB2FF01BA5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21917B39-FDF0-434F-9C89-4A185C011C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21917B39-FDF0-434F-9C89-4A185C011C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21917B39-FDF0-434F-9C89-4A185C011C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21917B39-FDF0-434F-9C89-4A185C011C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
