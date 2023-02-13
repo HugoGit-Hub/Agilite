@@ -12,10 +12,10 @@ public class GetAllContactCommandHandler : IRequestHandler<GetAllContactsCommand
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetAllContactCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public GetAllContactCommandHandler(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public Task<IEnumerable<ContactDto>> Handle(GetAllContactsCommand request, CancellationToken cancellationToken)

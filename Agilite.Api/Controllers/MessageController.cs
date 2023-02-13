@@ -1,4 +1,5 @@
 ﻿using Agilite.Api.Messaging.Commands.MessageCommands.CreateMessage;
+using Agilite.Api.Messaging.Commands.MessageCommands.DeleteMessage;
 using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
@@ -28,12 +29,8 @@ public class MessageController : ControllerBase
         => await _sender.Send(new CreateMessageCommand(message));
 
     [HttpPut(nameof(UpdateMessage))]
-    public MessageDto UpdateMessage([FromBody] MessageDto message)
-    {
-        var entity = _mapper.Map<Message>(message);
-        var update = _service.Update(entity);
-        return _mapper.Map<MessageDto>(update);
-    }
+    public async Task<MessageDto> UpdateMessage(MessageDto message)
+        => await _sender.Send(new DeleteMessageCommand(message));
 
     [HttpGet(nameof(GetAllMessages))]
     public IEnumerable<MessageDto> GetAllMessages()
