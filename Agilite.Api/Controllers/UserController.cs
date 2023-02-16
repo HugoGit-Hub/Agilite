@@ -1,7 +1,10 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+﻿using Agilite.Api.Messaging.Commands.UserCommands.CreateUser;
+using Agilite.Api.Messaging.Commands.UserCommands.DeleteUser;
+using Agilite.Api.Messaging.Commands.UserCommands.GetAllUsers;
+using Agilite.Api.Messaging.Commands.UserCommands.GetUser;
+using Agilite.Api.Messaging.Commands.UserCommands.UpdateUser;
+using Agilite.DataTransferObject.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +13,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class UserController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<User> _service;
+    private readonly ISender _sender;
 
-    public UserController(IMapper mapper, IService<User> service)
+    public UserController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateUser))]
-    public UserDto CreateUser([FromBody] UserDto user)
-    {
-        var entity = _mapper.Map<User>(user);
-        var create = _service.Create(entity);
-        return _mapper.Map<UserDto>(create);
-    }
+    public async Task<UserDto> CreateUser(UserDto user)
+        => await _sender.Send(new CreateUserCommand(user));
 
     [HttpPut(nameof(UpdateUser))]
-    public UserDto UpdateUser([FromBody] UserDto user)
-    {
-        var entity = _mapper.Map<User>(user);
-        var update = _service.Update(entity);
-        return _mapper.Map<UserDto>(update);
-    }
+    public async Task<UserDto> UpdateUser(UserDto user)
+        => await _sender.Send(new UpdateUserCommand(user));
 
     [HttpGet(nameof(GetAllUsers))]
-    public IEnumerable<UserDto> GetAllUsers()
-    {
-        var getAll = _service.GetAll();            
-        var entities = _mapper.Map<IEnumerable<UserDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<UserDto>> GetAllUsers()
+        => await _sender.Send(new GetAllUsersCommand());
 
     [HttpGet(nameof(GetUser))]
-    public UserDto GetUser(int id)
-    {
-        var getById= _service.GetById(id);
-        var entity = _mapper.Map<UserDto>(getById);
-        return entity;
-    }
+    public async Task<UserDto> GetUser(int id)
+        => await _sender.Send(new GetUserCommand(id));
 
     [HttpDelete(nameof(DeleteUser))]
-    public UserDto DeleteUser([FromBody] UserDto user)
-    {
-        var entity = _mapper.Map<User>(user);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<UserDto>(delete);
-    }
+    public async Task<UserDto> DeleteUser(UserDto user)
+        => await _sender.Send(new DeleteUserCommand(user));
 }

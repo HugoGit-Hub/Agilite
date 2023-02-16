@@ -1,7 +1,10 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+﻿using Agilite.Api.Messaging.Commands.SprintComands.CreateSprint;
+using Agilite.Api.Messaging.Commands.SprintComands.DeleteSprint;
+using Agilite.Api.Messaging.Commands.SprintComands.GetAllSprints;
+using Agilite.Api.Messaging.Commands.SprintComands.GetSprint;
+using Agilite.Api.Messaging.Commands.SprintComands.UpdateSprint;
+using Agilite.DataTransferObject.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +13,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class SprintController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<Sprint> _service;
+    private readonly ISender _sender;
 
-    public SprintController(IMapper mapper, IService<Sprint> service)
+    public SprintController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateSprint))]
-    public SprintDto CreateSprint([FromBody] SprintDto sprint)
-    {
-        var entity = _mapper.Map<Sprint>(sprint);
-        var create = _service.Create(entity);
-        return _mapper.Map<SprintDto>(create);
-    }
+    public async Task<SprintDto> CreateSprint(SprintDto sprint)
+        => await _sender.Send(new CreateSprintCommand(sprint));
 
     [HttpPut(nameof(UpdateSprint))]
-    public SprintDto UpdateSprint([FromBody] SprintDto sprint)
-    {
-        var entity = _mapper.Map<Sprint>(sprint);
-        var update = _service.Update(entity);
-        return _mapper.Map<SprintDto>(update);
-    }
+    public async Task<SprintDto> UpdateSprint(SprintDto sprint)
+        => await _sender.Send(new UpdateSprintCommand(sprint));
 
     [HttpGet(nameof(GetAllSprints))]
-    public IEnumerable<SprintDto> GetAllSprints()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<SprintDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<SprintDto>> GetAllSprints()
+        => await _sender.Send(new GetAllSprintsCommand());
 
     [HttpGet(nameof(GetSprint))]
-    public SprintDto GetSprint(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<SprintDto>(getById);
-        return entity;
-    }
+    public async Task<SprintDto> GetSprint(int id)
+        => await _sender.Send(new GetSprintCommand(id));
 
     [HttpDelete(nameof(DeleteSprint))]
-    public SprintDto DeleteSprint([FromBody] SprintDto sprint)
-    {
-        var entity = _mapper.Map<Sprint>(sprint);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<SprintDto>(delete);
-    }
+    public async Task<SprintDto> DeleteSprint([FromBody] SprintDto sprint)
+        => await _sender.Send(new DeleteSprintCommand(sprint));
 }

@@ -1,0 +1,26 @@
+﻿using Agilite.DataTransferObject.DTOs;
+using Agilite.Entities.Entities;
+using Agilite.UnitOfWork;
+using AutoMapper;
+using MediatR;
+using Task = System.Threading.Tasks.Task;
+
+namespace Agilite.Api.Messaging.Commands.UserCommands.GetAllUsers;
+
+public class GetAllUsersCommandHandler : IRequestHandler<GetAllUsersCommand, IEnumerable<UserDto>>
+{
+    private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
+
+    public GetAllUsersCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    {
+        _unitOfWork = unitOfWork;
+        _mapper = mapper;
+    }
+
+    public Task<IEnumerable<UserDto>> Handle(GetAllUsersCommand request, CancellationToken cancellationToken)
+    {
+        var getAll = _unitOfWork.GetRepository<User>().GetAll();
+        return Task.FromResult(_mapper.Map<IEnumerable<UserDto>>(getAll));
+    }
+}

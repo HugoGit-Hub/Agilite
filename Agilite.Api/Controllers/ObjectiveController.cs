@@ -1,7 +1,11 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.Api.Messaging.Commands.ObjectiveCommands.CreateObjective;
+using Agilite.Api.Messaging.Commands.ObjectiveCommands.DeleteObjective;
+using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetAllObjectives;
+using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetObjective;
+using Agilite.Api.Messaging.Commands.ObjectiveCommands.UpdateObjective;
+using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +14,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class ObjectiveController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<Objective> _service;
+    private readonly ISender _sender;
 
-    public ObjectiveController(IMapper mapper, IService<Objective> service)
+    public ObjectiveController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateObjective))]
-    public ObjectiveDto CreateObjective([FromBody] ObjectiveDto objective)
-    {
-        var entity = _mapper.Map<Objective>(objective);
-        var create = _service.Create(entity);
-        return _mapper.Map<ObjectiveDto>(create);
-    }
+    public async Task<ObjectiveDto> CreateObjective(ObjectiveDto objective)
+        => await _sender.Send(new CreateObjectiveCommand(objective));
 
     [HttpPut(nameof(UpdateObjective))]
-    public ObjectiveDto UpdateObjective([FromBody] ObjectiveDto objective)
-    {
-        var entity = _mapper.Map<Objective>(objective);
-        var update = _service.Update(entity);
-        return _mapper.Map<ObjectiveDto>(update);
-    }
+    public async Task<ObjectiveDto> UpdateObjective(ObjectiveDto objective)
+        => await _sender.Send(new UpdateObjectiveCommand(objective));
 
     [HttpGet(nameof(GetAllObjectives))]
-    public IEnumerable<ObjectiveDto> GetAllObjectives()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<ObjectiveDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<ObjectiveDto>> GetAllObjectives()
+        => await _sender.Send(new GetAllObjectivesCommand());
 
     [HttpGet(nameof(GetObjective))]
-    public ObjectiveDto GetObjective(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<ObjectiveDto>(getById);
-        return entity;
-    }
+    public async Task<ObjectiveDto> GetObjective(int id)
+        => await _sender.Send(new GetObjectiveCommand(id));
 
     [HttpDelete(nameof(DeleteObjective))]
-    public ObjectiveDto DeleteObjective([FromBody] ObjectiveDto objective)
-    {
-        var entity = _mapper.Map<Objective>(objective);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<ObjectiveDto>(delete);
-    }
+    public async Task<ObjectiveDto> DeleteObjective(ObjectiveDto objective)
+        => await _sender.Send(new DeleteObjectiveCommand(objective));
 }

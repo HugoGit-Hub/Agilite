@@ -1,7 +1,14 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.Api.Messaging.Commands.TeamCommands;
+using Agilite.Api.Messaging.Commands.TeamCommands.CreateTeam;
+using Agilite.Api.Messaging.Commands.TeamCommands.DeleteTeam;
+using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeams;
+using Agilite.Api.Messaging.Commands.TeamCommands.GetTeam;
+using Agilite.Api.Messaging.Commands.TeamCommands.UpdateTeam;
+using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -12,50 +19,32 @@ public class TeamController : ControllerBase
 {
     private readonly IMapper _mapper;
     private readonly IService<Team> _service;
+    private readonly ISender _sender;
 
-    public TeamController(IMapper mapper, IService<Team> service)
+    public TeamController(IMapper mapper, IService<Team> service, ISender sender)
     {
         _mapper = mapper;
         _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateTeam))]
-    public TeamDto CreateTeam([FromBody] TeamDto team)
-    {
-        var entity = _mapper.Map<Team>(team);
-        var create = _service.Create(entity);
-        return _mapper.Map<TeamDto>(create);
-    }
+    public async Task<TeamDto> CreateTeam(TeamDto team)
+        => await _sender.Send(new CreateTeamCommand(team));
 
     [HttpPut(nameof(UpdateTeam))]
-    public TeamDto UpdateTeam([FromBody] TeamDto team)
-    {
-        var entity = _mapper.Map<Team>(team);
-        var update = _service.Update(entity);
-        return _mapper.Map<TeamDto>(update);
-    }
+    public async Task<TeamDto> UpdateTeam(TeamDto team)
+        => await _sender.Send(new UpdateTeamCommand(team));
 
     [HttpGet(nameof(GetAllTeams))]
-    public IEnumerable<TeamDto> GetAllTeams()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<TeamDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<TeamDto>> GetAllTeams()
+        => await _sender.Send(new GetAllTeamsCommand());
 
     [HttpGet(nameof(GetTeam))]
-    public TeamDto GetTeam(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<TeamDto>(getById);
-        return entity;
-    }
+    public async Task<TeamDto> GetTeam(int id)
+        => await _sender.Send(new GetTeamCommand(id));
 
     [HttpDelete(nameof(DeleteTeam))]
-    public TeamDto DeleteTeam([FromBody] TeamDto contact)
-    {
-        var entity = _mapper.Map<Team>(contact);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<TeamDto>(delete);
-    }
+    public async Task<TeamDto> DeleteTeam(TeamDto team)
+        => await _sender.Send(new DeleteTeamCommand(team));
 }

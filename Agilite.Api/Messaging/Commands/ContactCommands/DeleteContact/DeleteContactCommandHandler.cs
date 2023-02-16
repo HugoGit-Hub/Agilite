@@ -22,9 +22,9 @@ public class DeleteContactCommandHandler : IRequestHandler<DeleteContactCommand,
     {
         var contact = new Contact
         {
-            IdContact = request.contact.IdContact,
-            ArchivedContact = request.contact.ArchivedContact,
-            NameContact = request.contact.NameContact
+            IdContact = request.Contact.IdContact,
+            ArchivedContact = request.Contact.ArchivedContact,
+            NameContact = request.Contact.NameContact
         };
 
         var deleted = _unitOfWork.GetRepository<Contact>().Delete(contact);

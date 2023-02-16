@@ -1,8 +1,11 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UnitOfWork;
-using AutoMapper;
+﻿using Agilite.Api.Messaging.Commands.TaskCommands.CreateTaskCommand;
+using Agilite.Api.Messaging.Commands.TaskCommands.DeleteTask;
+using Agilite.Api.Messaging.Commands.TaskCommands.GetAllTasks;
+using Agilite.Api.Messaging.Commands.TaskCommands.GetTask;
+using Agilite.Api.Messaging.Commands.TaskCommands.UpdateTask;
+using Agilite.DataTransferObject.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Task = Agilite.Entities.Entities.Task;
 
 namespace Agilite.Api.Controllers;
 
@@ -10,52 +13,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class TaskController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<Task> _service;
+    private readonly ISender _sender;
 
-    public TaskController(IMapper mapper, IService<Task> service)
+    public TaskController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateTask))]
-    public TaskDto CreateTask([FromBody] TaskDto task)
-    {
-        var entity = _mapper.Map<Task>(task);
-        var create = _service.Create(entity);
-        return _mapper.Map<TaskDto>(create);
-    }
+    public async Task<TaskDto> CreateTask(TaskDto task)
+        => await _sender.Send(new CreateTaskCommand(task));
 
     [HttpPut(nameof(UpdateTask))]
-    public TaskDto UpdateTask([FromBody] TaskDto task)
-    {
-        var entity = _mapper.Map<Task>(task);
-        var update = _service.Update(entity);
-        return _mapper.Map<TaskDto>(update);
-    }
+    public async Task<TaskDto> UpdateTask([FromBody] TaskDto task)
+        => await _sender.Send(new UpdateTaskCommand(task));
 
     [HttpGet(nameof(GetAllTasks))]
-    public IEnumerable<TaskDto> GetAllTasks()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<TaskDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<TaskDto>> GetAllTasks()
+        => await _sender.Send(new GetAllTasksCommand());
 
     [HttpGet(nameof(GetTask))]
-    public TaskDto GetTask(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<TaskDto>(getById);
-        return entity;
-    }
+    public async Task<TaskDto> GetTask(int id)
+        => await _sender.Send(new GetTaskCommand(id));
 
     [HttpDelete(nameof(DeleteTask))]
-    public TaskDto DeleteTask([FromBody] TaskDto task)
-    {
-        var entity = _mapper.Map<Task>(task);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<TaskDto>(delete);
-    }
+    public async Task<TaskDto> DeleteTask(TaskDto task)
+        => await _sender.Send(new DeleteTaskCommand(task));
 }

@@ -12,7 +12,7 @@ public class GetAllContactCommandHandler : IRequestHandler<GetAllContactsCommand
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetAllContactCommandHandler(IMapper mapper, IUnitOfWork unitOfWork)
+    public GetAllContactCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
     {
         _mapper = mapper;
         _unitOfWork = unitOfWork;

@@ -1,5 +1,8 @@
 ﻿using Agilite.Api.Messaging.Commands.MessageCommands.CreateMessage;
 using Agilite.Api.Messaging.Commands.MessageCommands.DeleteMessage;
+using Agilite.Api.Messaging.Commands.MessageCommands.GetAllMessages;
+using Agilite.Api.Messaging.Commands.MessageCommands.GetMessage;
+using Agilite.Api.Messaging.Commands.MessageCommands.UpdateMessage;
 using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
@@ -30,29 +33,17 @@ public class MessageController : ControllerBase
 
     [HttpPut(nameof(UpdateMessage))]
     public async Task<MessageDto> UpdateMessage(MessageDto message)
-        => await _sender.Send(new DeleteMessageCommand(message));
+        => await _sender.Send(new UpdateMessageCommand(message));
 
     [HttpGet(nameof(GetAllMessages))]
-    public IEnumerable<MessageDto> GetAllMessages()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<MessageDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<MessageDto>> GetAllMessages()
+        => await _sender.Send(new GetAllMessagesCommand());
 
     [HttpGet(nameof(GetMessage))]
-    public UserDto GetMessage(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<UserDto>(getById);
-        return entity;
-    }
+    public async Task<MessageDto> GetMessage(int id)
+        => await _sender.Send(new GetMessageCommand(id));
 
     [HttpDelete(nameof(DeleteMessage))]
-    public MessageDto DeleteMessage([FromBody] MessageDto message)
-    {
-        var entity = _mapper.Map<Message>(message);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<MessageDto>(delete);
-    }
+    public async Task<MessageDto> DeleteMessage(MessageDto message)
+        => await _sender.Send(new DeleteMessageCommand(message));
 }

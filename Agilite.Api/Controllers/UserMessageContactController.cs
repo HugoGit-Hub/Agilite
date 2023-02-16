@@ -1,7 +1,10 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.Api.Messaging.Commands.UserMessageContactCommands.CreateUserMessageContact;
+using Agilite.Api.Messaging.Commands.UserMessageContactCommands.DeleteUserMessageContact;
+using Agilite.Api.Messaging.Commands.UserMessageContactCommands.GetAllUserMessageContacts;
+using Agilite.Api.Messaging.Commands.UserMessageContactCommands.UpdateUserMessageContact;
+using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +13,26 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class UserMessageContactController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<UserMessageContact> _service;
+    private readonly ISender _sender;
 
-    public UserMessageContactController(IMapper mapper, IService<UserMessageContact> service)
+    public UserMessageContactController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateUserMessageContact))]
-    public UserMessageContactDto CreateUserMessageContact([FromBody] UserMessageContactDto userMessageContact)
-    {
-        var entity = _mapper.Map<UserMessageContact>(userMessageContact);
-        var create = _service.Create(entity);
-        return _mapper.Map<UserMessageContactDto>(create);
-    }
+    public async Task<UserMessageContactDto> CreateUserMessageContact(UserMessageContactDto userMessageContact)
+        => await _sender.Send(new CreateUserMessageContactCommand(userMessageContact));
 
     [HttpPut(nameof(UpdateUserMessageContact))]
-    public UserMessageContactDto UpdateUserMessageContact([FromBody] UserMessageContactDto userMessageContact)
-    {
-        var entity = _mapper.Map<UserMessageContact>(userMessageContact);
-        var update = _service.Update(entity);
-        return _mapper.Map<UserMessageContactDto>(update);
-    }
+    public async Task<UserMessageContactDto> UpdateUserMessageContact(UserMessageContact userMessageContact)
+        => await _sender.Send(new UpdateUserMessageContactCommand(userMessageContact));
 
     [HttpGet(nameof(GetAllUserMessageContacts))]
-    public IEnumerable<UserMessageContactDto> GetAllUserMessageContacts()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<UserMessageContactDto>>(getAll);
-        return entities;
-    }
-
-    [HttpGet(nameof(GetUserMessageContact))]
-    public UserMessageContactDto GetUserMessageContact(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<UserMessageContactDto>(getById);
-        return entity;
-    }
+    public async Task<IEnumerable<UserMessageContactDto>> GetAllUserMessageContacts()
+        => await _sender.Send(new GetAllUserMessageContactsCommand());
 
     [HttpDelete(nameof(DeleteUserMessageContact))]
-    public UserMessageContactDto DeleteUserMessageContact([FromBody] UserMessageContactDto userMessageContact)
-    {
-        var entity = _mapper.Map<UserMessageContact>(userMessageContact);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<UserMessageContactDto>(delete);
-    }
+    public async Task<UserMessageContactDto> DeleteUserMessageContact(UserMessageContactDto userMessageContact)
+        => await _sender.Send(new DeleteUserMessageContactCommand(userMessageContact));
 }

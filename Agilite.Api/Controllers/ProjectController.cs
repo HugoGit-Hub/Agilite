@@ -1,7 +1,9 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+﻿using Agilite.Api.Messaging.Commands.ProjectCommands.CreateProject;
+using Agilite.Api.Messaging.Commands.ProjectCommands.DeleteProject;
+using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjects;
+using Agilite.Api.Messaging.Commands.ProjectCommands.GetProject;
+using Agilite.DataTransferObject.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +12,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class ProjectController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IService<Project> _service;
+    private readonly ISender _sender;
 
-    public ProjectController(IMapper mapper, IService<Project> service)
+    public ProjectController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreateProject))]
-    public ProjectDto CreateProject([FromBody] ProjectDto project)
-    {
-        var entity = _mapper.Map<Project>(project);
-        var create = _service.Create(entity);
-        return _mapper.Map<ProjectDto>(create);
-    }
+    public async Task<ProjectDto> CreateProject(ProjectDto project)
+        => await _sender.Send(new CreateProjectCommand(project));
 
     [HttpPut(nameof(UpdateProject))]
-    public ProjectDto UpdateProject([FromBody] ProjectDto project)
-    {
-        var entity = _mapper.Map<Project>(project);
-        var update = _service.Update(entity);
-        return _mapper.Map<ProjectDto>(update);
-    }
+    public async Task<ProjectDto> UpdateProject(ProjectDto project)
+        => await _sender.Send(new CreateProjectCommand(project));
 
     [HttpGet(nameof(GetAllProjects))]
-    public IEnumerable<ProjectDto> GetAllProjects()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<ProjectDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<ProjectDto>> GetAllProjects()
+        => await _sender.Send(new GetAllProjectsCommand());
 
     [HttpGet(nameof(GetProject))]
-    public ProjectDto GetProject(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<ProjectDto>(getById);
-        return entity;
-    }
+    public async Task<ProjectDto> GetProject(int id)
+        => await _sender.Send(new GetProjectCommand(id));
 
     [HttpDelete(nameof(DeleteProject))]
-    public ProjectDto DeleteProject([FromBody] ProjectDto project)
-    {
-        var entity = _mapper.Map<Project>(project);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<ProjectDto>(delete);
-    }
+    public async Task<ProjectDto> DeleteProject(ProjectDto project)
+        => await _sender.Send(new DeleteProjectCommand(project));
 }

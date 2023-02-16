@@ -1,7 +1,9 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
+﻿using Agilite.Api.Messaging.Commands.PlanningCommands.CreatePlanning;
+using Agilite.Api.Messaging.Commands.PlanningCommands.GetAllPlannings;
+using Agilite.Api.Messaging.Commands.PlanningCommands.GetPlanning;
+using Agilite.Api.Messaging.Commands.PlanningCommands.UpdatePlanning;
+using Agilite.DataTransferObject.DTOs;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agilite.Api.Controllers;
@@ -10,52 +12,30 @@ namespace Agilite.Api.Controllers;
 [ApiController]
 public class PlanningController : Controller
 {
-    private readonly IMapper _mapper;
-    private readonly IService<Planning> _service;
+    private readonly ISender _sender;
 
-    public PlanningController(IMapper mapper, IService<Planning> service)
+    public PlanningController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
+        _sender = sender;
     }
 
     [HttpPost(nameof(CreatePlanning))]
-    public PlanningDto CreatePlanning([FromBody] PlanningDto planning)
-    {
-        var entity = _mapper.Map<Planning>(planning);
-        var create = _service.Create(entity);
-        return _mapper.Map<PlanningDto>(create);
-    }
+    public async Task<PlanningDto> CreatePlanning(PlanningDto planning)
+        => await _sender.Send(new CreatePlanningCommand(planning));
 
     [HttpPut(nameof(UpdatePlanning))]
-    public PlanningDto UpdatePlanning([FromBody] PlanningDto planning )
-    {
-        var entity = _mapper.Map<Planning>(planning);
-        var update = _service.Update(entity);
-        return _mapper.Map<PlanningDto>(update);
-    }
+    public async Task<PlanningDto> UpdatePlanning(PlanningDto planning )
+        => await _sender.Send(new UpdatePlanningCommand(planning));
 
     [HttpGet(nameof(GetAllPlannings))]
-    public IEnumerable<PlanningDto> GetAllPlannings()
-    {
-        var getAll = _service.GetAll();
-        var entities = _mapper.Map<IEnumerable<PlanningDto>>(getAll);
-        return entities;
-    }
+    public async Task<IEnumerable<PlanningDto>> GetAllPlannings()
+        => await _sender.Send(new GetAllPlanningsCommand());
 
     [HttpGet(nameof(GetPlanning))]
-    public PlanningDto GetPlanning(int id)
-    {
-        var getById = _service.GetById(id);
-        var entity = _mapper.Map<PlanningDto>(getById);
-        return entity;
-    }
+    public async Task<PlanningDto> GetPlanning(int id)
+        => await _sender.Send(new GetPlanningCommand(id));
 
     [HttpDelete(nameof(DeletePlanning))]
-    public PlanningDto DeletePlanning([FromBody] PlanningDto planning)
-    {
-        var entity = _mapper.Map<Planning>(planning);
-        var delete = _service.Delete(entity);
-        return _mapper.Map<PlanningDto>(delete);
-    }
+    public async Task<PlanningDto> DeletePlanning(PlanningDto planning)
+        => await _sender.Send(new UpdatePlanningCommand(planning));
 }

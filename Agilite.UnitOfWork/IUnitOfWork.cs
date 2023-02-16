@@ -6,4 +6,3 @@ public interface IUnitOfWork : IDisposable
     IRepository<TEntity, TId> GetRepositoryEntityById<TEntity, TId>() where TEntity : class;
     void Save();
 }
-

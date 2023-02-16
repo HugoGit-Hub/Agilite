@@ -15,7 +15,7 @@ public class UpdateContactCommandHandler : IRequestHandler<UpdateContactCommand,
     public UpdateContactCommandHandler(IUnitOfWork unitOfWork, IMapper iMapper)
     {
         _unitOfWork = unitOfWork;
-        this._mapper = iMapper;
+        _mapper = iMapper;
     }
 
     public Task<ContactDto> Handle(UpdateContactCommand request, CancellationToken cancellationToken)
