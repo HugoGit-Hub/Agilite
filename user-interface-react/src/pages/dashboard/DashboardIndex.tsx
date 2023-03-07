@@ -1,8 +1,4 @@
-import React from 'react'
-
-type Props = {}
-
-const DashboardIndex = (props: Props) => {
+const DashboardIndex = () => {
   return (
     <div>DashboardIndex</div>
   );

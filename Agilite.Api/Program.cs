@@ -8,17 +8,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("CORSPolicy",
-        builder =>
-        {
-            builder
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .WithOrigins("http://localhost:3000", "http://localhost:3000");
-        });
-});
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("CORSPolicy",
+//        builder =>
+//        {
+//            builder
+//                .AllowAnyMethod()
+//                .AllowAnyHeader()
+//                .WithOrigins("http://localhost:*");
+//        });
+//});
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -45,7 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("CORSPolicy");
+//app.UseCors("CORSPolicy");
 
 app.UseHttpsRedirection();
 

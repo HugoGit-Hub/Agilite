@@ -23,12 +23,12 @@ const MainLayout = () => {
           sx={{
             flexGrow: 1,
             p: 3,
-            width: `calc(100% - ${sizeConfigs.sideBar.width})`,
+            width: "100%",
             minHeight: "100vh",
             backgroundColor: colorConfigs.mainBg
           }}
         >
-          <Toolbar />
+          <Toolbar sx={{ className: "phone" }}/>
           <Outlet />
         </Box>
       </Box>

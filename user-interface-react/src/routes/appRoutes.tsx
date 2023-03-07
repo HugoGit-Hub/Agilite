@@ -1,17 +1,24 @@
 import HomePage from "../pages/home/HomePage";
 import { RouteType } from "./config";
 import DashboardPageLayout from "../pages/dashboard/DashboardPageLayout";
-import DefaultPage from "../pages/dashboard/DefaultPage";
+import PlanningPage from "../pages/dashboard/planning/PlanningPage";
 import DashboardIndex from "../pages/dashboard/DashboardIndex";
-import TestPage from "../pages/dashboard/TestPage";
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import HomeIcon from '@mui/icons-material/Home';
+import ContactPage from "../pages/contact/ContactPage";
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 const appRoutes: RouteType[] = [
     {
         index: true,
+        path: "/",
         element: <HomePage />,
-        state: "home"
+        state: "accueil",
+        sidebarProps: {
+            displayText: "Accueil",
+            icon: <HomeIcon />
+        }
     },
     {
         path: "/dashboard",
@@ -28,22 +35,23 @@ const appRoutes: RouteType[] = [
                 state: "dashboard.index",
             },
             {
-                path: "/dashboard/default",
-                element: <DefaultPage />,
-                state: "dashboard.default",
+                path: "/dashboard/planning",
+                element: <PlanningPage />,
+                state: "dashboard.planning",
                 sidebarProps: {
-                    displayText: "Default",
+                    displayText: "Planning",
+                    icon: <CalendarTodayIcon sx={{ marginLeft: "25px" }} />
                 },
             },
         ]
     },
     {
-        path: "/test",
-        element: <TestPage />,
-        state: "test",
+        path: "/contact",
+        element: <ContactPage />,
+        state: "contact",
         sidebarProps: {
-            displayText: "test",
-            icon: <FormatListBulletedIcon />
+            displayText: "Contact",
+            icon: <QuestionAnswerIcon />
         }
     }
 ];

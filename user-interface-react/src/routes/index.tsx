@@ -10,9 +10,11 @@ const generateRoute = (routes: RouteType[]): ReactNode => {
             <Route
                 index
                 path={route.path}
-                element={<PageWrapper state={route.state}>
+                element=
+                {<PageWrapper state={route.state}>
                     {route.element}
                 </PageWrapper>}
+                key={index}
             />
         ) : (
             <Route

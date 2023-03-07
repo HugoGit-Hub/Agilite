@@ -48,7 +48,7 @@ const SideBar = () => {
         ))}
       </List>
     </Drawer>
-  )
+  );
 }
 
 export default SideBar
