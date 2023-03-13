@@ -3,26 +3,65 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:controls="clr-namespace:Agilite.UI.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1800" FontSize="20">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition  Width="Auto"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+        Height="500" 
+        Width="1000" 
+        FontSize="20"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
 
-        <controls:MenuControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+    <Border Background="#272537" CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="200"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <controls:SidebarControl Grid.Row="1" Grid.Column="0" />
+            <StackPanel Grid.Row="0" Grid.Column="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="Agilis"
+                           Foreground="Wheat"
+                           FontSize="22"/>
+            </StackPanel>
 
-        <controls:DefaultPageControl Grid.Row="1" Grid.Column="1" />
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <RadioButton
+                    Content="Acceuil"
+                    Height="50"
+                    Foreground="Wheat"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonResource}"/>
 
-        <controls:StatusbarControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" />
-    </Grid>
+                <RadioButton
+                    Content="Planning"
+                    Height="50"
+                    Foreground="Wheat"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonResource}"/>
+
+                <RadioButton
+                    Content="Contact"
+                    Height="50"
+                    Foreground="Wheat"
+                    FontSize="14"
+                    Style="{StaticResource MenuButtonResource}"/>
+            </StackPanel>
+
+            <TextBox Grid.Column="1"
+                     Width="250"
+                     Height="40"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="5"
+                     Style="{StaticResource SearchBarResource}"/>
+
+        </Grid>
+    </Border>
 </Window>

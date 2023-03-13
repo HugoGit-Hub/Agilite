@@ -1,12 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using Agilite.UI.ViewModels;
+using System.Windows.Controls;
 
-namespace Agilite.UI.Controls
+namespace Agilite.UI.Controls;
+
+public partial class DefaultPageControl : UserControl
 {
-    public partial class DefaultPageControl : UserControl
+    public DefaultPageControl()
     {
-        public DefaultPageControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        DataContext = new DefaultPageViewModal();
     }
 }
