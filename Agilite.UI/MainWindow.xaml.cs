@@ -1,8 +1,6 @@
-﻿using System.Windows;
-
-namespace Agilite.UI
+﻿namespace Agilite.UI
 {
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {

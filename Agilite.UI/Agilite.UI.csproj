@@ -12,13 +12,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EntityFramework" Version="5.0.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="WPF-UI" Version="2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Agilite.DataTransferObject\Agilite.DataTransferObject.csproj" />
+    <ProjectReference Include="..\Agilite.UI.Services\Agilite.UI.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,6 +28,11 @@
 
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 
 </Project>
