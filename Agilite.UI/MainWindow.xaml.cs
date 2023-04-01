@@ -1,10 +1,9 @@
-﻿namespace Agilite.UI
+﻿namespace Agilite.UI;
+
+public partial class MainWindow
 {
-    public partial class MainWindow
+    public MainWindow()
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }
