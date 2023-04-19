@@ -5,7 +5,7 @@ using Refit;
 
 namespace Agilite.UI.IoC;
 
-internal static class Container
+public static class Container
 {
     public static void ConfigureService(IServiceCollection services)
     {

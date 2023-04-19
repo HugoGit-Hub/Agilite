@@ -7,7 +7,7 @@ namespace Agilite.UI.Data;
 
 public interface IContactDataProvider
 {
-    Task<IEnumerable<ContactDto>?> GetAsync();
+    Task<IEnumerable<ContactDto>> GetAll();
 }
 
 public class ContactDataProvider : IContactDataProvider
@@ -19,7 +19,7 @@ public class ContactDataProvider : IContactDataProvider
         _contactService = contactService;
     }
 
-    public Task<IEnumerable<ContactDto>?> GetAsync()
+    public Task<IEnumerable<ContactDto>> GetAll()
     {
         return _contactService.GetAll();
     }
