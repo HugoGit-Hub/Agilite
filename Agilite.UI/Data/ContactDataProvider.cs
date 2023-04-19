@@ -1,5 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Services.Services;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -12,15 +13,10 @@ public interface IContactDataProvider
 
 public class ContactDataProvider : IContactDataProvider
 {
-    private readonly IContactService _contactService;
-
-    public ContactDataProvider(IContactService contactService)
+    public async Task<IEnumerable<ContactDto>> GetAll()
     {
-        _contactService = contactService;
-    }
-
-    public Task<IEnumerable<ContactDto>> GetAll()
-    {
-        return _contactService.GetAll();
+        var contactsClient = App.AppHost.Services.GetRequiredService<IContactService>();
+        var contacts = await contactsClient.GetAll();
+        return contacts;
     }
 }

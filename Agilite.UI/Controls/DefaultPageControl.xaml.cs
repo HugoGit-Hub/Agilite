@@ -14,7 +14,7 @@ public partial class DefaultPageControl : UserControl
     public DefaultPageControl()
     {
         InitializeComponent();
-        _viewModel = new ContactsViewModel(new ContactDataProvider(_contactService));
+        _viewModel = new ContactsViewModel(new ContactDataProvider());
         DataContext = _viewModel;
         Loaded += ContactsView_Loaded;
     }
