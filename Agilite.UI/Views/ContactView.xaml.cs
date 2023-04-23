@@ -1,17 +1,15 @@
 ﻿using Agilite.UI.Data;
-using Agilite.UI.Services.Services;
 using Agilite.UI.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Agilite.UI.Controls;
+namespace Agilite.UI.Views;
 
-public partial class DefaultPageControl : UserControl
+public partial class ContactView : UserControl
 {
     private readonly ContactsViewModel _viewModel;
-    private readonly IContactService _contactService;
 
-    public DefaultPageControl()
+    public ContactView()
     {
         InitializeComponent();
         _viewModel = new ContactsViewModel(new ContactDataProvider());

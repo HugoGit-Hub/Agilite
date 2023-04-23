@@ -27,7 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{7FD9F9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UI.IoC", "Agilite.IoC\Agilite.UI.IoC.csproj", "{5E18FF1B-2736-4854-9A8A-58609550FD07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agilite.UI.Services", "Agilite.UI.Services\Agilite.UI.Services.csproj", "{D7466F83-091F-42CC-9B80-4E6D4BB0317B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UI.Services", "Agilite.UI.Services\Agilite.UI.Services.csproj", "{D7466F83-091F-42CC-9B80-4E6D4BB0317B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agilite.UI.Mapper", "Agilite.UI.Mapper\Agilite.UI.Mapper.csproj", "{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{D7466F83-091F-42CC-9B80-4E6D4BB0317B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7466F83-091F-42CC-9B80-4E6D4BB0317B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7466F83-091F-42CC-9B80-4E6D4BB0317B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{548E1C6D-B203-41C2-8641-C03BA68C1A0C} = {0D1A4F36-631B-4895-ACE4-CEC58BA772AD}
 		{5E18FF1B-2736-4854-9A8A-58609550FD07} = {0D1A4F36-631B-4895-ACE4-CEC58BA772AD}
 		{D7466F83-091F-42CC-9B80-4E6D4BB0317B} = {0D1A4F36-631B-4895-ACE4-CEC58BA772AD}
+		{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B} = {0D1A4F36-631B-4895-ACE4-CEC58BA772AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CC40DCFD-AACC-4343-8C4A-0799499AB2D9}

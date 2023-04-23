@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="Agilite.UI.Views.ContactView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <!--<Border BorderBrush="Transparent" BorderThickness="0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Column="0" Grid.Row="0"
+              Background="Wheat">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="0"
+                Content="Supprimer" 
+                Margin="15px"
+                Padding="5px"/>
+                <ListView Grid.Row="1" 
+                      x:Name="ContactListView"
+                      ItemsSource="{Binding Contacts}"
+                      DisplayMemberPath="NameContact"
+                      Margin="15px">
+                </ListView>
+            </Grid>
+
+            <StackPanel Grid.Column="1" Grid.Row="0"
+                    Background="Gray">
+                <Button Content="Ajouter" 
+                    Margin="15px"
+                    Padding="5px"/>
+                <Label Margin="15,0,15,0"
+                Content="Nom du contact :"/>
+                <TextBox Margin="15,0,15,0"/>
+                <Label Margin="15,0,15,0"
+                Content="Archiver le contact :"/>
+                <CheckBox Margin="15,0,15,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1" Background="RoyalBlue">
+                <Button Content="Modifier" 
+                    Grid.Column="1"
+                    Margin="15px"
+                    Padding="5px"/>
+
+                <Label Visibility="Collapsed"/>
+                <TextBox x:Name="IdContact" Visibility="Collapsed"/>
+
+                <Label Margin="15,0,15,0" Content="Nom du contact :"/>
+                <TextBox Margin="15,0,15,0" Text="{Binding ElementName=ContactListView, Path=SelectedItem.NameContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <Label Margin="15,0,15,0" Content="Contact archivé :"/>
+                <CheckBox Margin="15,0,15,15"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="1" Background="MediumPurple">
+                <Button Content="Rechercher" 
+                    Grid.Column="1"
+                    Margin="15px"
+                    Padding="5px"/>
+
+                <Label Visibility="Collapsed"/>
+                <TextBox x:Name="" Visibility="Collapsed"/>
+
+                <Label Margin="15,0,15,0" Content="Nom du contact :"/>
+                <TextBox Margin="15,0,15,0" Text="{Binding ElementName=ContactListView, Path=SelectedItem.NameContact, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Label Margin="15,0,15,0" Content="Contact archivé :"/>
+                <CheckBox Margin="15,0,15,15"/>
+            </StackPanel>
+        </Grid>
+    </Border>-->
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Contacts" Grid.Row="0" Margin="5"/>
+            <ListView x:Name="contactListView" Grid.Row="2" Margin="5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding NameContact}" Width="200"/>
+                        <GridViewColumn Header="Archived" DisplayMemberBinding="{Binding IsArchivedContact}" Width="75"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5">
+                <Button x:Name="addContactButton" Content="Add" Margin="0,0,5,0"/>
+                <Button x:Name="editContactButton" Content="Edit" Margin="0,0,5,0"/>
+                <Button x:Name="deleteContactButton" Content="Delete"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="5">
+                <Button x:Name="closeButton" Content="Close"/>
+            </StackPanel>
+        </Grid>
+</UserControl>

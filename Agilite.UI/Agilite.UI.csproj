@@ -8,17 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Models\**" />
-    <Compile Remove="Views\**" />
-    <EmbeddedResource Remove="Models\**" />
-    <EmbeddedResource Remove="Views\**" />
-    <None Remove="Models\**" />
-    <None Remove="Views\**" />
-    <Page Remove="Models\**" />
-    <Page Remove="Views\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Images\Agilis.png" />
   </ItemGroup>
 
