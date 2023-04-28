@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models;
 
-class ContactModel
+public class ContactModel
 {
     public int IdContact { get; set; }
 

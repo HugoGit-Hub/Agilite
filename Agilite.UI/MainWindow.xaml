@@ -3,7 +3,7 @@
                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:logic="clr-namespace:Agilite.UI.Resources.Logic" 
+                    xmlns:logic="clr-namespace:Agilite.UI.Resources.Logic"
                     xmlns:views="clr-namespace:Agilite.UI.Views"
                     mc:Ignorable="d"
                     Height="500" 
@@ -22,8 +22,7 @@
                     Height="50"
                     Foreground="Wheat"
                     FontSize="14"
-                    Style="{StaticResource MenuButtonResource}"
-                    Click="DefualtPageViewClick"/>
+                    Style="{StaticResource MenuButtonResource}"/>
 
             <RadioButton
                     Content="Planning"
@@ -38,14 +37,14 @@
                     Foreground="Wheat"
                     FontSize="14"
                     Style="{StaticResource MenuButtonResource}"
-                    Click="ContactViewClick"/>
+                    Command="{Binding OuvrirContactCommand}"/>
         </StackPanel>
 
         <Border Grid.Column="1"
                 Background="#22202f">
 
             <ListView x:Name="DefaultView">
-                <ListView.ItemContainerStyle>
+                <!--<ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Template">
                             <Setter.Value>
@@ -57,9 +56,9 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </ListView.ItemContainerStyle>
+                </ListView.ItemContainerStyle>-->
 
-                <views:DefaultPageView/>
+                <views:DefaultPageView DataContext="{Binding View}"/>
             </ListView>
         </Border>
     </Grid>

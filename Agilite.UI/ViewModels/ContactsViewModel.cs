@@ -2,7 +2,6 @@
 using Agilite.UI.Data;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Agilite.UI.ViewModels;
 
@@ -17,14 +16,14 @@ public class ContactsViewModel
 
     public ObservableCollection<ContactDto> Contacts { get; } = new();
 
-    public async Task LoadAsync()
+    public void LoadContacts()
     {
         if (Contacts.Any())
         {
             return;
         }
 
-        var contacts = await _contactDataProvider.GetAll();
+        var contacts = _contactDataProvider.GetAll();
         foreach (var contact in contacts!)
         {
             Contacts.Add(contact);

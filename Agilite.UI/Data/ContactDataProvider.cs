@@ -1,50 +1,54 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Services.Services;
-using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Agilite.UI.Data;
 
 public interface IContactDataProvider
 {
-    Task<IEnumerable<ContactDto>> GetAll();
+    ContactDto Create(ContactDto contactDto);
+    ContactDto Update(ContactDto contactDto);
+    IEnumerable<ContactDto> GetAll();
+    ContactDto Get(int id);
+    ContactDto Delete(ContactDto contactDto);
 }
 
 public class ContactDataProvider : IContactDataProvider
 {
-    public async Task<ContactDto> Create(ContactDto contactDto)
+    private readonly IContactService _contactService;
+
+    public ContactDataProvider(IContactService contactService)
     {
-        var contactClient = App.AppHost.Services.GetRequiredService<IContactService>();
-        var contact = await contactClient.Create(contactDto);
-        return contact;
+        _contactService = contactService;
     }
 
-    public async Task<ContactDto> Update(ContactDto contactDto)
+    public ContactDto Create(ContactDto contactDto)
     {
-        var contactClient = App.AppHost.Services.GetRequiredService<IContactService>();
-        var contact = await contactClient.Update(contactDto);
-        return contact;
+        var create = _contactService.Create(contactDto);
+        return create;
     }
-    
-    public async Task<IEnumerable<ContactDto>> GetAll()
+
+    public ContactDto Delete(ContactDto contactDto)
     {
-        var contactsClient = App.AppHost.Services.GetRequiredService<IContactService>();
-        var contacts = await contactsClient.GetAll();
+        var delete = _contactService.Delete(contactDto);
+        return delete;
+    }
+
+    public IEnumerable<ContactDto> GetAll()
+    {
+        var contacts = _contactService.GetAll();
         return contacts;
     }
 
-    public async Task<ContactDto> Get(int id)
+    public ContactDto Get(int id)
     {
-        var contactClient = App.AppHost.Services.GetRequiredService<IContactService>();
-        var contact = await contactClient.Get(id);
+        var contact = _contactService.Get(id);
         return contact;
     }
 
-    public async Task<ContactDto> Delete(ContactDto contactDto)
+    public ContactDto Update(ContactDto contactDto)
     {
-        var contactClient = App.AppHost.Services.GetRequiredService<IContactService>();
-        var contact = await contactClient.Delete(contactDto);
-        return contact;
+        var update = _contactService.Update(contactDto);
+        return update;
     }
 }
