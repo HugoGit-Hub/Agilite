@@ -1,8 +1,6 @@
-﻿using System;
+﻿namespace Agilite.UI.Models.Models;
 
-namespace Agilite.UI.Models;
-
-class UserTeamTeamRoleModel
+class UserMessageContactModel
 {
     public int UserIdUser { get; set; }
 

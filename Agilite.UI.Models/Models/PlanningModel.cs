@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Agilite.UI.Models;
+﻿namespace Agilite.UI.Models.Models;
 
 class PlanningModel
 {
