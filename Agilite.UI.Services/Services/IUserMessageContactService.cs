@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IUserMessageContactService
+public interface IUserMessageContactService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_USER_MESSAGE_CONTACT)]
     public UserMessageContactDto Create(UserMessageContactDto entity);

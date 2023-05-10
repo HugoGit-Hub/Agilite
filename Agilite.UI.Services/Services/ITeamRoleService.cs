@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface ITeamRoleService
+public interface ITeamRoleService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_TEAM_ROLE)]
     public TeamRoleDto Create(TeamRoleDto entity);

@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IPlanningService
+public interface IPlanningService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_PLANNING)]
     public PlanningDto Create(PlanningDto entity);

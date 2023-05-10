@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IObjectiveService
+public interface IObjectiveService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_OBJECTIVE)]
     public ObjectiveDto Create(ObjectiveDto entity);

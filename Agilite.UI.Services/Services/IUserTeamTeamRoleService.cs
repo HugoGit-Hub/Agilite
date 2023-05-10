@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IUserTeamTeamRoleService
+public interface IUserTeamTeamRoleService : IBaseRefitClient
 {
 
     [Post(EndPointConstantes.CREATE_USER_TEAM_TEAM_ROLE)]

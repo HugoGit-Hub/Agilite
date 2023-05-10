@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface ITeamService
+public interface ITeamService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_TEAM)]
     public TeamDto Create(TeamDto entity);

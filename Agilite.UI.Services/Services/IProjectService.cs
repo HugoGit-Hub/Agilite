@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IProjectService
+public interface IProjectService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_PROJECT)]
     public ProjectDto Create(ProjectDto entity);

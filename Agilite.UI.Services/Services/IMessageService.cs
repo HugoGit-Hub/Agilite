@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IMessageService
+public interface IMessageService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_MESSAGE)]
     public MessageDto Create(MessageDto entity);

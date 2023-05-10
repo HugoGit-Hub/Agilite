@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface ITaskService
+public interface ITaskService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_TASK)]
     public TaskDto Create(TaskDto entity);

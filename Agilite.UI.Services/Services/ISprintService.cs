@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface ISprintService
+public interface ISprintService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_SPRINT)]
     public SprintDto Create(SprintDto entity);
