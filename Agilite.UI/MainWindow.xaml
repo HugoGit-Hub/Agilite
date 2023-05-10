@@ -4,11 +4,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:logic="clr-namespace:Agilite.UI.Resources.Logic"
-                    xmlns:views="clr-namespace:Agilite.UI.Views"
+                    xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
                     mc:Ignorable="d"
                     Height="500" 
                     Width="1000" 
-                    FontSize="20">
+                    FontSize="20"
+                    DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -17,49 +18,41 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <RadioButton
-                    Content="Accueil"
-                    Height="50"
-                    Foreground="Wheat"
-                    FontSize="14"
-                    Style="{StaticResource MenuButtonResource}"/>
+            <Button Content="Accueil"
+                        Height="50"
+                        Foreground="Wheat"
+                        Background="#272537"
+                        FontSize="14"
+                        Command="{Binding ChangeViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.DEFAULT_VIEW}">
+                <Button.BorderBrush>Transparent</Button.BorderBrush>
+                <Button.BorderThickness>0</Button.BorderThickness>
+            </Button>
 
-            <RadioButton
-                    Content="Planning"
+            <Button Content="Planning"
                     Height="50"
+                    Background="#272537"
                     Foreground="Wheat"
-                    FontSize="14"
-                    Style="{StaticResource MenuButtonResource}"/>
+                    FontSize="14">
+                <Button.BorderBrush>Transparent</Button.BorderBrush>
+                <Button.BorderThickness>0</Button.BorderThickness>
+            </Button>
 
-            <RadioButton
-                    Content="Contact"
+            <Button Content="Contact"
                     Height="50"
                     Foreground="Wheat"
+                    Background="#272537"
                     FontSize="14"
-                    Style="{StaticResource MenuButtonResource}"
-                    Command="{Binding OuvrirContactCommand}"/>
+                    Command="{Binding ChangeViewCommand}"
+                    CommandParameter="{x:Static viewModel:MainWindowViewModel.CONTACT_VIEW}">
+                <Button.BorderBrush>Transparent</Button.BorderBrush>
+                <Button.BorderThickness>0</Button.BorderThickness>
+            </Button>
         </StackPanel>
 
         <Border Grid.Column="1"
-                Background="#22202f">
-
-            <ListView x:Name="DefaultView">
-                <!--<ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="ListViewItem">
-                                    <Border>
-                                        <ContentPresenter />
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </ListView.ItemContainerStyle>-->
-
-                <views:DefaultPageView DataContext="{Binding View}"/>
-            </ListView>
+                Background="White">
+            <ContentControl Content="{Binding ActualPage}" />
         </Border>
     </Grid>
 </logic:CustomWindow>

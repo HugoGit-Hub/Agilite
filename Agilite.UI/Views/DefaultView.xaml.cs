@@ -1,8 +1,8 @@
 ﻿namespace Agilite.UI.Views;
 
-public partial class ContactView
+public partial class DefaultView
 {
-    public ContactView()
+    public DefaultView()
     {
         InitializeComponent();
     }

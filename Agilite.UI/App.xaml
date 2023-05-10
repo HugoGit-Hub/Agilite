@@ -1,7 +1,8 @@
 ﻿<Application x:Class="Agilite.UI.App"
              StartupUri="MainWindow.xaml"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ui="clr-namespace:Agilite.UI">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -10,7 +11,9 @@
                 <ResourceDictionary Source="Resources/SearchBarResource.xaml"/>
                 <ResourceDictionary Source="Resources/CustomWindowResource.xaml"/>
                 <ResourceDictionary Source="Resources/StyleCustomWindowResource.xaml" />
+                <ResourceDictionary Source="Resources/DataTemplateResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ui:Container x:Key="Locator" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

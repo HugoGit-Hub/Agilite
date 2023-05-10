@@ -3,20 +3,20 @@ using Refit;
 
 namespace Agilite.UI.Services.Services;
 
-public interface IContactService
+public interface IContactService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_CONTACT)]
-    public ContactDto Create(ContactDto entity);
+    public Task<IEnumerable<ContactDto>> Create(ContactDto entity);
 
     [Put(EndPointConstantes.UPDATE_CONTACT)]
-    public ContactDto Update(ContactDto entity);
+    public Task<IEnumerable<ContactDto>> Update(ContactDto entity);
 
     [Get(EndPointConstantes.GET_ALL_CONTACTS)]
-    public IEnumerable<ContactDto> GetAll();
+    public Task<IEnumerable<ContactDto>> GetAll();
 
     [Get(EndPointConstantes.GET_CONTACT)]
-    public ContactDto Get(int id);
+    public Task<IEnumerable<ContactDto>> Get(int id);
 
     [Delete(EndPointConstantes.DELETE_CONTACT)]
-    public ContactDto Delete(ContactDto entity);
+    public Task<IEnumerable<ContactDto>> Delete(ContactDto entity);
 }

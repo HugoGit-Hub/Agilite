@@ -1,17 +1,19 @@
 ﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UI.Data;
+using Agilite.UI.Services.Services;
+using GalaSoft.MvvmLight;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Agilite.UI.ViewModels;
 
-public class ContactsViewModel
+public class ContactViewModel : ViewModelBase
 {
-    private readonly IContactDataProvider _contactDataProvider;
+    private readonly IContactService _contactDataProvider;
 
-    public ContactsViewModel(IContactDataProvider contactDataProvider)
+    public ContactViewModel(IContactService contactDataProvider)
     {
         _contactDataProvider = contactDataProvider;
+        LoadContacts();
     }
 
     public ObservableCollection<ContactDto> Contacts { get; } = new();
@@ -23,7 +25,7 @@ public class ContactsViewModel
             return;
         }
 
-        var contacts = _contactDataProvider.GetAll();
+        var contacts = _contactDataProvider.GetAll().Result;
         foreach (var contact in contacts!)
         {
             Contacts.Add(contact);
