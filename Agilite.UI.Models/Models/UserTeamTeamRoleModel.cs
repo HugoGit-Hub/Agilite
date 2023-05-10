@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class UserTeamTeamRoleModel
+public class UserTeamTeamRoleModel
 {
     public int UserIdUser { get; set; }
 

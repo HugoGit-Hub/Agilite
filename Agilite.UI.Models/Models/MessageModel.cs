@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class MessageModel
+public class MessageModel
 {
     public int IdMessage { get; set; }
 

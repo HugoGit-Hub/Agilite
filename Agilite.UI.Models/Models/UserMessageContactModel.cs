@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class UserMessageContactModel
+public class UserMessageContactModel
 {
     public int UserIdUser { get; set; }
 

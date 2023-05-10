@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class ObjectiveModel
+public class ObjectiveModel
 {
     public int IdObjective { get; set; }
 

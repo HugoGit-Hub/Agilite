@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class PlanningModel
+public class PlanningModel
 {
     public int IdPlanning { get; set; }
 

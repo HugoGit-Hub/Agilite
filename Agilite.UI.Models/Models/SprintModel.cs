@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class SprintModel
+public class SprintModel
 {
     public int IdSprint { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class ProjectModel
+public class ProjectModel
 {
     public int IdProject { get; set; }
 

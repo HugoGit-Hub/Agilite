@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class TaskModel
+public class TaskModel
 {
     public int IdTask { get; set; }
 

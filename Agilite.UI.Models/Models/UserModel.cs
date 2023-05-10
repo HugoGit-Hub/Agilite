@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class UserModel
+public class UserModel
 {
     public int IdUser { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Agilite.UI.Models.Models;
 
-class TeamModel
+public class TeamModel
 {
     public int IdTeam { get; set; }
 
