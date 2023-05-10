@@ -1,4 +1,5 @@
-﻿using Agilite.UI.Services;
+﻿using Agilite.UI.Mapper.Configuration;
+using Agilite.UI.Services;
 using Agilite.UI.Services.Services;
 using Agilite.UI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,6 +16,8 @@ public class Container
     public static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
+
+        services.ConfigureMappers();
 
         services.AddSingleton<MainWindow>();
         services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();

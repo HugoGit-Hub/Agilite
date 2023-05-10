@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Agilite.DataTransferObject\Agilite.DataTransferObject.csproj" />
+    <ProjectReference Include="..\Agilite.UI.Mapper\Agilite.UI.Mapper.csproj" />
     <ProjectReference Include="..\Agilite.UI.Services\Agilite.UI.Services.csproj" />
   </ItemGroup>
 
