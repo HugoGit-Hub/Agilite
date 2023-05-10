@@ -41,13 +41,13 @@ public partial class AgiliteContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder
-            .UseCollation("utf8mb4_0900_ai_ci")
-            .HasCharSet("utf8mb4");
+        //modelBuilder
+        //    .UseCollation("utf8mb4_0900_ai_ci")
+        //    .HasCharSet("utf8mb4");
 
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasKey(e => e.IdContact).HasName("PRIMARY");
+            entity.HasKey(e => e.IdContact);
 
             entity.ToTable("Contact");
 
@@ -56,7 +56,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Message>(entity =>
         {
-            entity.HasKey(e => e.IdMessage).HasName("PRIMARY");
+            entity.HasKey(e => e.IdMessage);
 
             entity.ToTable("Message");
 
@@ -65,7 +65,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Objective>(entity =>
         {
-            entity.HasKey(e => e.IdObjective).HasName("PRIMARY");
+            entity.HasKey(e => e.IdObjective);
 
             entity.ToTable("Objective");
 
@@ -83,7 +83,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Planning>(entity =>
         {
-            entity.HasKey(e => e.IdPlanning).HasName("PRIMARY");
+            entity.HasKey(e => e.IdPlanning);
 
             entity.ToTable("Planning");
 
@@ -102,7 +102,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Project>(entity =>
         {
-            entity.HasKey(e => e.IdProject).HasName("PRIMARY");
+            entity.HasKey(e => e.IdProject);
 
             entity.ToTable("Project");
 
@@ -121,7 +121,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Sprint>(entity =>
         {
-            entity.HasKey(e => e.IdSprint).HasName("PRIMARY");
+            entity.HasKey(e => e.IdSprint);
 
             entity.ToTable("Sprint");
 
@@ -139,7 +139,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Task>(entity =>
         {
-            entity.HasKey(e => e.IdTask).HasName("PRIMARY");
+            entity.HasKey(e => e.IdTask);
 
             entity.ToTable("Task");
 
@@ -159,7 +159,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<Team>(entity =>
         {
-            entity.HasKey(e => e.IdTeam).HasName("PRIMARY");
+            entity.HasKey(e => e.IdTeam);
 
             entity.ToTable("Team");
 
@@ -168,7 +168,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<TeamRole>(entity =>
         {
-            entity.HasKey(e => e.IdTeamRole).HasName("PRIMARY");
+            entity.HasKey(e => e.IdTeamRole);
 
             entity.ToTable("TeamRole");
 
@@ -178,7 +178,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.IdUser).HasName("PRIMARY");
+            entity.HasKey(e => e.IdUser);
 
             entity.ToTable("User");
 
@@ -194,7 +194,7 @@ public partial class AgiliteContext : DbContext
         modelBuilder.Entity<UserMessageContact>(entity =>
         {
             entity.HasKey(e => new { e.UserIdUser, e.ContactIdContact, e.MessageIdMessage })
-                .HasName("PRIMARY")
+                
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
 
             entity.ToTable("UserMessageContact");
@@ -229,7 +229,7 @@ public partial class AgiliteContext : DbContext
         modelBuilder.Entity<UserTeamTeamRole>(entity =>
         {
             entity.HasKey(e => new { e.UserIdUser, e.TeamIdTeam, e.TeamRoleIdTeamRole })
-                .HasName("PRIMARY")
+                
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
 
             entity.ToTable("UserTeamTeamRole");
