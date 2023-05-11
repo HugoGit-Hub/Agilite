@@ -1,7 +1,7 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services;
+namespace Agilite.UI.Services.Services.Refit;
 
 public interface ITaskService : IBaseRefitClient
 {
