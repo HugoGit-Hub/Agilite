@@ -1,11 +1,12 @@
 ﻿using Agilite.UI.Mapper.Configuration;
 using Agilite.UI.Services;
-using Agilite.UI.Services.Services;
+using Agilite.UI.Services.Services.Refit;
 using Agilite.UI.ViewModels;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using System;
 using System.Linq;
+using Agilite.UI.Services.Services;
 
 namespace Agilite.UI;
 
@@ -23,6 +24,7 @@ public class Container
         services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
         services.AddSingleton<ContactViewModel>();
         services.AddSingleton<DefaultViewModel>();
+        services.AddSingleton<ContactService>();
 
         foreach (var type in 
                 typeof(IBaseRefitClient).Assembly
