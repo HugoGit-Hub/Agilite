@@ -4,11 +4,11 @@ using AutoMapper;
 
 namespace Agilite.UI.Mapper.Profiles;
 
-public class TaskProfile : Profile
+public class JobProfile : Profile
 {
-    public TaskProfile()
+    public JobProfile()
     {
-        CreateMap<TaskDto, TaskModel>();
-        CreateMap<TaskModel, TaskDto>();
+        CreateMap<JobDto, TaskModel>();
+        CreateMap<TaskModel, JobDto>();
     }
 }
