@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.ContactCommands.CreateContact;
 

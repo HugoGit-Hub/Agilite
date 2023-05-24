@@ -24,7 +24,7 @@ public class DeleteTeamCommandHandler : IRequestHandler<DeleteTeamCommand, TeamD
         {
             IdTeam = request.Team.IdTeam,
             NameTeam = request.Team.NameTeam,
-            NumberMembersTeam = request.Team.NumberMembersTeam
+            NumberOfMembersTeam = request.Team.NumberMembersTeam
         };
 
         var deleted = _unitOfWork.GetRepository<Team>().Delete(team);

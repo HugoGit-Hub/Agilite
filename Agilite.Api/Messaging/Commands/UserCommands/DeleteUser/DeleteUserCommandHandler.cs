@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.UserCommands.DeleteUser;
 
@@ -27,7 +26,6 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, UserD
             LastNameUser = request.User.LastNameUser,
             EmailUser = request.User.EmailUser,
             PasswordUser = request.User.PasswordUser,
-            EnumRoleUser = request.User.EnumRoleUser,
             DateCreationUser = request.User.DateCreationUser,
             AgeUser = request.User.AgeUser,
         };

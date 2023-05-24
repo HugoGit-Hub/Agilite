@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.ProjectCommands.UpdateProject;
 
@@ -23,10 +22,9 @@ public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand,
         var project = new Project
         {
             IdProject = request.Project.IdProject,
-            TeamIdTeam = request.Project.TeamIdTeam,
             NameProject = request.Project.NameProject,
             DateCreationProject = request.Project.DateCreationProject,
-            DateEnded = request.Project.DateEnded
+            DateEndedProject = request.Project.DateEndedProject
         };
 
         var created = _unitOfWork.GetRepository<Project>().Update(project);

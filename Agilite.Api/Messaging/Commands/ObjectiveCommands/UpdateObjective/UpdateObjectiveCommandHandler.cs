@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.ObjectiveCommands.UpdateObjective;
 
@@ -23,10 +22,8 @@ public class UpdateObjectiveCommandHandler : IRequestHandler<UpdateObjectiveComm
         var objective = new Objective
         {
             IdObjective = request.Objective.IdObjective,
-            SprintIdSprint = request.Objective.SprintIdSprint,
             NameObjective = request.Objective.NameObjective,
             NumberObjective = request.Objective.NumberObjective,
-            EnumTypeObjective = request.Objective.EnumTypeObjective,
             TextObjective = request.Objective.TextObjective,
         };
 
