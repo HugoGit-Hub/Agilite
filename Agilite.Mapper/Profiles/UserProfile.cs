@@ -10,8 +10,7 @@ public class UserProfile : Profile
     {
         CreateMap<User, UserDto>();
         CreateMap<UserDto, User>()
-            .ForMember(entity => entity.UserMessageContacts, member => member.Ignore())
-            .ForMember(entity => entity.Plannings, member => member.Ignore())
-            .ForMember(entity => entity.UserTeamTeamRoles, member => member.Ignore());
+            .ForMember(entity => entity.UserContacts, member => member.Ignore())
+            .ForMember(entity => entity.UserTeams, member => member.Ignore());
     }
 }

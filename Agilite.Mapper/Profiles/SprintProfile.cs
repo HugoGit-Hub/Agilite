@@ -10,7 +10,7 @@ public class SprintProfile : Profile
     {
         CreateMap<Sprint, SprintDto>();
         CreateMap<SprintDto, Sprint>()
-            .ForMember(entity => entity.Objectives, member => member.Ignore())
-            .ForMember(entity => entity.ProjectIdProjectNavigation, member => member.Ignore());
+            .ForMember(entity => entity.IdProjectNavigation, member => member.Ignore())
+            .ForMember(entity => entity.SprintObjectives, member => member.Ignore());
     }
 }
