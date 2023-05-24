@@ -24,11 +24,11 @@ namespace Agilite.UnitOfWork.Migrations
 
             modelBuilder.Entity("Agilite.Entities.Entities.Contact", b =>
                 {
-                    b.Property<int>("IdContact")
+                    b.Property<int>("FkContact")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContact"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FkContact"));
 
                     b.Property<short>("ArchivedContact")
                         .HasColumnType("smallint");
@@ -38,7 +38,7 @@ namespace Agilite.UnitOfWork.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.HasKey("IdContact");
+                    b.HasKey("FkContact");
 
                     b.ToTable("Contact", (string)null);
                 });
@@ -131,7 +131,7 @@ namespace Agilite.UnitOfWork.Migrations
                     b.Property<DateTime>("DateCreationProject")
                         .HasColumnType("datetime");
 
-                    b.Property<string>("DateEnded")
+                    b.Property<string>("DateEndedProject")
                         .HasMaxLength(45)
                         .HasColumnType("nvarchar(45)");
 
@@ -235,7 +235,7 @@ namespace Agilite.UnitOfWork.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("NumberMembersTeam")
+                    b.Property<int>("NumberOfMembersTeam")
                         .HasColumnType("int");
 
                     b.HasKey("IdTeam");
@@ -417,7 +417,7 @@ namespace Agilite.UnitOfWork.Migrations
             modelBuilder.Entity("Agilite.Entities.Entities.Task", b =>
                 {
                     b.HasOne("Agilite.Entities.Entities.Objective", "ObjectiveIdObjectiveNavigation")
-                        .WithMany("Tasks")
+                        .WithMany("Jobs")
                         .HasForeignKey("ObjectiveIdObjective")
                         .IsRequired()
                         .HasConstraintName("fk_Task_Objective1");
@@ -491,7 +491,7 @@ namespace Agilite.UnitOfWork.Migrations
 
             modelBuilder.Entity("Agilite.Entities.Entities.Objective", b =>
                 {
-                    b.Navigation("Tasks");
+                    b.Navigation("Jobs");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Project", b =>
