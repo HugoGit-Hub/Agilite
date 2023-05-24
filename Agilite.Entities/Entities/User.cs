@@ -1,6 +1,6 @@
 ﻿namespace Agilite.Entities.Entities;
 
-public partial class User
+public class User
 {
     public int IdUser { get; set; }
 
@@ -12,15 +12,13 @@ public partial class User
 
     public string PasswordUser { get; set; } = null!;
 
-    public int EnumRoleUser { get; set; }
+    public DateTime DateCreationUser { get; set; }
 
-    public string DateCreationUser { get; set; } = null!;
+    public int AgeUser { get; set; }
 
-    public int? AgeUser { get; set; }
+    public bool ArchivedUser { get; set; }
 
-    public virtual ICollection<Planning> Plannings { get; } = new List<Planning>();
+    public virtual IEnumerable<UserContact> UserContacts { get; set; } = new List<UserContact>();
 
-    public virtual ICollection<UserMessageContact> UserMessageContacts { get; } = new List<UserMessageContact>();
-
-    public virtual ICollection<UserTeamTeamRole> UserTeamTeamRoles { get; } = new List<UserTeamTeamRole>();
+    public virtual IEnumerable<UserTeam> UserTeams { get; set; } = new List<UserTeam>();
 }

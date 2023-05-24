@@ -1,14 +1,14 @@
 ﻿namespace Agilite.Entities.Entities;
 
-public partial class Team
+public class Team
 {
     public int IdTeam { get; set; }
 
     public string NameTeam { get; set; } = null!;
 
-    public int NumberMembersTeam { get; set; }
+    public int NumberOfMembersTeam { get; set; }
 
-    public virtual ICollection<Project> Projects { get; } = new List<Project>();
+    public virtual IEnumerable<UserTeam> UserTeams { get; set; } = new List<UserTeam>();
 
-    public virtual ICollection<UserTeamTeamRole> UserTeamTeamRoles { get; } = new List<UserTeamTeamRole>();
+    public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
 }
