@@ -34,6 +34,8 @@ public partial class AgiliteContext : DbContext
 
     public virtual DbSet<Sprint> Sprints { get; set; }
 
+    public virtual DbSet<SprintObjective> SprintObjectives { get; set; }
+
     public virtual DbSet<Team> Teams { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -71,7 +73,7 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Job");
 
-            entity.HasIndex(e => e.IdJobStateNavigation);
+            //entity.HasIndex(e => e.IdJobStateNavigation);
 
             entity.Property(e => e.NameJob)
                 .HasMaxLength(150)
@@ -124,7 +126,7 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Message");
 
-            entity.HasIndex(e => e.IdContactNavigation);
+            //entity.HasIndex(e => e.IdContactNavigation);
 
             entity.Property(e => e.TextMessage).HasMaxLength(3000);
 
@@ -137,7 +139,7 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Objective");
 
-            entity.HasIndex(e => e.IdObjectiveTypeNavigation);
+            //entity.HasIndex(e => e.IdObjectiveTypeNavigation);
 
             entity.Property(e => e.NameObjective)
                 .HasMaxLength(150)
@@ -173,9 +175,9 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Project");
 
-            entity.HasIndex(e => e.IdProjectTypeNavigation);
+            //entity.HasIndex(e => e.IdProjectTypeNavigation);
 
-            entity.HasIndex(e => e.IdTeamNavigation);
+            //entity.HasIndex(e => e.IdTeamNavigation);
 
             entity.Property(e => e.NameProject).HasMaxLength(100);
 
@@ -205,7 +207,7 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Sprint");
 
-            entity.HasIndex(e => e.IdProjectNavigation);
+            //entity.HasIndex(e => e.IdProjectNavigation);
 
             entity.Property(e => e.NumberSprint);
 
@@ -215,6 +217,21 @@ public partial class AgiliteContext : DbContext
 
             entity.HasMany(e => e.SprintObjectives)
                 .WithOne(e => e.IdSprintNavigation)
+                .HasForeignKey(e => e.IdSprint);
+        });
+
+        modelBuilder.Entity<SprintObjective>(entity =>
+        {
+            entity.HasKey(e => e.IdObjective);
+
+            entity.HasKey(e => e.IdSprint);
+
+            entity.HasOne(e => e.IdObjectiveNavigation)
+                .WithMany(e => e.SprintObjectives)
+                .HasForeignKey(e => e.IdObjective);
+
+            entity.HasOne(e => e.IdSprintNavigation)
+                .WithMany(e => e.SprintObjectives)
                 .HasForeignKey(e => e.IdSprint);
         });
 
