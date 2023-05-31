@@ -24,7 +24,7 @@ public class CreateTeamCommandHandler : IRequestHandler<CreateTeamCommand, TeamD
         {
             IdTeam = request.Team.IdTeam,
             NameTeam = request.Team.NameTeam,
-            NumberMembersTeam = request.Team.NumberMembersTeam
+            NumberOfMembersTeam = request.Team.NumberMembersTeam
         };
 
         var created = _unitOfWork.GetRepository<Team>().Create(team);

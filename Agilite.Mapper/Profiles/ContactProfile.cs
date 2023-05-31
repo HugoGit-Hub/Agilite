@@ -10,6 +10,7 @@ public class ContactProfile : Profile
     {
         CreateMap<Contact, ContactDto>();
         CreateMap<ContactDto, Contact>()
-            .ForMember(entity => entity.UserMessageContacts, member => member.Ignore());
+            .ForMember(entity => entity.Messages, member => member.Ignore())
+            .ForMember(entity => entity.UserContacts, member => member.Ignore());
     }
 }

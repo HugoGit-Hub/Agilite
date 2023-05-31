@@ -11,6 +11,6 @@ public class TeamProfile : Profile
         CreateMap<Team, TeamDto>();
         CreateMap<TeamDto, Team>()
             .ForMember(entity => entity.Projects, member => member.Ignore())
-            .ForMember(entity => entity.UserTeamTeamRoles, member => member.Ignore());
+            .ForMember(entity => entity.UserTeams, member => member.Ignore());
     }
 }

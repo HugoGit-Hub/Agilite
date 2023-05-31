@@ -10,6 +10,6 @@ public class MessageProfile : Profile
     {
         CreateMap<Message, MessageDto>();
         CreateMap<MessageDto, Message>()
-            .ForMember(entity => entity.UserMessageContacts, member => member.Ignore());
+            .ForMember(entity => entity.IdContactNavigation, member => member.Ignore());
     }
 }

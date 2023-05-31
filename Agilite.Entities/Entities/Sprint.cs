@@ -1,10 +1,10 @@
 ﻿namespace Agilite.Entities.Entities;
 
-public partial class Sprint
+public class Sprint
 {
     public int IdSprint { get; set; }
 
-    public int ProjectIdProject { get; set; }
+    public int FkProject { get; set; }
 
     public int NumberSprint { get; set; }
 
@@ -12,7 +12,7 @@ public partial class Sprint
 
     public DateTime EndDateSprint { get; set; }
 
-    public virtual ICollection<Objective> Objectives { get; } = new List<Objective>();
-
-    public virtual Project ProjectIdProjectNavigation { get; set; } = null!;
+    public virtual Project IdProjectNavigation { get; set; } = null!;
+    
+    public virtual IEnumerable<SprintObjective> SprintObjectives { get; set; } = new List<SprintObjective>();
 }

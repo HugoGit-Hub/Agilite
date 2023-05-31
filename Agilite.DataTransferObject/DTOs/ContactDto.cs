@@ -6,5 +6,5 @@ public class ContactDto
 
     public string NameContact { get; set; } = null!;
 
-    public sbyte ArchivedContact { get; set; }
+    public bool ArchivedContact { get; set; }
 }

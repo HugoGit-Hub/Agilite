@@ -10,7 +10,8 @@ public class ProjectProfile : Profile
     {
         CreateMap<Project, ProjectDto>();
         CreateMap<ProjectDto, Project>()
-            .ForMember(entity => entity.Sprints, member => member.Ignore())
-            .ForMember(entity => entity.TeamIdTeamNavigation, member => member.Ignore());
+            .ForMember(entity => entity.IdProjectTypeNavigation, member => member.Ignore())
+            .ForMember(entity => entity.IdTeamNavigation, member => member.Ignore())
+            .ForMember(entity => entity.Sprints, member => member.Ignore());
     }
 }

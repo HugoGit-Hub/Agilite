@@ -2,4 +2,4 @@
 
 namespace Agilite.Api.Messaging.Commands.GenericCommands;
 
-public record GetAllCommand<TEntityDto>(Type entityType) : IRequest<IEnumerable<TEntityDto>>;
+public record GetAllCommand<TEntityDto>(Type EntityType) : IRequest<IEnumerable<TEntityDto>>;

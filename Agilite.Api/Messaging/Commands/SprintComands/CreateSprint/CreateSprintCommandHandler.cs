@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.SprintComands.CreateSprint;
 
@@ -23,7 +22,6 @@ public class CreateSprintCommandHandler : IRequestHandler<CreateSprintCommand, S
         var sprint = new Sprint
         {
             IdSprint = request.Sprint.IdSprint,
-            ProjectIdProject = request.Sprint.ProjectIdProject,
             NumberSprint = request.Sprint.NumberSprint,
             StartDateSprint = request.Sprint.StartDateSprint,
             EndDateSprint = request.Sprint.EndDateSprint
