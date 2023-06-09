@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Agilite.UnitOfWork;
 
@@ -6,7 +7,13 @@ internal class AgiliteDesignContext : AgiliteContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer();
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("C:\\Users\\H.DECUQ\\source\\repos\\HugoGit-Hub\\Agilite\\Agilite.Api\\appsettings.Development.json")
+            .Build();
+
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        optionsBuilder.UseSqlServer(connectionString);
         base.OnConfiguring(optionsBuilder);
     }
 }
