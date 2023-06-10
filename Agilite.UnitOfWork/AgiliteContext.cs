@@ -14,8 +14,6 @@ public partial class AgiliteContext : DbContext
     {
     }
 
-    public virtual DbSet<Contact> Contacts { get; set; }
-
     public virtual DbSet<Job> Jobs { get; set; }
 
     public virtual DbSet<JobObjective> JobObjectives { get; set; }
@@ -40,40 +38,15 @@ public partial class AgiliteContext : DbContext
 
     public virtual DbSet<User> Users { get; set; }
 
-    public virtual DbSet<UserContact> UserContacts { get; set; }
-
     public virtual DbSet<UserTeam> UserTeams { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Contact>(entity =>
-        {
-            entity.HasKey(e => e.IdContact);
-
-            entity.ToTable("Contact");
-
-            entity.Property(e => e.NameContact)
-                .IsRequired()
-                .HasMaxLength(150);
-
-            entity.Property(e => e.ArchivedContact).IsRequired();
-            
-            entity.HasMany(e => e.UserContacts)
-                .WithOne(e => e.IdContactNavigation)
-                .HasForeignKey(e => e.IdContact);
-
-            entity.HasMany(e => e.Messages)
-                .WithOne(e => e.IdContactNavigation)
-                .HasForeignKey(e => e.FkContact);
-        });
-
         modelBuilder.Entity<Job>(entity =>
         {
             entity.HasKey(e => e.IdJob);
 
             entity.ToTable("Job");
-
-            //entity.HasIndex(e => e.IdJobStateNavigation);
 
             entity.Property(e => e.NameJob)
                 .HasMaxLength(150)
@@ -126,11 +99,13 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Message");
 
-            //entity.HasIndex(e => e.IdContactNavigation);
-
             entity.Property(e => e.TextMessage).HasMaxLength(3000);
 
             entity.Property(e => e.ArchivedMessage).IsRequired();
+
+            entity.HasOne(e => e.IdUserNavigation)
+                .WithMany(e => e.Messages)
+                .HasForeignKey(e => e.FkSenderUser);
         });
 
         modelBuilder.Entity<Objective>(entity =>
@@ -138,8 +113,6 @@ public partial class AgiliteContext : DbContext
             entity.HasKey(e => e.IdObjective);
 
             entity.ToTable("Objective");
-
-            //entity.HasIndex(e => e.IdObjectiveTypeNavigation);
 
             entity.Property(e => e.NameObjective)
                 .HasMaxLength(150)
@@ -175,10 +148,6 @@ public partial class AgiliteContext : DbContext
 
             entity.ToTable("Project");
 
-            //entity.HasIndex(e => e.IdProjectTypeNavigation);
-
-            //entity.HasIndex(e => e.IdTeamNavigation);
-
             entity.Property(e => e.NameProject).HasMaxLength(100);
 
             entity.Property(e => e.DateCreationProject).HasColumnType("datetime");
@@ -206,8 +175,6 @@ public partial class AgiliteContext : DbContext
             entity.HasKey(e => e.IdSprint);
 
             entity.ToTable("Sprint");
-
-            //entity.HasIndex(e => e.IdProjectNavigation);
 
             entity.Property(e => e.NumberSprint);
 
@@ -282,27 +249,12 @@ public partial class AgiliteContext : DbContext
 
             entity.Property(e => e.ArchivedUser);
 
-            entity.HasMany(e => e.UserContacts)
+            entity.HasMany(e => e.Messages)
                 .WithOne(e => e.IdUserNavigation)
-                .HasForeignKey(e => e.IdUser);
+                .HasForeignKey(e => e.FkSenderUser);
 
             entity.HasMany(e => e.UserTeams)
                 .WithOne(e => e.IdUserNavigation)
-                .HasForeignKey(e => e.IdUser);
-        });
-        
-        modelBuilder.Entity<UserContact>(entity =>
-        {
-            entity.HasKey(e => e.IdContact);
-
-            entity.HasKey(e => e.IdUser);
-
-            entity.HasOne(e => e.IdContactNavigation)
-                .WithMany(e => e.UserContacts)
-                .HasForeignKey(e => e.IdContact);
-
-            entity.HasOne(e => e.IdUserNavigation)
-                .WithMany(e => e.UserContacts)
                 .HasForeignKey(e => e.IdUser);
         });
 
