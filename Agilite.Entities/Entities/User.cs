@@ -18,7 +18,7 @@ public class User
 
     public bool ArchivedUser { get; set; }
 
-    public virtual IEnumerable<UserContact> UserContacts { get; set; } = new List<UserContact>();
+    public virtual IEnumerable<Message> Messages { get; set; } = new List<Message>  ();
 
     public virtual IEnumerable<UserTeam> UserTeams { get; set; } = new List<UserTeam>();
 }

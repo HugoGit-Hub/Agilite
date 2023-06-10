@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agilite.UnitOfWork.Migrations
 {
     [DbContext(typeof(AgiliteDesignContext))]
-    [Migration("20230609192920_InitialCreate")]
+    [Migration("20230610070707_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,27 +24,6 @@ namespace Agilite.UnitOfWork.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Agilite.Entities.Entities.Contact", b =>
-                {
-                    b.Property<int>("IdContact")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContact"));
-
-                    b.Property<bool>("ArchivedContact")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("NameContact")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.HasKey("IdContact");
-
-                    b.ToTable("Contact", (string)null);
-                });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Job", b =>
                 {
@@ -125,7 +104,10 @@ namespace Agilite.UnitOfWork.Migrations
                     b.Property<bool>("ArchivedMessage")
                         .HasColumnType("bit");
 
-                    b.Property<int>("FkContact")
+                    b.Property<int>("FkReceiverUser")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkSenderUser")
                         .HasColumnType("int");
 
                     b.Property<string>("TextMessage")
@@ -134,7 +116,7 @@ namespace Agilite.UnitOfWork.Migrations
 
                     b.HasKey("IdMessage");
 
-                    b.HasIndex("FkContact");
+                    b.HasIndex("FkSenderUser");
 
                     b.ToTable("Message", (string)null);
                 });
@@ -342,21 +324,6 @@ namespace Agilite.UnitOfWork.Migrations
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("Agilite.Entities.Entities.UserContact", b =>
-                {
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdContact")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdUser");
-
-                    b.HasIndex("IdContact");
-
-                    b.ToTable("UserContacts");
-                });
-
             modelBuilder.Entity("Agilite.Entities.Entities.UserTeam", b =>
                 {
                     b.Property<int>("IdUser")
@@ -408,13 +375,13 @@ namespace Agilite.UnitOfWork.Migrations
 
             modelBuilder.Entity("Agilite.Entities.Entities.Message", b =>
                 {
-                    b.HasOne("Agilite.Entities.Entities.Contact", "IdContactNavigation")
+                    b.HasOne("Agilite.Entities.Entities.User", "IdUserNavigation")
                         .WithMany("Messages")
-                        .HasForeignKey("FkContact")
+                        .HasForeignKey("FkSenderUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("IdContactNavigation");
+                    b.Navigation("IdUserNavigation");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Objective", b =>
@@ -477,25 +444,6 @@ namespace Agilite.UnitOfWork.Migrations
                     b.Navigation("IdSprintNavigation");
                 });
 
-            modelBuilder.Entity("Agilite.Entities.Entities.UserContact", b =>
-                {
-                    b.HasOne("Agilite.Entities.Entities.Contact", "IdContactNavigation")
-                        .WithMany("UserContacts")
-                        .HasForeignKey("IdContact")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Agilite.Entities.Entities.User", "IdUserNavigation")
-                        .WithMany("UserContacts")
-                        .HasForeignKey("IdUser")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("IdContactNavigation");
-
-                    b.Navigation("IdUserNavigation");
-                });
-
             modelBuilder.Entity("Agilite.Entities.Entities.UserTeam", b =>
                 {
                     b.HasOne("Agilite.Entities.Entities.Team", "IdTeamNavigation")
@@ -513,13 +461,6 @@ namespace Agilite.UnitOfWork.Migrations
                     b.Navigation("IdTeamNavigation");
 
                     b.Navigation("IdUserNavigation");
-                });
-
-            modelBuilder.Entity("Agilite.Entities.Entities.Contact", b =>
-                {
-                    b.Navigation("Messages");
-
-                    b.Navigation("UserContacts");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Job", b =>
@@ -568,7 +509,7 @@ namespace Agilite.UnitOfWork.Migrations
 
             modelBuilder.Entity("Agilite.Entities.Entities.User", b =>
                 {
-                    b.Navigation("UserContacts");
+                    b.Navigation("Messages");
 
                     b.Navigation("UserTeams");
                 });

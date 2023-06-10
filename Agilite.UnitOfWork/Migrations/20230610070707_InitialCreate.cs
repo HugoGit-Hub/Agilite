@@ -12,20 +12,6 @@ namespace Agilite.UnitOfWork.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Contact",
-                columns: table => new
-                {
-                    IdContact = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    NameContact = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    ArchivedContact = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contact", x => x.IdContact);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "JobState",
                 columns: table => new
                 {
@@ -95,27 +81,6 @@ namespace Agilite.UnitOfWork.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.IdUser);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Message",
-                columns: table => new
-                {
-                    IdMessage = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FkContact = table.Column<int>(type: "int", nullable: false),
-                    TextMessage = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: true),
-                    ArchivedMessage = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Message", x => x.IdMessage);
-                    table.ForeignKey(
-                        name: "FK_Message_Contact_FkContact",
-                        column: x => x.FkContact,
-                        principalTable: "Contact",
-                        principalColumn: "IdContact",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -194,24 +159,22 @@ namespace Agilite.UnitOfWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserContacts",
+                name: "Message",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(type: "int", nullable: false),
-                    IdContact = table.Column<int>(type: "int", nullable: false)
+                    IdMessage = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FkReceiverUser = table.Column<int>(type: "int", nullable: false),
+                    FkSenderUser = table.Column<int>(type: "int", nullable: false),
+                    TextMessage = table.Column<string>(type: "nvarchar(3000)", maxLength: 3000, nullable: true),
+                    ArchivedMessage = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserContacts", x => x.IdUser);
+                    table.PrimaryKey("PK_Message", x => x.IdMessage);
                     table.ForeignKey(
-                        name: "FK_UserContacts_Contact_IdContact",
-                        column: x => x.IdContact,
-                        principalTable: "Contact",
-                        principalColumn: "IdContact",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserContacts_User_IdUser",
-                        column: x => x.IdUser,
+                        name: "FK_Message_User_FkSenderUser",
+                        column: x => x.FkSenderUser,
                         principalTable: "User",
                         principalColumn: "IdUser",
                         onDelete: ReferentialAction.Cascade);
@@ -323,9 +286,9 @@ namespace Agilite.UnitOfWork.Migrations
                 column: "IdObjective");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Message_FkContact",
+                name: "IX_Message_FkSenderUser",
                 table: "Message",
-                column: "FkContact");
+                column: "FkSenderUser");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Objective_FkObjectiveType",
@@ -353,11 +316,6 @@ namespace Agilite.UnitOfWork.Migrations
                 column: "IdObjective");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserContacts_IdContact",
-                table: "UserContacts",
-                column: "IdContact");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserTeams_IdTeam",
                 table: "UserTeams",
                 column: "IdTeam");
@@ -376,9 +334,6 @@ namespace Agilite.UnitOfWork.Migrations
                 name: "SprintObjectives");
 
             migrationBuilder.DropTable(
-                name: "UserContacts");
-
-            migrationBuilder.DropTable(
                 name: "UserTeams");
 
             migrationBuilder.DropTable(
@@ -389,9 +344,6 @@ namespace Agilite.UnitOfWork.Migrations
 
             migrationBuilder.DropTable(
                 name: "Sprint");
-
-            migrationBuilder.DropTable(
-                name: "Contact");
 
             migrationBuilder.DropTable(
                 name: "User");

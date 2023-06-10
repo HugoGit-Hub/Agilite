@@ -25,10 +25,10 @@ public class ContactViewModel : ViewModelBase
             return;
         }
 
-        var contacts = _contactService.GetAll().Result;
-        foreach (var contact in contacts!)
-        {
-            Contacts.Add(contact);
-        }
+        //var contacts = _contactService.GetAll().Result;
+        //foreach (var contact in contacts!)
+        //{
+        //    Contacts.Add(contact);
+        //}
     }
 }
