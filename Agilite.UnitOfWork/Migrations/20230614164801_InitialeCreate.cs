@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Agilite.UnitOfWork.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class InitialeCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,8 +72,9 @@ namespace Agilite.UnitOfWork.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstNameUser = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastNameUser = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    EmailUser = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    EmailUser = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     PasswordUser = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    SaltUser = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     DateCreationUser = table.Column<DateTime>(type: "datetime", nullable: false),
                     AgeUser = table.Column<int>(type: "int", nullable: false),
                     ArchivedUser = table.Column<bool>(type: "bit", nullable: false)
@@ -314,6 +315,12 @@ namespace Agilite.UnitOfWork.Migrations
                 name: "IX_SprintObjectives_IdObjective",
                 table: "SprintObjectives",
                 column: "IdObjective");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_EmailUser",
+                table: "User",
+                column: "EmailUser",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserTeams_IdTeam",

@@ -298,8 +298,7 @@ namespace Agilite.UnitOfWork.Migrations
 
                     b.Property<string>("EmailUser")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstNameUser")
                         .IsRequired()
@@ -316,7 +315,14 @@ namespace Agilite.UnitOfWork.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<byte[]>("SaltUser")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.HasKey("IdUser");
+
+                    b.HasIndex("EmailUser")
+                        .IsUnique();
 
                     b.ToTable("User", (string)null);
                 });

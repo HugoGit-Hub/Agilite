@@ -234,15 +234,17 @@ public partial class AgiliteContext : DbContext
             entity.Property(e => e.LastNameUser)
                 .HasMaxLength(100)
                 .IsRequired();
-            
-            entity.Property(e => e.EmailUser)
-                .HasMaxLength(150)
-                .IsRequired();
+
+            entity.HasIndex(e => e.EmailUser)
+                .IsUnique();
             
             entity.Property(e => e.PasswordUser)
                 .HasMaxLength(200)
                 .IsRequired();
-            
+
+            entity.Property(e => e.SaltUser)
+                .IsRequired();
+
             entity.Property(e => e.DateCreationUser).HasColumnType("datetime");
             
             entity.Property(e => e.AgeUser);
