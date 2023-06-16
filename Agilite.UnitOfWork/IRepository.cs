@@ -1,4 +1,4 @@
-﻿namespace Agilite.UnitOfWork.IRepositories;
+﻿namespace Agilite.UnitOfWork;
 
 public interface IRepository<TEntity>
 {

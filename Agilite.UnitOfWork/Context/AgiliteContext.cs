@@ -1,7 +1,7 @@
 ﻿using Agilite.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Agilite.UnitOfWork;
+namespace Agilite.UnitOfWork.Context;
 
 public partial class AgiliteContext : DbContext
 {
@@ -23,7 +23,7 @@ public partial class AgiliteContext : DbContext
     public virtual DbSet<Message> Messages { get; set; }
 
     public virtual DbSet<Objective> Objectives { get; set; }
-    
+
     public virtual DbSet<ObjectiveType> ObjectiveTypes { get; set; }
 
     public virtual DbSet<Project> Projects { get; set; }
@@ -151,7 +151,7 @@ public partial class AgiliteContext : DbContext
             entity.Property(e => e.NameProject).HasMaxLength(100);
 
             entity.Property(e => e.DateCreationProject).HasColumnType("datetime");
-            
+
             entity.Property(e => e.DateEndedProject).HasColumnType("datetime");
 
             entity.HasMany(e => e.Sprints)
@@ -179,7 +179,7 @@ public partial class AgiliteContext : DbContext
             entity.Property(e => e.NumberSprint);
 
             entity.Property(e => e.EndDateSprint).HasColumnType("datetime");
-            
+
             entity.Property(e => e.StartDateSprint).HasColumnType("datetime");
 
             entity.HasMany(e => e.SprintObjectives)
@@ -230,14 +230,14 @@ public partial class AgiliteContext : DbContext
             entity.Property(e => e.FirstNameUser)
                 .HasMaxLength(100)
                 .IsRequired();
-            
+
             entity.Property(e => e.LastNameUser)
                 .HasMaxLength(100)
                 .IsRequired();
 
             entity.HasIndex(e => e.EmailUser)
                 .IsUnique();
-            
+
             entity.Property(e => e.PasswordUser)
                 .HasMaxLength(200)
                 .IsRequired();
@@ -246,7 +246,7 @@ public partial class AgiliteContext : DbContext
                 .IsRequired();
 
             entity.Property(e => e.DateCreationUser).HasColumnType("datetime");
-            
+
             entity.Property(e => e.AgeUser);
 
             entity.Property(e => e.ArchivedUser);

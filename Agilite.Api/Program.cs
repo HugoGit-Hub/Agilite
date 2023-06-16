@@ -4,7 +4,7 @@ using Agilite.Repositories;
 using Agilite.Repositories.Repositories;
 using Agilite.Services;
 using Agilite.UnitOfWork;
-using Agilite.UnitOfWork.IRepositories;
+using Agilite.UnitOfWork.Context;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
