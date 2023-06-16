@@ -1,6 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
+using Agilite.Services;
 using AutoMapper;
 using MediatR;
 
@@ -8,30 +8,19 @@ namespace Agilite.Api.Messaging.Commands.UserCommands.CreateUser;
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserDto>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserSerice _userSerice;
     private readonly IMapper _mapper;
 
-    public CreateUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public CreateUserCommandHandler(IUserSerice userSerice, IMapper mapper)
     {
-        _unitOfWork = unitOfWork;
+        _userSerice = userSerice;
         _mapper = mapper;
     }
 
     public Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = new User
-        {
-            IdUser = request.User.IdUser,
-            FirstNameUser = request.User.FirstNameUser,
-            LastNameUser = request.User.LastNameUser,
-            EmailUser = request.User.EmailUser,
-            PasswordUser = request.User.PasswordUser,
-            DateCreationUser = request.User.DateCreationUser,
-            AgeUser = request.User.AgeUser,
-        };
-
-        var created = _unitOfWork.GetRepository<User>().Create(user);
-        _unitOfWork.Save();
+        var user = _mapper.Map<User>(request.User);
+        var created = _userSerice.CreateUser(user);
         return Task.FromResult(_mapper.Map<UserDto>(created));
     }
 }

@@ -1,4 +1,6 @@
-﻿using Agilite.UnitOfWork;
+﻿using Agilite.Repositories.Repositories;
+using Agilite.UnitOfWork;
+using Agilite.UnitOfWork.IRepositories;
 
 namespace Agilite.Repositories;
 
@@ -9,11 +11,6 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(AgiliteContext context)
     {
         _context = context;
-    }
-    
-    public void Dispose()
-    {
-        _context.Dispose();
     }
 
     public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
@@ -29,5 +26,10 @@ public class UnitOfWork : IUnitOfWork
     public void Save()
     {
         _context.SaveChanges();
+    }
+
+    public void Dispose()
+    {
+        _context.Dispose();
     }
 }

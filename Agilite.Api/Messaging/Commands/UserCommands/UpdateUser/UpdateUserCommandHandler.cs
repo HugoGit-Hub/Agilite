@@ -30,8 +30,8 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserD
             AgeUser = request.User.AgeUser,
         };
 
-        var created = _unitOfWork.GetRepository<User>().Update(user);
+        var updated = _unitOfWork.GetRepository<User>().Update(user);
         _unitOfWork.Save();
-        return Task.FromResult(_mapper.Map<UserDto>(created));
+        return Task.FromResult(_mapper.Map<UserDto>(updated));
     }
 }

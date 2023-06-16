@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agilite.UnitOfWork.Migrations
 {
     [DbContext(typeof(AgiliteDesignContext))]
-    [Migration("20230610070707_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230614164801_InitialeCreate")]
+    partial class InitialeCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -301,8 +301,7 @@ namespace Agilite.UnitOfWork.Migrations
 
                     b.Property<string>("EmailUser")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstNameUser")
                         .IsRequired()
@@ -319,7 +318,14 @@ namespace Agilite.UnitOfWork.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<byte[]>("SaltUser")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
                     b.HasKey("IdUser");
+
+                    b.HasIndex("EmailUser")
+                        .IsUnique();
 
                     b.ToTable("User", (string)null);
                 });

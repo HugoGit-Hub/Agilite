@@ -4,9 +4,6 @@ using Agilite.Api.Messaging.Commands.MessageCommands.GetAllMessages;
 using Agilite.Api.Messaging.Commands.MessageCommands.GetMessage;
 using Agilite.Api.Messaging.Commands.MessageCommands.UpdateMessage;
 using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
-using Agilite.UnitOfWork;
-using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,13 +14,9 @@ namespace Agilite.Api.Controllers;
 public class MessageController : ControllerBase
 {
     private readonly ISender _sender;
-    private readonly IMapper _mapper;
-    private readonly IService<Message> _service;
 
-    public MessageController(IMapper mapper, IService<Message> service, ISender sender)
+    public MessageController(ISender sender)
     {
-        _mapper = mapper;
-        _service = service;
         _sender = sender;
     }
 

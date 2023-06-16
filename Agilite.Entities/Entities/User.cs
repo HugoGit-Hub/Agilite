@@ -12,6 +12,8 @@ public class User
 
     public string PasswordUser { get; set; } = null!;
 
+    public byte[] SaltUser { get; set; } = null!;
+
     public DateTime DateCreationUser { get; set; }
 
     public int AgeUser { get; set; }
