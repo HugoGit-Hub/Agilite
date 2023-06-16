@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Agilite.DataTransferObject\Agilite.DataTransferObject.csproj" />
     <ProjectReference Include="..\Agilite.Repositories\Agilite.Repositories.csproj" />
   </ItemGroup>
 

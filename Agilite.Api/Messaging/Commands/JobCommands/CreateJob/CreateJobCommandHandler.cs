@@ -19,7 +19,7 @@ public class CreateJobCommandHandler : IRequestHandler<CreateJobCommand, JobDto>
 
     public Task<JobDto> Handle(CreateJobCommand request, CancellationToken cancellationToken)
     {
-            var job = new Job
+        var job = new Job
         {
             IdJob = request.Job.IdJob,
             NameJob = request.Job.NameJob,
