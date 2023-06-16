@@ -1,6 +1,7 @@
 ﻿using Agilite.UnitOfWork;
+using Agilite.UnitOfWork.IRepositories;
 
-namespace Agilite.Repositories;
+namespace Agilite.Repositories.Repositories;
 
 public class RepositoryEtityById<TEntity, TId> : Repository<TEntity>, IRepository<TEntity, TId> where TEntity : class
 {
