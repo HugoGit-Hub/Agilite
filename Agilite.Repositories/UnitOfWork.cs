@@ -1,6 +1,6 @@
 ﻿using Agilite.Repositories.Repositories;
 using Agilite.UnitOfWork;
-using Agilite.UnitOfWork.IRepositories;
+using Agilite.UnitOfWork.Context;
 
 namespace Agilite.Repositories;
 

@@ -2,6 +2,24 @@
 
 namespace Agilite.Services;
 
+public interface IService<TEntity>
+{
+    public TEntity Create(TEntity entity);
+
+    public IEnumerable<TEntity> GetAll();
+
+    public TEntity GetById(int id);
+
+    public TEntity Delete(TEntity entity);
+
+    public TEntity Update(TEntity entity);
+}
+
+public interface IService<TEntity, in TId> : IService<TEntity>
+{
+    TEntity? Get(TId id);
+}
+
 public class Service<TEntity> : IService<TEntity> where TEntity : class
 {
     private readonly IUnitOfWork _unitOfWork;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace Agilite.UnitOfWork;
+namespace Agilite.UnitOfWork.Context;
 
 internal class AgiliteDesignContext : AgiliteContext
 {

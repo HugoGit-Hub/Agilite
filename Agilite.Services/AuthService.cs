@@ -1,6 +1,6 @@
-﻿using Agilite.Services.Exceptions;
+﻿using Agilite.Repositories.Repositories;
+using Agilite.Services.Exceptions;
 using Agilite.Services.Managers;
-using Agilite.UnitOfWork.IRepositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

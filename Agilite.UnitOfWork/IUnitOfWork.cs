@@ -1,6 +1,4 @@
-﻿using Agilite.UnitOfWork.IRepositories;
-
-namespace Agilite.UnitOfWork;
+﻿namespace Agilite.UnitOfWork;
 
 public interface IUnitOfWork : IDisposable
 {

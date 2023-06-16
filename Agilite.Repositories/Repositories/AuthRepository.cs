@@ -1,7 +1,13 @@
-﻿using Agilite.UnitOfWork;
-using Agilite.UnitOfWork.IRepositories;
+﻿using Agilite.UnitOfWork.Context;
 
 namespace Agilite.Repositories.Repositories;
+
+public interface IAuthRepository
+{
+    public bool IsCredentialsValid(string email, string password);
+
+    public byte[]? GetSalt(string email);
+}
 
 public class AuthRepository : IAuthRepository
 {
