@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UI.Services", "Agil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UI.Mapper", "Agilite.UI.Mapper\Agilite.UI.Mapper.csproj", "{EAB1F21D-968E-4A3D-AD31-B4C69E34C81B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agilite.UI.Models", "Agilite.UI.Models\Agilite.UI.Models.csproj", "{3D1C3BC9-8E8D-4DED-8F35-9311A8200CE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Agilite.UI.Models", "Agilite.UI.Models\Agilite.UI.Models.csproj", "{3D1C3BC9-8E8D-4DED-8F35-9311A8200CE7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
