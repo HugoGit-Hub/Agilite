@@ -14,23 +14,23 @@ public interface IAuthService
     public string Login(string email, string password);
 }
 
-public class AuthService : IAuthService
+public class AuthenticationService : IAuthService
 {
-    private readonly IAuthRepository _authRepository;
+    private readonly IAuthenticationRepository _authenticationRepository;
     private readonly IConfiguration _configuration;
 
-    public AuthService(IConfiguration configuration, IAuthRepository authRepository)
+    public AuthenticationService(IConfiguration configuration, IAuthenticationRepository authenticationRepository)
     {
         _configuration = configuration;
-        _authRepository = authRepository;
+        _authenticationRepository = authenticationRepository;
     }
 
     public string Login(string email, string password)
     {
-        var encryptedSalt = _authRepository.GetSalt(email) ?? throw new WrongCredentialsException();
+        var encryptedSalt = _authenticationRepository.GetSalt(email) ?? throw new WrongCredentialsException();
         var decryptedSalt = AuthManager.DecryptData(encryptedSalt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
         var hashedAndSaltPassword = AuthManager.HashPasswordSaltCombination(password, decryptedSalt);
-        _ = _authRepository.IsCredentialsValid(email, hashedAndSaltPassword) ? true : throw new WrongCredentialsException();
+        _ = _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword) ? true : throw new WrongCredentialsException();
 
         return GenerateToken(email);
     }

@@ -2,18 +2,18 @@
 
 namespace Agilite.Repositories.Repositories;
 
-public interface IAuthRepository
+public interface IAuthenticationRepository
 {
     public bool IsCredentialsValid(string email, string password);
 
     public byte[]? GetSalt(string email);
 }
 
-public class AuthRepository : IAuthRepository
+public class AuthenticationRepository : IAuthenticationRepository
 {
     private readonly AgiliteContext _context;
 
-    public AuthRepository(AgiliteContext context)
+    public AuthenticationRepository(AgiliteContext context)
     {
         _context = context;
     }
