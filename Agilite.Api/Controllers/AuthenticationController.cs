@@ -8,11 +8,11 @@ namespace Agilite.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthenticationController : ControllerBase
     {
         private readonly ISender _sender;
 
-        public AuthController(ISender sender)
+        public AuthenticationController(ISender sender)
         {
             _sender = sender;
         }

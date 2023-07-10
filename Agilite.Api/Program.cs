@@ -52,9 +52,9 @@ builder.Services
     });
     
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthenticationService>();
 builder.Services.AddScoped<IUserSerice, UserService>();
-builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
 
 var app = builder.Build();
