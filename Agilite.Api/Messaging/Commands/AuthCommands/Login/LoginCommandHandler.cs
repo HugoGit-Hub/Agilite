@@ -14,7 +14,7 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
 
     public Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var token = _authenticationService.Login(request.Login.Email, request.Login.Password);
+        var token = _authenticationService.Login(request.Login.EmailUser, request.Login.PasswordUser);
         return Task.FromResult(token);
     }
 }
