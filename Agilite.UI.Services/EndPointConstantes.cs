@@ -75,4 +75,6 @@ public static class EndPointConstantes
     public const string GET_ALL_USER_TEAM_TEAM_ROLES = "/api/UserTeamTeamRole/GetAllUserTeamTeamRoles";
     public const string GET_USER_TEAM_TEAM_ROLE = "/api/UserTeamTeamRole/GetUserTeamTeamRole";
     public const string DELETE_USER_TEAM_TEAM_ROLE = "/api/UserTeamTeamRole/DeleteUserTeamTeamRole";
+
+    public const string LOGIN = "/api/Authentication/Login";
 }
