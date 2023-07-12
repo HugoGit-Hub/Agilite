@@ -1,7 +1,5 @@
 ﻿using Agilite.UI.Views;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Windows;
 using System.Windows.Input;
 
 namespace Agilite.UI.ViewModels;
@@ -9,30 +7,30 @@ namespace Agilite.UI.ViewModels;
 public interface IMainWindowViewModel
 {
     ICommand ChangeViewCommand { get; }
-    ViewModelBase? ActualPage { get; }
+    ViewModelBase ActualPage { get; }
 }
 
 public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 {
-    public static string CONTACT_VIEW => nameof(ContactView);
     public static string DEFAULT_VIEW => nameof(DefaultView);
+    public static string CONTACT_VIEW => nameof(ContactView);
 
+    private readonly DefaultViewModel _defaultViewModel;
     private readonly ContactViewModel _contactViewModel;
-    private readonly DefaultViewModel _defaultView;
 
     public ViewModelBase ActualPage { get; private set; }
 
     public ICommand ChangeViewCommand { get; }
 
     public MainWindowViewModel(
-        DefaultViewModel defaultView,
+        DefaultViewModel defaultViewModel,
         ContactViewModel contactViewModel)
     {
         ChangeViewCommand = new RelayCommand<string>(SwitchView);
 
-        ActualPage = defaultView;
+        ActualPage = defaultViewModel;
 
-        _defaultView = defaultView;
+        _defaultViewModel = defaultViewModel;
         _contactViewModel = contactViewModel;
     }
 
@@ -41,9 +39,9 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
         ActualPage = viewName switch
         {
             nameof(ContactView) => _contactViewModel,
-            _ => _defaultView
+            _ => _defaultViewModel
         };
 
-        RaisePropertyChanged(nameof(ActualPage));
+        NotifyPropertyChanged();
     }
 }
