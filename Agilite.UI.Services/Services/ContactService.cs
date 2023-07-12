@@ -7,12 +7,12 @@ namespace Agilite.UI.Services.Services;
 
 public class ContactService
 {
-    private readonly IContactRefitService _contactRefitService;
+    //private readonly IContactRefitService _contactRefitService;
     private readonly IMapper _mapper;
 
-    public ContactService(IContactRefitService contactRefitService, IMapper mapper)
+    public ContactService(/*IContactRefitService contactRefitService,*/ IMapper mapper)
     {
-        _contactRefitService = contactRefitService;
+        //_contactRefitService = contactRefitService;
         _mapper = mapper;
     }
 

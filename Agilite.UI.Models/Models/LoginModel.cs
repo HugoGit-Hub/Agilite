@@ -1,6 +1,6 @@
-﻿namespace Agilite.DataTransferObject.DTOs;
+﻿namespace Agilite.UI.Models.Models;
 
-public class LoginDto
+public class LoginModel
 {
     public string EmailUser { get; set; } = null!;
 

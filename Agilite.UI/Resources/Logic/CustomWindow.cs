@@ -40,8 +40,6 @@ public class CustomWindow : Window
         {
             DragMove();
         }
-
-        
     }
 
     private T GetRequiredTemplateChild<T>(string? childName) where T : DependencyObject
