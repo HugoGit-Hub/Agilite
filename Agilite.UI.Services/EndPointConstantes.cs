@@ -16,12 +16,6 @@ public static class EndPointConstantes
     public const string GET_OBJECTIVE = "/api/Objective/GetObjective";
     public const string DELETE_OBJECTIVE = "/api/Objective/DeleteObjective";
 
-    public const string CREATE_PLANNING = "/api/Planning/CreatePlanning";
-    public const string UPDATE_PLANNING = "/api/Planning/UpdatePlanning";
-    public const string GET_ALL_PLANNINGS = "/api/Planning/GetAllPlannings";
-    public const string GET_PLANNING = "/api/Planning/GetPlanning";
-    public const string DELETE_PLANNING = "/api/Planning/DeletePlanning";
-
     public const string CREATE_PROJECT = "/api/Project/CreateProject";
     public const string UPDATE_PROJECT = "/api/Project/UpdateProject";
     public const string GET_ALL_PROJECTS = "/api/Project/GetAllProjects";
