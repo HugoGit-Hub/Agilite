@@ -28,15 +28,6 @@
                 <Button.BorderBrush>Transparent</Button.BorderBrush>
                 <Button.BorderThickness>0</Button.BorderThickness>
             </Button>
-
-            <Button Content="Planning"
-                    Height="50"
-                    Background="#272537"
-                    Foreground="Wheat"
-                    FontSize="14">
-                <Button.BorderBrush>Transparent</Button.BorderBrush>
-                <Button.BorderThickness>0</Button.BorderThickness>
-            </Button>
         </StackPanel>
 
         <Border Grid.Column="1"
