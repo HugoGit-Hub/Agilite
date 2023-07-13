@@ -8,7 +8,7 @@ public class JobProfile : Profile
 {
     public JobProfile()
     {
-        CreateMap<JobDto, TaskModel>();
-        CreateMap<TaskModel, JobDto>();
+        CreateMap<JobDto, JobModel>();
+        CreateMap<JobModel, JobDto>();
     }
 }
