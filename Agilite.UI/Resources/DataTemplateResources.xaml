@@ -5,7 +5,4 @@
     <DataTemplate DataType="{x:Type viewModels:DefaultViewModel}">
         <views:DefaultView />
     </DataTemplate>
-    <DataTemplate DataType="{x:Type viewModels:ContactViewModel}">
-        <views:ContactView />
-    </DataTemplate>
 </ResourceDictionary>
