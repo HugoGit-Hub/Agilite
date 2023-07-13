@@ -31,10 +31,8 @@ public class Container
         services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
         services.AddTransient<ILoginViewModel, LoginViewModel>();
         services.AddSingleton<DefaultViewModel>();
-        services.AddSingleton<ContactViewModel>();
 
         services.AddSingleton<AuthenticationService>();
-        services.AddSingleton<ContactService>();
         services.AddSingleton<UserService>();
 
         services.AddSingleton<LoginModel>();

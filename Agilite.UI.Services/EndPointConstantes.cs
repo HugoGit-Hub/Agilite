@@ -4,12 +4,6 @@ public static class EndPointConstantes
 {
     public const string API_ADDRESS = "https://localhost:7097";
 
-    public const string CREATE_CONTACT = "/api/Contact/CreateContact";
-    public const string UPDATE_CONTACT = "/api/Contact/UpdateContact";
-    public const string GET_ALL_CONTACTS = "/api/Contact/GetAllContacts";
-    public const string GET_CONTACT = "/api/Contact/GetContact";
-    public const string DELETE_CONTACT = "/api/Contact/DeleteContact";
-
     public const string CREATE_MESSAGE = "/api/Message/CreateMessage";
     public const string UPDATE_MESSAGE = "/api/Message/UpdateMessage";
     public const string GET_ALL_MESSAGES = "/api/Message/GetAllMessages";

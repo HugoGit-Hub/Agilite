@@ -13,32 +13,27 @@ public interface IMainWindowViewModel
 public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 {
     public static string DEFAULT_VIEW => nameof(DefaultView);
-    public static string CONTACT_VIEW => nameof(ContactView);
 
     private readonly DefaultViewModel _defaultViewModel;
-    private readonly ContactViewModel _contactViewModel;
 
     public ViewModelBase ActualPage { get; private set; }
 
     public ICommand ChangeViewCommand { get; }
 
     public MainWindowViewModel(
-        DefaultViewModel defaultViewModel,
-        ContactViewModel contactViewModel)
+        DefaultViewModel defaultViewModel)
     {
         ChangeViewCommand = new RelayCommand<string>(SwitchView);
 
         ActualPage = defaultViewModel;
 
         _defaultViewModel = defaultViewModel;
-        _contactViewModel = contactViewModel;
     }
 
     private void SwitchView(string viewName)
     {
         ActualPage = viewName switch
         {
-            nameof(ContactView) => _contactViewModel,
             _ => _defaultViewModel
         };
 

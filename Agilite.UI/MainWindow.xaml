@@ -37,17 +37,6 @@
                 <Button.BorderBrush>Transparent</Button.BorderBrush>
                 <Button.BorderThickness>0</Button.BorderThickness>
             </Button>
-
-            <Button Content="Contact"
-                    Height="50"
-                    Foreground="Wheat"
-                    Background="#272537"
-                    FontSize="14"
-                    Command="{Binding ChangeViewCommand}"
-                    CommandParameter="{x:Static viewModel:MainWindowViewModel.CONTACT_VIEW}">
-                <Button.BorderBrush>Transparent</Button.BorderBrush>
-                <Button.BorderThickness>0</Button.BorderThickness>
-            </Button>
         </StackPanel>
 
         <Border Grid.Column="1"
