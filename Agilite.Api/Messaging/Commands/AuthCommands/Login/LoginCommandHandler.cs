@@ -5,9 +5,9 @@ namespace Agilite.Api.Messaging.Commands.AuthCommands.Login;
 
 public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
 {
-    private readonly IAuthService _authenticationService;
+    private readonly IAuthenticationService _authenticationService;
 
-    public LoginCommandHandler(IAuthService authenticationService)
+    public LoginCommandHandler(IAuthenticationService authenticationService)
     {
         _authenticationService = authenticationService;
     }

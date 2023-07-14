@@ -9,12 +9,12 @@ using System.Text;
 
 namespace Agilite.Services;
 
-public interface IAuthService
+public interface IAuthenticationService
 {
     public string Login(string email, string password);
 }
 
-public class AuthenticationService : IAuthService
+public class AuthenticationService : IAuthenticationService
 {
     private readonly IAuthenticationRepository _authenticationRepository;
     private readonly IConfiguration _configuration;
@@ -28,8 +28,8 @@ public class AuthenticationService : IAuthService
     public string Login(string email, string password)
     {
         var encryptedSalt = _authenticationRepository.GetSalt(email) ?? throw new WrongCredentialsException();
-        var decryptedSalt = AuthManager.DecryptData(encryptedSalt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
-        var hashedAndSaltPassword = AuthManager.HashPasswordSaltCombination(password, decryptedSalt);
+        var decryptedSalt = AuthenticationManager.DecryptData(encryptedSalt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
+        var hashedAndSaltPassword = AuthenticationManager.HashPasswordSaltCombination(password, decryptedSalt);
         _ = _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword) ? true : throw new WrongCredentialsException();
 
         return GenerateToken(email);
