@@ -1,10 +1,9 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using Microsoft.Extensions.Configuration;
 
 namespace Agilite.Services.Managers;
 
-public static class AuthManager
+public static class AuthenticationManager
 {
     public static byte[] EncryptData(string data, string key)
     {

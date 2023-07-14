@@ -1,26 +1,15 @@
 ﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services.Refit;
-using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
 
-public class AuthenticationService
+public class AuthenticationService : IAuthenticationService
 {
-    private readonly IAuthenticationRefitService _authRefitService;
-    private readonly IMapper _mapper;
+    private readonly IAuthenticationService _authRefitService;
 
-    public AuthenticationService(
-        IAuthenticationRefitService authRefitService,
-        IMapper mapper)
-    {
-        _authRefitService = authRefitService;
-        _mapper = mapper;
-    }
+    public AuthenticationService(IAuthenticationService authRefitService)
+        => _authRefitService = authRefitService;
 
-    public string Login(LoginModel loginModel)
-    {   
-        var loginDto = _mapper.Map<LoginDto>(loginModel);
-        return _authRefitService.Login(loginDto).Result;
-    }
+    public Task<string> Login(LoginDto loginDto)
+        => Task.FromResult(_authRefitService.Login(loginDto).Result);
 }

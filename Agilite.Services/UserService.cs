@@ -25,8 +25,8 @@ public class UserService : IUserSerice
     public User CreateUser(User user)
     {
         var salt = GenerateSalt();
-        var encryptedSalt = AuthManager.EncryptData(salt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
-        var hashedPassword = AuthManager.HashPasswordSaltCombination(user.PasswordUser, salt);
+        var encryptedSalt = AuthenticationManager.EncryptData(salt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
+        var hashedPassword = AuthenticationManager.HashPasswordSaltCombination(user.PasswordUser, salt);
 
         var createUser = new User
         {

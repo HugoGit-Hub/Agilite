@@ -1,10 +1,11 @@
 ﻿using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services;
+using Agilite.UI.Services.Services.Refit;
 using Agilite.UI.ViewModels.Command.AuthenticationCommands;
+using Agilite.UI.Views;
+using AutoMapper;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using Agilite.UI.Views;
 
 namespace Agilite.UI.ViewModels;
 
@@ -19,10 +20,12 @@ public class LoginViewModel : ViewModelBase, ILoginViewModel
 {
     private readonly LoginModel _model;
 
-    public LoginViewModel(AuthenticationService authenticationService)
+    public LoginViewModel(
+        IAuthenticationService authenticationService,
+        IMapper mapper)
     {
         _model = new LoginModel();
-        LoginCommand = new LoginCommand(_model, authenticationService);
+        LoginCommand = new LoginCommand(_model, authenticationService, mapper);
         LoginCommand.CanExecuteChanged += LoginSucceed!;
     }
 
