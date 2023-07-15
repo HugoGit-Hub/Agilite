@@ -1,25 +1,31 @@
 ﻿using Agilite.Entities.Entities;
+using Agilite.Repositories.Repositories;
 using Agilite.Services.Managers;
 using Agilite.UnitOfWork;
-using System.Security.Cryptography;
 using Microsoft.Extensions.Configuration;
+using System.Security.Cryptography;
 
 namespace Agilite.Services;
 
-public interface IUserSerice
+public interface IUserService
 {
     public User CreateUser(User user);
+    public User GetUserByEmail(string email);
 }
 
-public class UserService : IUserSerice
+public class UserService : IUserService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IConfiguration _configuration;
+    private readonly IUserRepository _userRepository;
 
-    public UserService(IUnitOfWork unitOfWork, IConfiguration configuration)
+    public UserService(IUnitOfWork unitOfWork,
+        IConfiguration configuration,
+        IUserRepository userRepository)
     {
         _unitOfWork = unitOfWork;
         _configuration = configuration;
+        _userRepository = userRepository;
     }
 
     public User CreateUser(User user)
@@ -43,6 +49,11 @@ public class UserService : IUserSerice
         var created = _unitOfWork.GetRepository<User>().Create(createUser);
         _unitOfWork.Save();
         return created;
+    }
+
+    public User GetUserByEmail(string email)
+    {
+        return _userRepository.GetUserByEmail(email);
     }
 
     private static string GenerateSalt()
