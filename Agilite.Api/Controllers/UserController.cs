@@ -2,6 +2,7 @@
 using Agilite.Api.Messaging.Commands.UserCommands.DeleteUser;
 using Agilite.Api.Messaging.Commands.UserCommands.GetAllUsers;
 using Agilite.Api.Messaging.Commands.UserCommands.GetUser;
+using Agilite.Api.Messaging.Commands.UserCommands.GetUserByEmail;
 using Agilite.Api.Messaging.Commands.UserCommands.UpdateUser;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
@@ -35,6 +36,10 @@ public class UserController : ControllerBase
     [HttpGet(nameof(GetUser))]
     public async Task<UserDto> GetUser(int id)
         => await _sender.Send(new GetUserCommand(id));
+
+    [HttpGet(nameof(GetUserByEmail))]
+    public async Task<UserDto> GetUserByEmail(string email)
+        => await _sender.Send(new GetUserByEmailCommand(email));
 
     [HttpDelete(nameof(DeleteUser))]
     public async Task<UserDto> DeleteUser(UserDto user)
