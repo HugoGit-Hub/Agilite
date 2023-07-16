@@ -50,6 +50,7 @@ public static class EndPointConstantes
     public const string UPDATE_USER = "/api/User/UpdateUser";
     public const string GET_ALL_USERS = "/api/User/GetAllUsers";
     public const string GET_USER = "/api/User/GetUser";
+    public const string GET_USER_BY_EMAIL = "/api/User/GetUserByEmail";
     public const string DELETE_USER = "/api/User/DeleteUser";
 
     public const string CREATE_USER_MESSAGE_CONTACT = "/api/UserMessageContact/CreateUserMessageContact";
