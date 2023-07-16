@@ -19,6 +19,8 @@ public class Container
 
     public static ILoginViewModel? LoginViewModel => ConfigureServices().GetService<ILoginViewModel>();
 
+    public static IDefaultViewModel? DefaultViewModel => ConfigureServices().GetService<IDefaultViewModel>();
+
     public static IServiceProvider ConfigureServices()
     {
         var services = new ServiceCollection();
@@ -29,13 +31,14 @@ public class Container
         services.AddSingleton<MainWindow>();
 
         services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
-        services.AddTransient<ILoginViewModel, LoginViewModel>();
-        services.AddSingleton<DefaultViewModel>();
+        services.AddSingleton<ILoginViewModel, LoginViewModel>();
+        services.AddSingleton<IDefaultViewModel, DefaultViewModel>();
 
-        services.AddSingleton<AuthenticationService>();
-        services.AddSingleton<UserService>();
+        services.AddSingleton<IAuthenticationService, AuthenticationService>();
+        services.AddSingleton<IUserService, UserService>();
 
         services.AddSingleton<LoginModel>();
+        services.AddSingleton<UserModel>();
 
         foreach (var type in 
                 typeof(IBaseRefitClient).Assembly
