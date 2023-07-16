@@ -6,9 +6,9 @@
                     xmlns:logic="clr-namespace:Agilite.UI.Resources.Logic"
                     xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
                     mc:Ignorable="d"
-                    Height="500" 
-                    Width="1000" 
                     FontSize="20"
+                    WindowState="Maximized"
+                    WindowStyle="None"
                     DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
 
     <Grid>
