@@ -7,21 +7,20 @@ namespace Agilite.UI.ViewModels;
 public interface IMainWindowViewModel
 {
     ICommand ChangeViewCommand { get; }
-    ViewModelBase ActualPage { get; }
+    object ActualPage { get; }
 }
 
 public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
 {
     public static string DEFAULT_VIEW => nameof(DefaultView);
 
-    private readonly DefaultViewModel _defaultViewModel;
+    private readonly IDefaultViewModel _defaultViewModel;
 
-    public ViewModelBase ActualPage { get; private set; }
+    public object ActualPage { get; private set; }
 
     public ICommand ChangeViewCommand { get; }
 
-    public MainWindowViewModel(
-        DefaultViewModel defaultViewModel)
+    public MainWindowViewModel(IDefaultViewModel defaultViewModel)
     {
         ChangeViewCommand = new RelayCommand<string>(SwitchView);
 

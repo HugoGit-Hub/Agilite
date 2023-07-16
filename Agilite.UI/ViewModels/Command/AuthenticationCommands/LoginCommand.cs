@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Models.Models;
+using Agilite.UI.Services.Services;
 using Agilite.UI.Services.Services.Refit;
 using AutoMapper;
 using System;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Agilite.UI.ViewModels.Command.AuthenticationCommands;
 
@@ -33,9 +33,8 @@ public class LoginCommand : RelayCommand
 
         try
         {
-            var memoryCache = new MemoryCache(new MemoryCacheOptions());
             var token = _authenticationService.Login(_mapper.Map<LoginDto>(login)).Result;
-            memoryCache.Set("token", token, TimeSpan.FromMinutes(30));
+            TokenService.StoreTokenInCache(token);
             OnCanExecutedChanged();
         }
         catch (UnauthorizedAccessException)

@@ -17,6 +17,9 @@ public interface IUserService : IBaseRefitClient
     [Get(EndPointConstantes.GET_USER)]
     public Task<UserDto> Get(int id);
 
+    [Get(EndPointConstantes.GET_USER_BY_EMAIL)]
+    public Task<UserDto> GetUserByEmail(string email);
+
     [Delete(EndPointConstantes.DELETE_USER)]
     public Task<UserDto> Delete(UserDto entity);
 }
