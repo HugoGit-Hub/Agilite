@@ -10,7 +10,7 @@
 
     <Grid>
         <TextBlock Text="Bienvenue ">
-            <TextBlock Text="{Binding User.EmailUser}"
+            <TextBlock Text="{Binding User.FirstNameUser}"
                        Background="White"/>
         </TextBlock>
     </Grid>
