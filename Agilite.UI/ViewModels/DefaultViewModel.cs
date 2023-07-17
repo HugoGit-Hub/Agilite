@@ -24,7 +24,7 @@ public class DefaultViewModel : ViewModelBase, IDefaultViewModel
         LoadUser(TokenService.GetClaimValue(EMAIL_CLAIM));
     }
 
-    public UserModel User { get; set; } = new();
+    public UserModel User { get; private set; } = new();
 
     private void LoadUser(string email)
     {
