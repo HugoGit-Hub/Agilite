@@ -1,31 +1,32 @@
 ﻿using Agilite.UI.Views;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows.Input;
 
 namespace Agilite.UI.ViewModels;
 
-public interface IMainWindowViewModel
-{
-    ICommand ChangeViewCommand { get; }
-    object ActualPage { get; }
-}
-
-public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
+public class MainWindowViewModel : ViewModelBase
 {
     public static string DEFAULT_VIEW => nameof(DefaultView);
 
-    private readonly IDefaultViewModel _defaultViewModel;
+    public static string TEAM_VIEW => nameof(TeamView);
 
-    public object ActualPage { get; private set; }
+    private readonly DefaultViewModel _defaultViewModel;
+    private readonly TeamViewModel _teamViewModel;
+
+    public ViewModelBase ActualPage { get; private set; }
 
     public ICommand ChangeViewCommand { get; }
 
-    public MainWindowViewModel(IDefaultViewModel defaultViewModel)
+    public MainWindowViewModel(
+        DefaultViewModel defaultViewModel,
+        TeamViewModel teamViewModel)
     {
         ChangeViewCommand = new RelayCommand<string>(SwitchView);
 
         ActualPage = defaultViewModel;
 
+        _teamViewModel = teamViewModel;
         _defaultViewModel = defaultViewModel;
     }
 
@@ -33,9 +34,10 @@ public class MainWindowViewModel : ViewModelBase, IMainWindowViewModel
     {
         ActualPage = viewName switch
         {
+            nameof(TeamView) => _teamViewModel,
             _ => _defaultViewModel
         };
 
-        NotifyPropertyChanged();
+        RaisePropertyChanged(nameof(ActualPage));
     }
 }

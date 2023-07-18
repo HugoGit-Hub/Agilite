@@ -1,6 +1,5 @@
 ﻿using Agilite.UI.Mapper;
 using Agilite.UI.Mapper.Configuration;
-using Agilite.UI.Models.Models;
 using Agilite.UI.Services;
 using Agilite.UI.Services.Services;
 using Agilite.UI.Services.Services.Refit;
@@ -15,11 +14,13 @@ namespace Agilite.UI;
 
 public class Container
 {
-    public static IMainWindowViewModel? MainWindowViewModel => ConfigureServices().GetService<IMainWindowViewModel>();
+    public static MainWindowViewModel? MainWindowViewModel => ConfigureServices().GetService<MainWindowViewModel>();
 
-    public static ILoginViewModel? LoginViewModel => ConfigureServices().GetService<ILoginViewModel>();
+    public static LoginViewModel? LoginViewModel => ConfigureServices().GetService<LoginViewModel>();
 
-    public static IDefaultViewModel? DefaultViewModel => ConfigureServices().GetService<IDefaultViewModel>();
+    public static DefaultViewModel? DefaultViewModel => ConfigureServices().GetService<DefaultViewModel>();
+
+    public static TeamViewModel? TeamViewModel => ConfigureServices().GetService<TeamViewModel>();
 
     public static IServiceProvider ConfigureServices()
     {
@@ -30,15 +31,13 @@ public class Container
 
         services.AddSingleton<MainWindow>();
 
-        services.AddSingleton<IMainWindowViewModel, MainWindowViewModel>();
-        services.AddSingleton<ILoginViewModel, LoginViewModel>();
-        services.AddSingleton<IDefaultViewModel, DefaultViewModel>();
+        services.AddSingleton<MainWindowViewModel>();
+        services.AddSingleton<LoginViewModel>();
+        services.AddSingleton<DefaultViewModel>();
+        services.AddSingleton<TeamViewModel>();
 
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<IUserService, UserService>();
-
-        services.AddSingleton<LoginModel>();
-        services.AddSingleton<UserModel>();
 
         foreach (var type in 
                 typeof(IBaseRefitClient).Assembly
