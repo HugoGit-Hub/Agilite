@@ -1,4 +1,5 @@
-﻿using Agilite.Repositories.Repositories;
+﻿using Agilite.Entities.Entities;
+using Agilite.Repositories.Repositories;
 using Agilite.Services.Exceptions;
 using Agilite.Services.Managers;
 using Microsoft.Extensions.Configuration;
@@ -17,12 +18,17 @@ public interface IAuthenticationService
 public class AuthenticationService : IAuthenticationService
 {
     private readonly IAuthenticationRepository _authenticationRepository;
+    private readonly IUserRepository _userRepository;
     private readonly IConfiguration _configuration;
 
-    public AuthenticationService(IConfiguration configuration, IAuthenticationRepository authenticationRepository)
+    public AuthenticationService(
+        IAuthenticationRepository authenticationRepository,
+        IUserRepository userRepository,
+        IConfiguration configuration)
     {
-        _configuration = configuration;
         _authenticationRepository = authenticationRepository;
+        _userRepository = userRepository;
+        _configuration = configuration;
     }
 
     public string Login(string email, string password)
@@ -32,10 +38,10 @@ public class AuthenticationService : IAuthenticationService
         var hashedAndSaltPassword = AuthenticationManager.HashPasswordSaltCombination(password, decryptedSalt);
         _ = _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword) ? true : throw new WrongCredentialsException();
 
-        return GenerateToken(email);
+        return GenerateToken(_userRepository.GetUserByEmail(email));
     }
 
-    private string GenerateToken(string email)
+    private string GenerateToken(User user)
     {
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:TokenKey").Value!);
@@ -43,9 +49,10 @@ public class AuthenticationService : IAuthenticationService
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Email, email)
+                new Claim(ClaimTypes.Email, user.EmailUser),
+                new Claim(ClaimTypes.Name, user.FirstNameUser),
             }),
-            Expires = DateTime.UtcNow.AddDays(7),
+            Expires = DateTime.UtcNow.AddHours(3),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
 
