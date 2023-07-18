@@ -3,20 +3,14 @@ using Agilite.UI.Services.Services.Refit;
 using Agilite.UI.ViewModels.Command.AuthenticationCommands;
 using Agilite.UI.Views;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using System;
 using System.Windows;
 using System.Windows.Input;
 
 namespace Agilite.UI.ViewModels;
 
-public interface ILoginViewModel
-{
-    public ICommand LoginCommand { get; }
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
-
-public class LoginViewModel : ViewModelBase, ILoginViewModel
+public class LoginViewModel : ViewModelBase
 {
     private readonly LoginModel _model;
 
@@ -37,7 +31,7 @@ public class LoginViewModel : ViewModelBase, ILoginViewModel
         set
         {
             _model.EmailUser = value;
-            NotifyPropertyChanged();
+            RaisePropertyChanged();
         }
     }
 
@@ -47,7 +41,7 @@ public class LoginViewModel : ViewModelBase, ILoginViewModel
         set
         {
             _model.PasswordUser = value;
-            NotifyPropertyChanged();
+            RaisePropertyChanged();
         }
     }
 

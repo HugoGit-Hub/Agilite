@@ -2,15 +2,11 @@
 using Agilite.UI.Services.Services;
 using Agilite.UI.Services.Services.Refit;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 
 namespace Agilite.UI.ViewModels;
 
-public interface IDefaultViewModel
-{
-    public UserModel User { get; }
-}
-
-public class DefaultViewModel : ViewModelBase, IDefaultViewModel
+public class DefaultViewModel : ViewModelBase
 {
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
