@@ -21,7 +21,7 @@
             <Button Content="Accueil"
                         Height="50"
                         Foreground="Wheat"
-                        Background="#272537"
+                        Background="#201f1e"
                         FontSize="14"
                         Command="{Binding ChangeViewCommand}"
                         CommandParameter="{x:Static viewModel:MainWindowViewModel.DEFAULT_VIEW}">
@@ -32,7 +32,7 @@
             <Button Content="Équipe"
                     Height="50"
                     Foreground="Wheat"
-                    Background="#272537"
+                    Background="#201f1e"
                     FontSize="14"
                     Command="{Binding ChangeViewCommand}"
                     CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">

@@ -36,7 +36,7 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="White" />
-                <Setter Property="Background" Value="#11202f"/>
+                <Setter Property="Background" Value="#323130"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -80,7 +80,7 @@
     </Style>
 
     <Style TargetType="logic:CustomWindow" x:Key="CustomWindowResource">
-        <Setter Property="Background" Value="#272537"/>
+        <Setter Property="Background" Value="#201f1e"/>
         <Setter Property="BorderBrush" Value="Black"/>
         <Setter Property="MinHeight" Value="320"/>
         <Setter Property="MinWidth" Value="480"/>
