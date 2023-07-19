@@ -3,11 +3,168 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
              DataContext="{Binding TeamViewModel, Source={StaticResource Locator}}">
     <Grid>
-        <TextBlock Text="TEAM_VIEW"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                BorderBrush="#323130"
+                Background="#252423"
+                BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Orientation="Horizontal">
+                    <Button BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="#252423"
+                            Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Grid.Column="0"
+                                                     Kind="People" 
+                                                     Height="20"
+                                                     Width="20"
+                                                     Foreground="White"
+                                                     Margin="0,0,10,0"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Première équipe"
+                                       FontSize="14"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1"
+                            Orientation="Horizontal">
+                    <Button BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="#252423"
+                            Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Grid.Column="0"
+                                                     Kind="People" 
+                                                     Height="20"
+                                                     Width="20"
+                                                     Foreground="White"
+                                                     Margin="0,0,10,0"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Seconde équipe"
+                                       FontSize="14"
+                                       Foreground="White"/>
+                        </Grid>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <StackPanel Grid.Column="1"
+                    Background="#252423">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Margin="15"
+                           Text="Nom de l'équipe"
+                           Foreground="White"/>
+
+                <TextBlock Grid.Row="1"
+                           Margin="15,0,0,0"
+                           FontSize="15"
+                           Text="Projets"
+                           Foreground="White"/>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0"
+                            BorderThickness="1"
+                            BorderBrush="#323130"
+                            Background="#323130"
+                            Margin="30"
+                            CornerRadius="10"
+                            Padding="0,0,0,50">
+                        <StackPanel>
+                            <TextBlock Foreground="White"
+                                       Text="Projet un"
+                                       Margin="10"/>
+
+                            <TextBlock Foreground="White"
+                                       Text="Label à propos du projet"
+                                       FontSize="15"
+                                       Margin="10"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1"
+                            BorderThickness="1"
+                            BorderBrush="#323130"
+                            Background="#323130"
+                            Margin="30"
+                            CornerRadius="10"
+                            Padding="0,0,0,50">
+                        <StackPanel>
+                            <TextBlock Foreground="White"
+                                       Text="Projet deux"
+                                       Margin="10"/>
+
+                            <TextBlock Foreground="White"
+                                       Text="Label à propos du projet"
+                                       FontSize="15"
+                                       Margin="10"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="2"
+                            BorderThickness="1"
+                            BorderBrush="#323130"
+                            Background="#323130"
+                            Margin="30"
+                            CornerRadius="10"
+                            Padding="0,0,0,50">
+                        <StackPanel>
+                            <TextBlock Foreground="White"
+                                       Text="Projet trois"
+                                       Margin="10"/>
+
+                            <TextBlock Foreground="White"
+                                       Text="Label à propos du projet"
+                                       FontSize="15"
+                                       Margin="10"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
