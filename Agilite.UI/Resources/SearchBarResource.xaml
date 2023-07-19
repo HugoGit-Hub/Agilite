@@ -9,7 +9,7 @@
 
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border CornerRadius="10"
-                            Background="#353340"
+                            Background="#252423"
                             Height="40">
                         <Grid>
                             <DockPanel>
