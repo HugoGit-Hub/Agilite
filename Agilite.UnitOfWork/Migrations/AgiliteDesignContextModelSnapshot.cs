@@ -17,7 +17,7 @@ namespace Agilite.UnitOfWork.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.5")
+                .HasAnnotation("ProductVersion", "7.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -329,19 +329,19 @@ namespace Agilite.UnitOfWork.Migrations
 
             modelBuilder.Entity("Agilite.Entities.Entities.UserTeam", b =>
                 {
-                    b.Property<int>("IdUser")
+                    b.Property<int>("IdTeam")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdTeam")
+                    b.Property<int>("IdUser")
                         .HasColumnType("int");
 
                     b.Property<string>("RoleUserTeam")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdUser");
+                    b.HasKey("IdTeam", "IdUser");
 
-                    b.HasIndex("IdTeam");
+                    b.HasIndex("IdUser");
 
                     b.ToTable("UserTeams");
                 });
