@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services.Refit;
 
-public interface IUserService : IBaseRefitClient
+public interface IUserRefitService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_USER)]
     public Task<UserDto> Create(UserDto entity);
