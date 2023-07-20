@@ -9,7 +9,7 @@ internal class AgiliteDesignContext : AgiliteContext
     {
         IConfiguration configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("C:\\Users\\H.DECUQ\\source\\repos\\HugoGit-Hub\\Agilite\\Agilite.Api\\appsettings.Development.json")
+            .AddJsonFile("C:\\Users\\H.DECUQ\\source\\repos\\HugoGit-Hub\\Agilite\\Agilite.Api\\appsettings.json")
             .Build();
 
         var connectionString = configuration.GetConnectionString("DefaultConnection");

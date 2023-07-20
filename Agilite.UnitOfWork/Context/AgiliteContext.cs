@@ -262,9 +262,7 @@ public partial class AgiliteContext : DbContext
 
         modelBuilder.Entity<UserTeam>(entity =>
         {
-            entity.HasKey(e => e.IdTeam);
-
-            entity.HasKey(e => e.IdUser);
+            entity.HasKey(e => new { e.IdTeam, e.IdUser });
 
             entity.HasOne(e => e.IdUserNavigation)
                 .WithMany(e => e.UserTeams)
