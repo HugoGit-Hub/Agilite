@@ -3,13 +3,20 @@ using Agilite.UI.Services.Services.Refit;
 
 namespace Agilite.UI.Services.Services;
 
+public interface IAuthenticationService
+{
+    public Task<string> Login(LoginDto loginDto);
+}
+
 public class AuthenticationService : IAuthenticationService
 {
-    private readonly IAuthenticationService _authRefitService;
+    private readonly IAuthenticationRefitService _authenticationRefitService;
 
-    public AuthenticationService(IAuthenticationService authRefitService)
-        => _authRefitService = authRefitService;
+    public AuthenticationService(IAuthenticationRefitService authenticationRefitService)
+    {
+        _authenticationRefitService = authenticationRefitService;
+    }
 
     public Task<string> Login(LoginDto loginDto)
-        => Task.FromResult(_authRefitService.Login(loginDto).Result);
+        => Task.FromResult(_authenticationRefitService.Login(loginDto).Result);
 }
