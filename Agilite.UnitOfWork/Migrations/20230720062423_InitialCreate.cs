@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Agilite.UnitOfWork.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialeCreate : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -191,7 +191,7 @@ namespace Agilite.UnitOfWork.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTeams", x => x.IdUser);
+                    table.PrimaryKey("PK_UserTeams", x => new { x.IdTeam, x.IdUser });
                     table.ForeignKey(
                         name: "FK_UserTeams_Team_IdTeam",
                         column: x => x.IdTeam,
@@ -323,9 +323,9 @@ namespace Agilite.UnitOfWork.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserTeams_IdTeam",
+                name: "IX_UserTeams_IdUser",
                 table: "UserTeams",
-                column: "IdTeam");
+                column: "IdUser");
         }
 
         /// <inheritdoc />

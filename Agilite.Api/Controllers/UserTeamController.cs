@@ -2,6 +2,7 @@
 using Agilite.Api.Messaging.Commands.UserTeamCommands.DeleteUserTeam;
 using Agilite.Api.Messaging.Commands.UserTeamCommands.GetAllUserTeams;
 using Agilite.Api.Messaging.Commands.UserTeamCommands.GetUserTeam;
+using Agilite.Api.Messaging.Commands.UserTeamCommands.GetUserTeamByUserId;
 using Agilite.Api.Messaging.Commands.UserTeamCommands.UpdateUserTeam;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
@@ -31,6 +32,10 @@ namespace Agilite.Api.Controllers
         [HttpGet(nameof(GetAllUserTeams))]
         public async Task<IEnumerable<UserTeamDto>> GetAllUserTeams()
             => await _sender.Send(new GetAllUserTeamsCommand());
+
+        [HttpGet(nameof(GetUserTeamByUserId))]
+        public async Task<IEnumerable<UserTeamDto>> GetUserTeamByUserId(int id)
+            => await _sender.Send(new GetUserTeamByUserIdCommand(id));
 
         [HttpGet(nameof(GetUserTeam))]
         public async Task<UserTeamDto> GetUserTeam(int id)
