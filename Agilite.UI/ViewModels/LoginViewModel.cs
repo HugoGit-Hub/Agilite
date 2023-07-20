@@ -1,5 +1,5 @@
 ﻿using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Services;
 using Agilite.UI.ViewModels.Command.AuthenticationCommands;
 using Agilite.UI.Views;
 using AutoMapper;

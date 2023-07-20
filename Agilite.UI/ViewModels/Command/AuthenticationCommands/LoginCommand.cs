@@ -1,7 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
-using Agilite.UI.Services.Services.Refit;
 using AutoMapper;
 using System;
 
