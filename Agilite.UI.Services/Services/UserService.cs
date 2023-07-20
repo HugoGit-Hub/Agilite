@@ -3,36 +3,24 @@ using Agilite.UI.Services.Services.Refit;
 
 namespace Agilite.UI.Services.Services;
 
+public interface IUserService
+{
+    public Task<UserDto> Get(int id);
+    public Task<UserDto> GetUserByEmail(string email);
+}
+
 public class UserService : IUserService
 {
-    private readonly IUserService _userService;
+    private readonly IUserRefitService _userRefitService;
 
-    public UserService(IUserService userService)
-        => _userService = userService;
-
-    public Task<UserDto> Create(UserDto entity)
+    public UserService(IUserRefitService userRefitService)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<UserDto> Update(UserDto entity)
-    {
-        throw new NotImplementedException();
-    }
-
-    Task<IEnumerable<UserDto>> IUserService.GetAll()
-    {
-        throw new NotImplementedException();
+        _userRefitService = userRefitService;
     }
 
     public Task<UserDto> Get(int id)
-        => _userService.Get(id);
+        => _userRefitService.Get(id);
 
     public Task<UserDto> GetUserByEmail(string email)
-        => _userService.GetUserByEmail(email);
-
-    public Task<UserDto> Delete(UserDto entity)
-    {
-        throw new NotImplementedException();
-    }
+        => _userRefitService.GetUserByEmail(email);
 }
