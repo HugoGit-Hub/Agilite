@@ -3,7 +3,7 @@ using Refit;
 
 namespace Agilite.UI.Services.Services.Refit;
 
-public interface IAuthenticationService : IBaseRefitClient
+public interface IAuthenticationRefitService : IBaseRefitClient
 {
     [Post(EndPointConstantes.LOGIN)]
     public Task<string> Login(LoginDto loginDto);
