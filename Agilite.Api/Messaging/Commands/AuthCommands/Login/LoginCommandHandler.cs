@@ -12,9 +12,6 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
         _authenticationService = authenticationService;
     }
 
-    public Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
-    {
-        var token = _authenticationService.Login(request.Login.EmailUser, request.Login.PasswordUser);
-        return Task.FromResult(token);
-    }
+    public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
+        => await _authenticationService.Login(request.Login.EmailUser, request.Login.PasswordUser, cancellationToken);
 }

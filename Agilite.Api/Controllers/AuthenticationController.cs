@@ -18,11 +18,11 @@ namespace Agilite.Api.Controllers
         }
 
         [HttpPost(nameof(Login))]
-        public async Task<IActionResult> Login([FromBody] LoginDto login)
+        public async Task<IActionResult> Login([FromBody] LoginDto login, CancellationToken cancellationToken)
         {
             try
             {
-                var authentication = await _sender.Send(new LoginCommand(login));
+                var authentication = await _sender.Send(new LoginCommand(login), cancellationToken);
                 return Ok(authentication);
             }
             catch (WrongCredentialsException)

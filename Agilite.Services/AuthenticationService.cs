@@ -12,7 +12,7 @@ namespace Agilite.Services;
 
 public interface IAuthenticationService
 {
-    public string Login(string email, string password);
+    public Task<string> Login(string email, string password, CancellationToken cancellationToken);
 }
 
 public class AuthenticationService : IAuthenticationService
@@ -31,12 +31,17 @@ public class AuthenticationService : IAuthenticationService
         _configuration = configuration;
     }
 
-    public string Login(string email, string password)
+    public async Task<string> Login(string email, string password, CancellationToken cancellationToken)
     {
         var encryptedSalt = _authenticationRepository.GetSalt(email) ?? throw new WrongCredentialsException();
         var decryptedSalt = AuthenticationManager.DecryptData(encryptedSalt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
         var hashedAndSaltPassword = AuthenticationManager.HashPasswordSaltCombination(password, decryptedSalt);
-        _ = _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword) ? true : throw new WrongCredentialsException();
+        var isCredantialsValide = await _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword, cancellationToken);
+        
+        if (!isCredantialsValide)
+        {
+            throw new WrongCredentialsException();
+        }
 
         return GenerateToken(_userRepository.GetUserByEmail(email));
     }
