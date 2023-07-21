@@ -34,27 +34,18 @@ public class UserService : IUserService
         var encryptedSalt = AuthenticationManager.EncryptData(salt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
         var hashedPassword = AuthenticationManager.HashPasswordSaltCombination(user.PasswordUser, salt);
 
-        var createUser = new User
-        {
-            IdUser = user.IdUser,
-            FirstNameUser = user.FirstNameUser,
-            LastNameUser = user.LastNameUser,
-            EmailUser = user.EmailUser,
-            PasswordUser = hashedPassword,
-            SaltUser = encryptedSalt,
-            DateCreationUser = user.DateCreationUser,
-            AgeUser = user.AgeUser,
-        };
+        user.PasswordUser = hashedPassword;
+        user.SaltUser = encryptedSalt;
 
-        var created = _unitOfWork.GetRepository<User>().Create(createUser);
+
+        var created = _unitOfWork.GetRepository<User>().Create(user);
         _unitOfWork.Save();
+
         return created;
     }
 
     public User GetUserByEmail(string email)
-    {
-        return _userRepository.GetUserByEmail(email);
-    }
+        => _userRepository.GetUserByEmail(email);
 
     private static string GenerateSalt()
     {
