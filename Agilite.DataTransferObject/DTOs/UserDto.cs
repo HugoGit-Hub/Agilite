@@ -1,4 +1,6 @@
-﻿namespace Agilite.DataTransferObject.DTOs;
+﻿using Agilite.Entities.Entities;
+
+namespace Agilite.DataTransferObject.DTOs;
 
 public class UserDto
 {
@@ -17,4 +19,8 @@ public class UserDto
     public int AgeUser { get; set; }
 
     public bool ArchivedUser { get; set; }
+
+    public virtual IEnumerable<Message> Messages { get; set; } = new List<Message>();
+
+    public virtual IEnumerable<Team> Teams { get; set; } = new List<Team>();
 }
