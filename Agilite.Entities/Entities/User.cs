@@ -22,5 +22,5 @@ public class User
 
     public virtual IEnumerable<Message> Messages { get; set; } = new List<Message>  ();
 
-    public virtual IEnumerable<UserTeam> UserTeams { get; set; } = new List<UserTeam>();
+    public virtual IEnumerable<Team> Teams { get; set; } = new List<Team>();
 }

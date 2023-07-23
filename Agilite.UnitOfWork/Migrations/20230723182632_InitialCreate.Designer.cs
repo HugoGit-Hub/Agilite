@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Agilite.UnitOfWork.Migrations
 {
     [DbContext(typeof(AgiliteDesignContext))]
-    [Migration("20230720062423_InitialCreate")]
+    [Migration("20230723182632_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -330,23 +330,19 @@ namespace Agilite.UnitOfWork.Migrations
                     b.ToTable("User", (string)null);
                 });
 
-            modelBuilder.Entity("Agilite.Entities.Entities.UserTeam", b =>
+            modelBuilder.Entity("TeamUser", b =>
                 {
-                    b.Property<int>("IdTeam")
+                    b.Property<int>("TeamsIdTeam")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdUser")
+                    b.Property<int>("UsersIdUser")
                         .HasColumnType("int");
 
-                    b.Property<string>("RoleUserTeam")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("TeamsIdTeam", "UsersIdUser");
 
-                    b.HasKey("IdTeam", "IdUser");
+                    b.HasIndex("UsersIdUser");
 
-                    b.HasIndex("IdUser");
-
-                    b.ToTable("UserTeams");
+                    b.ToTable("TeamUser");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Job", b =>
@@ -450,23 +446,19 @@ namespace Agilite.UnitOfWork.Migrations
                     b.Navigation("IdSprintNavigation");
                 });
 
-            modelBuilder.Entity("Agilite.Entities.Entities.UserTeam", b =>
+            modelBuilder.Entity("TeamUser", b =>
                 {
-                    b.HasOne("Agilite.Entities.Entities.Team", "IdTeamNavigation")
-                        .WithMany("UserTeams")
-                        .HasForeignKey("IdTeam")
+                    b.HasOne("Agilite.Entities.Entities.Team", null)
+                        .WithMany()
+                        .HasForeignKey("TeamsIdTeam")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Agilite.Entities.Entities.User", "IdUserNavigation")
-                        .WithMany("UserTeams")
-                        .HasForeignKey("IdUser")
+                    b.HasOne("Agilite.Entities.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UsersIdUser")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("IdTeamNavigation");
-
-                    b.Navigation("IdUserNavigation");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.Job", b =>
@@ -509,15 +501,11 @@ namespace Agilite.UnitOfWork.Migrations
             modelBuilder.Entity("Agilite.Entities.Entities.Team", b =>
                 {
                     b.Navigation("Projects");
-
-                    b.Navigation("UserTeams");
                 });
 
             modelBuilder.Entity("Agilite.Entities.Entities.User", b =>
                 {
                     b.Navigation("Messages");
-
-                    b.Navigation("UserTeams");
                 });
 #pragma warning restore 612, 618
         }

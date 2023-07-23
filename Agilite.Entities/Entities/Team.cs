@@ -8,7 +8,7 @@ public class Team
 
     public int NumberOfMembersTeam { get; set; }
 
-    public virtual IEnumerable<UserTeam> UserTeams { get; set; } = new List<UserTeam>();
+    public virtual ICollection<User> Users { get; set; } = new List<User>();
 
     public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
 }
