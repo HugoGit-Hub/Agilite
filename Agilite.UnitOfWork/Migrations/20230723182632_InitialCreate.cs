@@ -182,25 +182,24 @@ namespace Agilite.UnitOfWork.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserTeams",
+                name: "TeamUser",
                 columns: table => new
                 {
-                    IdUser = table.Column<int>(type: "int", nullable: false),
-                    IdTeam = table.Column<int>(type: "int", nullable: false),
-                    RoleUserTeam = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    TeamsIdTeam = table.Column<int>(type: "int", nullable: false),
+                    UsersIdUser = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserTeams", x => new { x.IdTeam, x.IdUser });
+                    table.PrimaryKey("PK_TeamUser", x => new { x.TeamsIdTeam, x.UsersIdUser });
                     table.ForeignKey(
-                        name: "FK_UserTeams_Team_IdTeam",
-                        column: x => x.IdTeam,
+                        name: "FK_TeamUser_Team_TeamsIdTeam",
+                        column: x => x.TeamsIdTeam,
                         principalTable: "Team",
                         principalColumn: "IdTeam",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserTeams_User_IdUser",
-                        column: x => x.IdUser,
+                        name: "FK_TeamUser_User_UsersIdUser",
+                        column: x => x.UsersIdUser,
                         principalTable: "User",
                         principalColumn: "IdUser",
                         onDelete: ReferentialAction.Cascade);
@@ -317,15 +316,15 @@ namespace Agilite.UnitOfWork.Migrations
                 column: "IdObjective");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TeamUser_UsersIdUser",
+                table: "TeamUser",
+                column: "UsersIdUser");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_User_EmailUser",
                 table: "User",
                 column: "EmailUser",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserTeams_IdUser",
-                table: "UserTeams",
-                column: "IdUser");
         }
 
         /// <inheritdoc />
@@ -341,7 +340,7 @@ namespace Agilite.UnitOfWork.Migrations
                 name: "SprintObjectives");
 
             migrationBuilder.DropTable(
-                name: "UserTeams");
+                name: "TeamUser");
 
             migrationBuilder.DropTable(
                 name: "Job");
