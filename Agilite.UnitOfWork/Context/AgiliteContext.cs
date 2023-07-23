@@ -1,5 +1,6 @@
 ﻿using Agilite.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
+using Formatting = System.Xml.Formatting;
 
 namespace Agilite.UnitOfWork.Context;
 
@@ -37,8 +38,6 @@ public partial class AgiliteContext : DbContext
     public virtual DbSet<Team> Teams { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
-
-    public virtual DbSet<UserTeam> UserTeams { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -212,9 +211,8 @@ public partial class AgiliteContext : DbContext
 
             entity.Property(e => e.NumberOfMembersTeam);
 
-            entity.HasMany(e => e.UserTeams)
-                .WithOne(e => e.IdTeamNavigation)
-                .HasForeignKey(e => e.IdTeam);
+            entity.HasMany(e => e.Users)
+                .WithMany(e => e.Teams);
 
             entity.HasMany(e => e.Projects)
                 .WithOne(e => e.IdTeamNavigation)
@@ -255,22 +253,8 @@ public partial class AgiliteContext : DbContext
                 .WithOne(e => e.IdUserNavigation)
                 .HasForeignKey(e => e.FkSenderUser);
 
-            entity.HasMany(e => e.UserTeams)
-                .WithOne(e => e.IdUserNavigation)
-                .HasForeignKey(e => e.IdUser);
-        });
-
-        modelBuilder.Entity<UserTeam>(entity =>
-        {
-            entity.HasKey(e => new { e.IdTeam, e.IdUser });
-
-            entity.HasOne(e => e.IdUserNavigation)
-                .WithMany(e => e.UserTeams)
-                .HasForeignKey(e => e.IdUser);
-
-            entity.HasOne(e => e.IdTeamNavigation)
-                .WithMany(e => e.UserTeams)
-                .HasForeignKey(e => e.IdTeam);
+            entity.HasMany(e => e.Teams)
+                .WithMany(e => e.Users);
         });
 
         OnModelCreatingPartial(modelBuilder);
