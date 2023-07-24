@@ -1,11 +1,12 @@
 ﻿using Agilite.Entities.Entities;
 using Agilite.UnitOfWork.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agilite.Repositories.Repositories;
 
 public interface IUserRepository
 {
-    public User GetUserByEmail(string email);
+    public Task<User> GetUserByEmail(string email, CancellationToken cancellationToken);
 }
 
 public class UserRepository : IUserRepository
@@ -17,9 +18,6 @@ public class UserRepository : IUserRepository
         _context = context;
     }
 
-    public User GetUserByEmail(string email)
-    {
-        return _context.Users
-            .First(user => user.EmailUser == email);
-    }
+    public async Task<User> GetUserByEmail(string email, CancellationToken cancellationToken)
+        => await _context.Users.FirstAsync(user => user.EmailUser == email, cancellationToken);
 }

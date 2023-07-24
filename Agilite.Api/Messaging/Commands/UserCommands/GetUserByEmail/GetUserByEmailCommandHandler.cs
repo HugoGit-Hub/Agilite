@@ -16,9 +16,9 @@ public class GetUserByEmailCommandHandler : IRequestHandler<GetUserByEmailComman
         _mapper = mapper;
     }
 
-    public Task<UserDto> Handle(GetUserByEmailCommand request, CancellationToken cancellationToken)
+    public async Task<UserDto> Handle(GetUserByEmailCommand request, CancellationToken cancellationToken)
     {
-        var user = _userService.GetUserByEmail(request.Email);
-        return Task.FromResult(_mapper.Map<UserDto>(user));
+        var result = await _userService.GetUserByEmail(request.Email, cancellationToken);
+        return _mapper.Map<UserDto>(result);
     }
 }

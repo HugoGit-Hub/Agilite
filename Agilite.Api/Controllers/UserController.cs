@@ -17,9 +17,7 @@ public class UserController : ControllerBase
     private readonly ISender _sender;
 
     public UserController(ISender sender)
-    {
-        _sender = sender;
-    }
+        => _sender = sender;
 
     [HttpPost(nameof(CreateUser))]
     public async Task<UserDto> CreateUser(UserDto user)
@@ -38,8 +36,8 @@ public class UserController : ControllerBase
         => await _sender.Send(new GetUserCommand(id));
 
     [HttpGet(nameof(GetUserByEmail))]
-    public async Task<UserDto> GetUserByEmail(string email)
-        => await _sender.Send(new GetUserByEmailCommand(email));
+    public async Task<UserDto> GetUserByEmail(string email, CancellationToken cancellationToken)
+        => await _sender.Send(new GetUserByEmailCommand(email), cancellationToken);
 
     [HttpDelete(nameof(DeleteUser))]
     public async Task<UserDto> DeleteUser(UserDto user)

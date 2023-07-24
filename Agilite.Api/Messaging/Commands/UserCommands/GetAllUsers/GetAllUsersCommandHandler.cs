@@ -19,7 +19,7 @@ public class GetAllUsersCommandHandler : IRequestHandler<GetAllUsersCommand, IEn
 
     public Task<IEnumerable<UserDto>> Handle(GetAllUsersCommand request, CancellationToken cancellationToken)
     {
-        var getAll = _unitOfWork.GetRepository<User>().GetAll();
-        return Task.FromResult(_mapper.Map<IEnumerable<UserDto>>(getAll));
+        var result = _unitOfWork.GetRepository<User>().GetAll();
+        return Task.FromResult(_mapper.Map<IEnumerable<UserDto>>(result));
     }
 }

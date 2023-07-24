@@ -10,7 +10,7 @@ namespace Agilite.Services;
 public interface IUserService
 {
     public User CreateUser(User user);
-    public User GetUserByEmail(string email);
+    public Task<User> GetUserByEmail(string email, CancellationToken cancellationToken);
 }
 
 public class UserService : IUserService
@@ -33,10 +33,8 @@ public class UserService : IUserService
         var salt = GenerateSalt();
         var encryptedSalt = AuthenticationManager.EncryptData(salt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
         var hashedPassword = AuthenticationManager.HashPasswordSaltCombination(user.PasswordUser, salt);
-
         user.PasswordUser = hashedPassword;
         user.SaltUser = encryptedSalt;
-
 
         var created = _unitOfWork.GetRepository<User>().Create(user);
         _unitOfWork.Save();
@@ -44,8 +42,8 @@ public class UserService : IUserService
         return created;
     }
 
-    public User GetUserByEmail(string email)
-        => _userRepository.GetUserByEmail(email);
+    public async Task<User> GetUserByEmail(string email, CancellationToken cancellationToken)
+        => await _userRepository.GetUserByEmail(email, cancellationToken);
 
     private static string GenerateSalt()
     {
