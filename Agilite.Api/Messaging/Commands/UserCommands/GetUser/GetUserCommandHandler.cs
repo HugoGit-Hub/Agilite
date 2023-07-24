@@ -25,7 +25,7 @@ public class GetUserCommandHandler : IRequestHandler<GetUserCommand, UserDto>
             IdUser = request.id
         };
 
-        var get = _unitOfWork.GetRepositoryEntityById<User, int>().Get(user.IdUser);
-        return Task.FromResult(_mapper.Map<UserDto>(get)); ;
+        var result = _unitOfWork.GetRepositoryEntityById<User, int>().Get(user.IdUser);
+        return Task.FromResult(_mapper.Map<UserDto>(result)); ;
     }
 }

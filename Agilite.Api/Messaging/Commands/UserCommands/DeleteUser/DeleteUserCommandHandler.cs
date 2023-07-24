@@ -30,8 +30,8 @@ public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, UserD
             AgeUser = request.User.AgeUser,
         };
 
-        var deleted = _unitOfWork.GetRepository<User>().Delete(user);
+        var result = _unitOfWork.GetRepository<User>().Delete(user);
         _unitOfWork.Save();
-        return Task.FromResult(_mapper.Map<UserDto>(deleted));
+        return Task.FromResult(_mapper.Map<UserDto>(result));
     }
 }

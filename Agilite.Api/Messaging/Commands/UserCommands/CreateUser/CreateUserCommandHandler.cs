@@ -20,7 +20,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserD
     public Task<UserDto> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var user = _mapper.Map<User>(request.User);
-        var created = _userService.CreateUser(user);
-        return Task.FromResult(_mapper.Map<UserDto>(created));
+        var result = _userService.CreateUser(user);
+        return Task.FromResult(_mapper.Map<UserDto>(result));
     }
 }
