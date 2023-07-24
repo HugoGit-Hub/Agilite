@@ -43,7 +43,7 @@ public class AuthenticationService : IAuthenticationService
             throw new WrongCredentialsException();
         }
 
-        return GenerateToken(_userRepository.GetUserByEmail(email));
+        return GenerateToken(await _userRepository.GetUserByEmail(email, cancellationToken));
     }
 
     private string GenerateToken(User user)
