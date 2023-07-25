@@ -9,7 +9,6 @@ using Agilite.UnitOfWork.Context;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Agilite.Api.Controllers;
 
@@ -36,16 +35,6 @@ public class TeamController : ControllerBase
     [HttpPost(nameof(CreateTeamUser))]
     public async Task<TeamDto> CreateTeamUser(int idTeam, int idUser, CancellationToken cancellationToken)
         => await _sender.Send(new CreateTeamUserCommand(idTeam, idUser), cancellationToken);
-    //{
-    //    var team = await _context.Teams.SingleOrDefaultAsync(team => team.IdTeam == idTeam);
-    //    var user = await _context.Users.SingleOrDefaultAsync(user => user.IdUser == idUser);
-    //    if (user != null) team?.Users.Add(user);
-
-    //    await _context.SaveChangesAsync();
-
-    //    var result = await _context.Teams.Where(e => e.IdTeam == idTeam).SingleAsync();
-    //    return _mapper.Map<TeamDto>(result);
-    //}
 
     [HttpPut(nameof(UpdateTeam))]
     public async Task<TeamDto> UpdateTeam(TeamDto team)
