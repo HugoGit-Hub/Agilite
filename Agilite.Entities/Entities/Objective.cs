@@ -12,7 +12,7 @@ public class Objective
 
     public string? TextObjective { get; set; }
 
-    public ObjectiveType IdObjectiveTypeNavigation { get; set; } = null!;
+    public virtual ObjectiveType IdObjectiveTypeNavigation { get; set; } = null!;
 
     public virtual IEnumerable<SprintObjective> SprintObjectives { get; set; } = new List<SprintObjective>();
 

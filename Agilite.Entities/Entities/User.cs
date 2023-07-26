@@ -20,7 +20,7 @@ public class User
 
     public bool ArchivedUser { get; set; }
 
-    public virtual IEnumerable<Message> Messages { get; set; } = new List<Message>  ();
+    public virtual IEnumerable<Message> Messages { get; set; } = new List<Message>();
 
-    public virtual IEnumerable<Team> Teams { get; set; } = new List<Team>();
+    public virtual ICollection<Team> Teams { get; set; } = new List<Team>();
 }

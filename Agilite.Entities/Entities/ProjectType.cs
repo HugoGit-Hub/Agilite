@@ -6,5 +6,5 @@ public class ProjectType
 
     public string NameProjectType { get; set; } = null!;
 
-    public IEnumerable<Project> Projects { get; set; } = new List<Project>();
+    public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
 }
