@@ -11,6 +11,7 @@ public interface IUserService
 {
     public User CreateUser(User user);
     public Task<User> GetUserByEmail(string email, CancellationToken cancellationToken);
+    public Task<IEnumerable<Team>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken);
 }
 
 public class UserService : IUserService
@@ -44,6 +45,9 @@ public class UserService : IUserService
 
     public async Task<User> GetUserByEmail(string email, CancellationToken cancellationToken)
         => await _userRepository.GetUserByEmail(email, cancellationToken);
+
+    public async Task<IEnumerable<Team>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken)
+        => await _userRepository.GetAllTeamsOfOneUser(idUser, cancellationToken);
 
     private static string GenerateSalt()
     {
