@@ -16,7 +16,7 @@ public class Job
 
     public DateTime? EndLogTimeJob { get; set; }
 
-    public JobState IdJobStateNavigation { get; set; } = null!;
+    public virtual JobState IdJobStateNavigation { get; set; } = null!;
 
     public virtual IEnumerable<JobObjective> JobObjectives { get; set; } = new List<JobObjective>();
 }

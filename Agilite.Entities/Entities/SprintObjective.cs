@@ -6,7 +6,7 @@ public class SprintObjective
     
     public int IdObjective { get; set; }
 
-    public Sprint IdSprintNavigation { get; set; } = null!;
+    public virtual Sprint IdSprintNavigation { get; set; } = null!;
 
-    public Objective IdObjectiveNavigation { get; set; } = null!;
+    public virtual Objective IdObjectiveNavigation { get; set; } = null!;
 }

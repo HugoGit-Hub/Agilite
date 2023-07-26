@@ -6,7 +6,7 @@ public class JobObjective
 
     public int IdObjective { get; set; }
 
-    public Job IdJobNavigation { get; set; } = null!;
+    public virtual Job IdJobNavigation { get; set; } = null!;
 
-    public Objective IdObjectiveNavigation { get; set; } = null!;
+    public virtual Objective IdObjectiveNavigation { get; set; } = null!;
 }
