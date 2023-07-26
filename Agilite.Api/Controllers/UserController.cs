@@ -1,5 +1,6 @@
 ﻿using Agilite.Api.Messaging.Commands.UserCommands.CreateUser;
 using Agilite.Api.Messaging.Commands.UserCommands.DeleteUser;
+using Agilite.Api.Messaging.Commands.UserCommands.GetAllTeamsOfOneUser;
 using Agilite.Api.Messaging.Commands.UserCommands.GetAllUsers;
 using Agilite.Api.Messaging.Commands.UserCommands.GetUser;
 using Agilite.Api.Messaging.Commands.UserCommands.GetUserByEmail;
@@ -30,6 +31,10 @@ public class UserController : ControllerBase
     [HttpGet(nameof(GetAllUsers))]
     public async Task<IEnumerable<UserDto>> GetAllUsers()
         => await _sender.Send(new GetAllUsersCommand());
+
+    [HttpGet(nameof(GetAllTeamsOfOneUser))]
+    public async Task<IEnumerable<TeamDto>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllTeamsOfOneUserCommand(idUser), cancellationToken);
 
     [HttpGet(nameof(GetUser))]
     public async Task<UserDto> GetUser(int id)
