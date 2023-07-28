@@ -1,32 +1,28 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services.Refit;
+using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
 
+public interface ITeamService
+{
+    public Task<IEnumerable<TeamModel>> GetAllTeamsOfOneUser(int id);
+}
+
 public class TeamService : ITeamService
 {
-    public TeamDto Create(TeamDto entity)
+    private readonly ITeamRefitService _refitService;
+    private readonly IMapper _mapper;
+
+    public TeamService(ITeamRefitService refitService, IMapper mapper)
     {
-        throw new NotImplementedException();
+        _refitService = refitService;
+        _mapper = mapper;
     }
 
-    public TeamDto Update(TeamDto entity)
+    public async Task<IEnumerable<TeamModel>> GetAllTeamsOfOneUser(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<IEnumerable<TeamDto>> GetAll()
-    {
-        throw new NotImplementedException();
-    }
-
-    public TeamDto Get(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public TeamDto Delete(TeamDto entity)
-    {
-        throw new NotImplementedException();
+        var result = await _refitService.GetAllTeamsOfOneUser(id);
+        return _mapper.Map<IEnumerable<TeamModel>>(result);
     }
 }
