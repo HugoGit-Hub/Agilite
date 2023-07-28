@@ -54,6 +54,7 @@ public class AuthenticationService : IAuthenticationService
         {
             Subject = new ClaimsIdentity(new[]
             {
+                new Claim("sub", user.IdUser.ToString()),
                 new Claim(ClaimTypes.Email, user.EmailUser),
                 new Claim(ClaimTypes.Name, user.FirstNameUser),
             }),
