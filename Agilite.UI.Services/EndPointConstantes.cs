@@ -37,6 +37,7 @@ public static class EndPointConstantes
     public const string CREATE_TEAM = "/api/Team/CreateTeam";
     public const string UPDATE_TEAM = "/api/Team/UpdateTeam";
     public const string GET_ALL_TEAMS = "/api/Team/GetAllTeams";
+    public const string GET_ALL_TEAMS_OF_ONE_USER = "/api/User/GetAllTeamsOfOneUser";
     public const string GET_TEAM = "/api/Team/GetTeam";
     public const string DELETE_TEAM = "/api/Team/DeleteTeam";
 
