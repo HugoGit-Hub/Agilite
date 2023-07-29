@@ -1,10 +1,10 @@
 ﻿using Agilite.Api.Messaging.Commands.TeamCommands.CreateTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.CreateTeamUser;
 using Agilite.Api.Messaging.Commands.TeamCommands.DeleteTeam;
-using Agilite.Api.Messaging.Commands.TeamCommands.GetAllProjectsOfOneTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeams;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.UpdateTeam;
+using Agilite.Api.Messaging.Commands.UserCommands.GetAllTeamsOfOneUser;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -37,9 +37,9 @@ public class TeamController : ControllerBase
     public async Task<IEnumerable<TeamDto>> GetAllTeams()
         => await _sender.Send(new GetAllTeamsCommand());
 
-    [HttpGet(nameof(GetAllProjectsOfOneTeam))]
-    public async Task<IEnumerable<ProjectDto>> GetAllProjectsOfOneTeam(int idTeam, CancellationToken cancellationToken)
-        => await _sender.Send(new GetAllProjectsOfOneTeamCommand(idTeam), cancellationToken);
+    [HttpGet(nameof(GetAllTeamsOfOneUser))]
+    public async Task<IEnumerable<TeamDto>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllTeamsOfOneUserCommand(idUser), cancellationToken);
 
     [HttpGet(nameof(GetTeam))]
     public async Task<TeamDto> GetTeam(int id)
