@@ -9,19 +9,19 @@ public class TeamViewModel : ViewModelBase
 {
     private const string ID_USER = "sub";
 
-    private readonly ITeamService _teamService;
+    private readonly IUserService _service;
 
     public ObservableCollection<TeamModel> Teams { get; } = new();
 
-    public TeamViewModel(ITeamService teamService)
+    public TeamViewModel(IUserService service)
     {
-        _teamService = teamService;
+        _service = service;
         GetAllTeamsOfOneUser(int.Parse(TokenService.GetClaimValue(ID_USER)));
     }
 
     private async void GetAllTeamsOfOneUser(int id)
     {
-        var teams = await _teamService.GetAllTeamsOfOneUser(id);
+        var teams = await _service.GetAllTeamsOfOneUser(id);
 
         foreach (var team in teams)
         {
