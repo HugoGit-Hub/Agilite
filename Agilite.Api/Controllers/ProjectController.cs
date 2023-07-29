@@ -2,6 +2,7 @@
 using Agilite.Api.Messaging.Commands.ProjectCommands.DeleteProject;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjects;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetProject;
+using Agilite.Api.Messaging.Commands.TeamCommands.GetAllProjectsOfOneTeam;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,10 @@ public class ProjectController : ControllerBase
     [HttpGet(nameof(GetAllProjects))]
     public async Task<IEnumerable<ProjectDto>> GetAllProjects()
         => await _sender.Send(new GetAllProjectsCommand());
+
+    [HttpGet(nameof(GetAllProjectsOfOneTeam))]
+    public async Task<IEnumerable<ProjectDto>> GetAllProjectsOfOneTeam(int idTeam, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllProjectsOfOneTeamCommand(idTeam), cancellationToken);
 
     [HttpGet(nameof(GetProject))]
     public async Task<ProjectDto> GetProject(int id)
