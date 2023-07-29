@@ -7,6 +7,7 @@ namespace Agilite.Repositories.Repositories;
 public interface ITeamRepository
 {
     public Task<Team> CreateTeamUser(int idTeam, int idUser, CancellationToken cancellationToken);
+    public Task<IEnumerable<Project>> GetAllProjectsOfOneTeam(int idTeam, CancellationToken cancellationToken);
 }
 
 public class TeamRepository : ITeamRepository
@@ -25,4 +26,9 @@ public class TeamRepository : ITeamRepository
 
         return await _context.Teams.Where(e => e.IdTeam == idTeam).SingleAsync(cancellationToken);
     }
+
+    public async Task<IEnumerable<Project>> GetAllProjectsOfOneTeam(int idTeam, CancellationToken cancellationToken)
+        => await _context.Projects
+            .Where(e => e.IdTeamNavigation.IdTeam == idTeam)
+            .ToListAsync(cancellationToken);
 }
