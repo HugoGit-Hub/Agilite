@@ -14,6 +14,9 @@ public interface IUserRefitService : IBaseRefitClient
     [Get(EndPointConstantes.GET_ALL_USERS)]
     public Task<IEnumerable<UserDto>> GetAll();
 
+    [Get(EndPointConstantes.GET_ALL_TEAMS_OF_ONE_USER)]
+    public Task<IEnumerable<TeamDto>> GetAllTeamsOfOneUser(int idUser);
+
     [Get(EndPointConstantes.GET_USER)]
     public Task<UserDto> Get(int id);
 

@@ -14,9 +14,6 @@ public interface ITeamRefitService : IBaseRefitClient
     [Get(EndPointConstantes.GET_ALL_TEAMS)]
     public Task<IEnumerable<TeamDto>> GetAll();
 
-    [Get(EndPointConstantes.GET_ALL_TEAMS_OF_ONE_USER)]
-    public Task<IEnumerable<TeamDto>> GetAllTeamsOfOneUser(int idUser);
-
     [Get(EndPointConstantes.GET_TEAM)]
     public Task<TeamDto> Get(int id);
 
