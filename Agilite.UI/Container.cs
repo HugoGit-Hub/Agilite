@@ -39,6 +39,7 @@ public class Container
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<IUserService, UserService>();
         services.AddSingleton<ITeamService, TeamService>();
+        services.AddSingleton<IProjectService, ProjectService>();
 
         foreach (var type in 
                 typeof(IBaseRefitClient).Assembly
