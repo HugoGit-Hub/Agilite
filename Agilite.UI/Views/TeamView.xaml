@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:Agilite.UI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
@@ -26,7 +27,9 @@
                                 Background="#252423"
                                 BorderThickness="0"
                                 Height="40"
-                                Width="150">
+                                Width="150"
+                                Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                                CommandParameter="{Binding IdTeam}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -57,12 +60,12 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <TextBlock Grid.Row="0"
                            Margin="15"
-                           Text="Nom de l'équipe"
+                           Text="Équipe ..."
                            Foreground="White"/>
 
                 <TextBlock Grid.Row="1"
@@ -72,68 +75,47 @@
                            Foreground="White"/>
 
                 <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding Projects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Border BorderThickness="1"
+                                            BorderBrush="#323130"
+                                            Background="#323130"
+                                            Margin="30"
+                                            CornerRadius="10"
+                                            Padding="0,0,0,50">
+                                        <StackPanel>
+                                            <TextBlock Foreground="White"
+                                                       Text="{Binding NameProject}"
+                                                       Margin="10"/>
 
-                    <Border Grid.Column="0"
-                            BorderThickness="1"
-                            BorderBrush="#323130"
-                            Background="#323130"
-                            Margin="30"
-                            CornerRadius="10"
-                            Padding="0,0,0,50">
-                        <StackPanel>
-                            <TextBlock Foreground="White"
-                                       Text="Projet un"
-                                       Margin="10"/>
+                                            <TextBlock Foreground="White"
+                                                       Text="Label à propos du projet"
+                                                       FontSize="15"
+                                                       Margin="10"/>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
-                            <TextBlock Foreground="White"
-                                       Text="Label à propos du projet"
-                                       FontSize="15"
-                                       Margin="10"/>
-                        </StackPanel>
-                    </Border>
-
-                    <Border Grid.Column="1"
-                            BorderThickness="1"
-                            BorderBrush="#323130"
-                            Background="#323130"
-                            Margin="30"
-                            CornerRadius="10"
-                            Padding="0,0,0,50">
-                        <StackPanel>
-                            <TextBlock Foreground="White"
-                                       Text="Projet deux"
-                                       Margin="10"/>
-
-                            <TextBlock Foreground="White"
-                                       Text="Label à propos du projet"
-                                       FontSize="15"
-                                       Margin="10"/>
-                        </StackPanel>
-                    </Border>
-
-                    <Border Grid.Column="2"
-                            BorderThickness="1"
-                            BorderBrush="#323130"
-                            Background="#323130"
-                            Margin="30"
-                            CornerRadius="10"
-                            Padding="0,0,0,50">
-                        <StackPanel>
-                            <TextBlock Foreground="White"
-                                       Text="Projet trois"
-                                       Margin="10"/>
-
-                            <TextBlock Foreground="White"
-                                       Text="Label à propos du projet"
-                                       FontSize="15"
-                                       Margin="10"/>
-                        </StackPanel>
-                    </Border>
+                    <TextBlock Text="Cette équipe ne contient encore aucun projet ..."
+                               HorizontalAlignment="Center"
+                               Foreground="White">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Projects.Count}"
+                                                 Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
                 </Grid>
             </Grid>
         </StackPanel>
