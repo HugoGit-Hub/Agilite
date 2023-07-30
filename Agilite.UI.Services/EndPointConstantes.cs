@@ -19,6 +19,7 @@ public static class EndPointConstantes
     public const string CREATE_PROJECT = "/api/Project/CreateProject";
     public const string UPDATE_PROJECT = "/api/Project/UpdateProject";
     public const string GET_ALL_PROJECTS = "/api/Project/GetAllProjects";
+    public const string GET_ALL_PROJECTS_OF_ONE_TEAM = "/api/Project/GetAllProjectsOfOneTeam";
     public const string GET_PROJECT = "/api/Project/GetProject";
     public const string DELETE_PROJECT = "/api/Project/DeleteProject";
 
