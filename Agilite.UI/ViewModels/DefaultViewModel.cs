@@ -1,9 +1,9 @@
 ﻿using Agilite.UI.Services.Services;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Agilite.UI.ViewModels;
 
-public class DefaultViewModel : ViewModelBase
+public class DefaultViewModel : ObservableObject
 {
     private const string UNIQUE_NAME_CLAIM = "unique_name";
 
