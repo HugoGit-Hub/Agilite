@@ -1,9 +1,10 @@
-﻿using Agilite.UI.Models.Models;
+﻿using Agilite.DataTransferObject.DTOs;
+using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
-using Agilite.UI.ViewModels.Command.AuthenticationCommands;
 using Agilite.UI.Views;
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Windows;
 using System.Windows.Input;
@@ -13,17 +14,15 @@ namespace Agilite.UI.ViewModels;
 public class LoginViewModel : ObservableObject
 {
     private readonly LoginModel _model;
+    private readonly IAuthenticationService _authenticationService;
+    private readonly IMapper _mapper;
+    private readonly ICommand _loginCommand;
 
-    public LoginViewModel(
-        IAuthenticationService authenticationService,
-        IMapper mapper)
+    public ICommand LoginCommand
     {
-        _model = new LoginModel();
-        LoginCommand = new LoginCommand(_model, authenticationService, mapper);
-        LoginCommand.CanExecuteChanged += LoginSucceed!;
+        get => _loginCommand;
+        private init => SetProperty(ref _loginCommand, value);
     }
-
-    public ICommand LoginCommand { get; }
 
     public string Email
     {
@@ -45,7 +44,40 @@ public class LoginViewModel : ObservableObject
         }
     }
 
-    private static void LoginSucceed(object sender, EventArgs e)
+    public LoginViewModel(
+        IAuthenticationService authenticationService,
+        IMapper mapper)
+    {
+        _authenticationService = authenticationService;
+        _mapper = mapper;
+        _model = new LoginModel();
+        LoginCommand = new RelayCommand(Login);
+    }
+
+    private void Login()
+    {
+        var login = new LoginModel
+        {
+            EmailUser = Email,
+            PasswordUser = Password
+        };
+
+        try
+        {
+            var token = _authenticationService.Login(_mapper.Map<LoginDto>(login)).Result;
+            TokenService.StoreTokenInCache(token);
+            LoginSucceed();
+        }
+        catch (UnauthorizedAccessException)
+        {
+        }
+        catch (Exception e)
+        {
+            var _ = $"ERROR: {e.Message}";
+        }
+    }
+
+    private static void LoginSucceed()
     {
         var customWindow = new MainWindow();
         customWindow.Show();
