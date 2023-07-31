@@ -1,10 +1,9 @@
 ﻿using Agilite.Api.Messaging.Commands.TeamCommands.CreateTeam;
-using Agilite.Api.Messaging.Commands.TeamCommands.CreateTeamUser;
 using Agilite.Api.Messaging.Commands.TeamCommands.DeleteTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeams;
+using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeamsOfOneUser;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.UpdateTeam;
-using Agilite.Api.Messaging.Commands.UserCommands.GetAllTeamsOfOneUser;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,10 +23,6 @@ public class TeamController : ControllerBase
     [HttpPost(nameof(CreateTeam))]
     public async Task<TeamDto> CreateTeam(TeamDto team)
         => await _sender.Send(new CreateTeamCommand(team));
-
-    [HttpPost(nameof(CreateTeamUser))]
-    public async Task<TeamDto> CreateTeamUser(int idTeam, int idUser, CancellationToken cancellationToken)
-        => await _sender.Send(new CreateTeamUserCommand(idTeam, idUser), cancellationToken);
 
     [HttpPut(nameof(UpdateTeam))]
     public async Task<TeamDto> UpdateTeam(TeamDto team)
