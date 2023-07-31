@@ -25,7 +25,7 @@ public static class Container
         return application;
     }
 
-    public static void RgisterServices(this IServiceCollection services, IConfiguration configuration)
+    private static void RgisterServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddControllers();
         services.AddEndpointsApiExplorer();
@@ -80,7 +80,7 @@ public static class Container
         services.AddScoped<ISprintRepository, SprintRepository>();
     }
 
-    public static void ConfigureApplication(this WebApplication application)
+    private static void ConfigureApplication(this WebApplication application)
     {
         if (application.Environment.IsDevelopment())
         {
