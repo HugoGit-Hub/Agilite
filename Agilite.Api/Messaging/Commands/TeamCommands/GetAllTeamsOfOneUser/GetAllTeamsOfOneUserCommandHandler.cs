@@ -3,22 +3,22 @@ using Agilite.Services;
 using AutoMapper;
 using MediatR;
 
-namespace Agilite.Api.Messaging.Commands.UserCommands.GetAllTeamsOfOneUser;
+namespace Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeamsOfOneUser;
 
 public class GetAllTeamsOfOneUserCommandHandler : IRequestHandler<GetAllTeamsOfOneUserCommand, IEnumerable<TeamDto>>
 {
-    private readonly IUserService _userService;
     private readonly IMapper _mapper;
+    private readonly ITeamService _service;
 
-    public GetAllTeamsOfOneUserCommandHandler(IUserService userService, IMapper mapper)
+    public GetAllTeamsOfOneUserCommandHandler(IMapper mapper, ITeamService service)
     {
-        _userService = userService;
         _mapper = mapper;
+        _service = service;
     }
 
     public async Task<IEnumerable<TeamDto>> Handle(GetAllTeamsOfOneUserCommand request, CancellationToken cancellationToken)
     {
-        var result = await _userService.GetAllTeamsOfOneUser(request.IdUser, cancellationToken);
+        var result = await _service.GetAllTeamsOfOneUser(request.IdUser, cancellationToken);
         return _mapper.Map<IEnumerable<TeamDto>>(result);
     }
 }
