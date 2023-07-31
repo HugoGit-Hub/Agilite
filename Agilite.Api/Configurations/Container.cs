@@ -70,10 +70,12 @@ public static class Container
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITeamService, TeamService>();
+        services.AddScoped<ISprintService, SprintService>();
 
         services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITeamRepository, TeamRepository>();
+        services.AddScoped<ISprintRepository, SprintRepository>();
     }
 
     public static void ConfigureApplication(this WebApplication application)
