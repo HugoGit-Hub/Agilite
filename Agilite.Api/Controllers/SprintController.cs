@@ -1,6 +1,7 @@
 ﻿using Agilite.Api.Messaging.Commands.SprintComands.CreateSprint;
 using Agilite.Api.Messaging.Commands.SprintComands.DeleteSprint;
 using Agilite.Api.Messaging.Commands.SprintComands.GetAllSprints;
+using Agilite.Api.Messaging.Commands.SprintComands.GetAllSprintsOfOneProject;
 using Agilite.Api.Messaging.Commands.SprintComands.GetSprint;
 using Agilite.Api.Messaging.Commands.SprintComands.UpdateSprint;
 using Agilite.DataTransferObject.DTOs;
@@ -31,6 +32,10 @@ public class SprintController : ControllerBase
     [HttpGet(nameof(GetAllSprints))]
     public async Task<IEnumerable<SprintDto>> GetAllSprints()
         => await _sender.Send(new GetAllSprintsCommand());
+
+    [HttpGet(nameof(GetAllSprintsOfOneProject))]
+    public async Task<IEnumerable<SprintDto>> GetAllSprintsOfOneProject(int idProject, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllSprintsOfOneProjectCommand(idProject), cancellationToken);
 
     [HttpGet(nameof(GetSprint))]
     public async Task<SprintDto> GetSprint(int id)
