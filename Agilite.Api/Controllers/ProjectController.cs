@@ -1,8 +1,8 @@
 ﻿using Agilite.Api.Messaging.Commands.ProjectCommands.CreateProject;
 using Agilite.Api.Messaging.Commands.ProjectCommands.DeleteProject;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjects;
+using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjectsOfOneTeam;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetProject;
-using Agilite.Api.Messaging.Commands.TeamCommands.GetAllProjectsOfOneTeam;
 using Agilite.DataTransferObject.DTOs;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

@@ -3,22 +3,22 @@ using Agilite.Services;
 using AutoMapper;
 using MediatR;
 
-namespace Agilite.Api.Messaging.Commands.TeamCommands.GetAllProjectsOfOneTeam;
+namespace Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjectsOfOneTeam;
 
 public class GetAllProjectsOfOneTeamCommandHandler : IRequestHandler<GetAllProjectsOfOneTeamCommand, IEnumerable<ProjectDto>>
 {
     private readonly IMapper _mapper;
-    private readonly ITeamService _projectService;
+    private readonly IProjectService _service;
 
-    public GetAllProjectsOfOneTeamCommandHandler(IMapper mapper, ITeamService projectService)
+    public GetAllProjectsOfOneTeamCommandHandler(IMapper mapper, IProjectService service)
     {
         _mapper = mapper;
-        _projectService = projectService;
+        _service = service;
     }
 
     public async Task<IEnumerable<ProjectDto>> Handle(GetAllProjectsOfOneTeamCommand request, CancellationToken cancellationToken)
     {
-        var result = await _projectService.GetAllProjectsOfOneTeam(request.IdTeam, cancellationToken);
+        var result = await _service.GetAllProjectsOfOneTeam(request.IdTeam, cancellationToken);
         return _mapper.Map<IEnumerable<ProjectDto>>(result);
     }
 }
