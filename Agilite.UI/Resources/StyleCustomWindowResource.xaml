@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:ui="clr-namespace:Agilite.UI">
 
-    <Style TargetType="ui:MainWindow" BasedOn="{StaticResource CustomWindowResource}"/>
+    <!--<Style TargetType="ui:MainWindow" BasedOn="{StaticResource CustomWindowResource}"/>-->
 
 </ResourceDictionary>
