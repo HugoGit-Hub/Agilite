@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="Resources/CustomWindowResource.xaml"/>
                 <ResourceDictionary Source="Resources/StyleCustomWindowResource.xaml" />
                 <ResourceDictionary Source="Resources/DataTemplateResources.xaml" />
+                <ResourceDictionary Source="Resources/ColorsResource.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <ui:Container x:Key="Locator" />
         </ResourceDictionary>
