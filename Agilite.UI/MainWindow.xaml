@@ -1,49 +1,139 @@
-﻿<logic:CustomWindow x:Class="Agilite.UI.MainWindow"
-                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    xmlns:logic="clr-namespace:Agilite.UI.Resources.Logic"
-                    xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
-                    mc:Ignorable="d"
-                    FontSize="20"
-                    WindowState="Maximized"
-                    WindowStyle="None"
-                    DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
+﻿<Window x:Class="Agilite.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
+        mc:Ignorable="d"
+        FontSize="20"
+        WindowState="Maximized"
+        Style="{StaticResource CustomWindowStyle}"
+        DataContext="{Binding MainWindowViewModel, Source={StaticResource Locator}}">
+
+    <Window.Resources>
+        <Style TargetType="Window" x:Key="CustomWindowStyle">
+            <Setter Property="Background" Value="{StaticResource PrincipalColor}"/>
+        </Style>
+    </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <Button Content="Accueil"
-                        Height="50"
-                        Foreground="Wheat"
-                        Background="#201f1e"
-                        FontSize="14"
+            <Button Foreground="{StaticResource  TextColor}"
+                        Background="{StaticResource  Gradiant}"
                         Command="{Binding ChangeViewCommand}"
-                        CommandParameter="{x:Static viewModel:MainWindowViewModel.DEFAULT_VIEW}">
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.DEFAULT_VIEW}"
+                        Margin="25,10,25,2"
+                        Padding="10">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+
+                <materialDesign:PackIcon Kind="Home"
+                                             Height="30"
+                                             Width="30"
+                                             HorizontalAlignment="Center">
+                </materialDesign:PackIcon>
+
                 <Button.BorderBrush>Transparent</Button.BorderBrush>
                 <Button.BorderThickness>0</Button.BorderThickness>
             </Button>
 
-            <Button Content="Équipe"
-                    Height="50"
-                    Foreground="Wheat"
-                    Background="#201f1e"
-                    FontSize="14"
+            <Button Foreground="{StaticResource  TextColor}"
+                    Background="Transparent"
+                    Margin="25,10,25,2"
+                    Padding="10"
                     Command="{Binding ChangeViewCommand}"
                     CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"></Setter>
+                    </Style>
+                </Button.Resources>
+
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="AccountMultiple"
+                                             Height="20"
+                                             Width="20"
+                                             HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Équipe"
+                               FontSize="10"/>
+                </StackPanel>
+
                 <Button.BorderBrush>Transparent</Button.BorderBrush>
                 <Button.BorderThickness>0</Button.BorderThickness>
             </Button>
+
+            <StackPanel>
+                <Button Foreground="{StaticResource  TextColor}"
+                    Background="Transparent"
+                    Margin="25,10,25,2"
+                    Padding="10"
+                    Command="{Binding ChangeViewCommand}"
+                    CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"></Setter>
+                        </Style>
+                    </Button.Resources>
+
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Timelapse"
+                                             Height="20"
+                                             Width="20"
+                                             HorizontalAlignment="Center"/>
+
+                        <TextBlock Text="Sprint"
+                               FontSize="10"/>
+                    </StackPanel>
+
+                    <Button.BorderBrush>Transparent</Button.BorderBrush>
+                    <Button.BorderThickness>0</Button.BorderThickness>
+                </Button>
+
+                <Button Content="Sprint 1"
+                        Height="50"
+                        Foreground="{StaticResource  TextColor}"
+                        Background="{StaticResource  SecondColor}"
+                        FontSize="14"
+                        Command="{Binding ChangeViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                    <Button.BorderBrush>Transparent</Button.BorderBrush>
+                    <Button.BorderThickness>0</Button.BorderThickness>
+                </Button>
+
+                <Button Content="Sprint 2"
+                        Height="50"
+                        Foreground="{StaticResource  TextColor}"
+                        Background="{StaticResource  SecondColor}"
+                        FontSize="14"
+                        Command="{Binding ChangeViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                    <Button.BorderBrush>Transparent</Button.BorderBrush>
+                    <Button.BorderThickness>0</Button.BorderThickness>
+                </Button>
+
+                <Button Content="Sprint 3"
+                        Height="50"
+                        Foreground="{StaticResource  TextColor}"
+                        Background="{StaticResource  SecondColor}"
+                        FontSize="14"
+                        Command="{Binding ChangeViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                    <Button.BorderBrush>Transparent</Button.BorderBrush>
+                    <Button.BorderThickness>0</Button.BorderThickness>
+                </Button>
+            </StackPanel>
         </StackPanel>
 
-        <Border Grid.Column="1"
-                Background="White">
-            <ContentControl Content="{Binding ActualPage}" />
-        </Border>
+        <ContentControl Grid.Column="1" Content="{Binding ActualPage}"/>
     </Grid>
-</logic:CustomWindow>
+</Window>

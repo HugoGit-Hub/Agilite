@@ -9,27 +9,31 @@
              d:DesignHeight="450" 
              d:DesignWidth="800"
              DataContext="{Binding TeamViewModel, Source={StaticResource Locator}}">
-    <Grid>
+    <Grid Background="{StaticResource  BackgroundColor}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ItemsControl ItemsSource="{Binding Teams}"
-                      Grid.Column="0"
-                      BorderBrush="#323130"
-                      Background="#252423"
-                      BorderThickness="0,0,1,0">
+        <ItemsControl Grid.Column="0"
+                      ItemsSource="{Binding Teams}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Button BorderBrush="Transparent"
-                                Background="#252423"
+                                Background="{StaticResource  SecondColor}"
                                 BorderThickness="0"
                                 Height="40"
                                 Width="150"
+                                Margin="15"
                                 Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
                                 CommandParameter="{Binding IdTeam}">
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="10"></Setter>
+                                </Style>
+                            </Button.Resources>
+
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -40,13 +44,13 @@
                                                          Kind="People" 
                                                          Height="20"
                                                          Width="20"
-                                                         Foreground="White"
+                                                         Foreground="{StaticResource  TextColor}"
                                                          Margin="0,0,10,0"/>
 
                                 <TextBlock Grid.Column="1"
                                            Text="{Binding NameTeam}"
                                            FontSize="14"
-                                           Foreground="White"/>
+                                           Foreground="{StaticResource  TextColor}"/>
                             </Grid>
                         </Button>
                     </StackPanel>
@@ -54,8 +58,7 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <StackPanel Grid.Column="1"
-                    Background="#252423">
+        <StackPanel Grid.Column="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -66,44 +69,70 @@
                 <TextBlock Grid.Row="0"
                            Margin="15"
                            Text="Équipe ..."
-                           Foreground="White"/>
+                           Foreground="{StaticResource  TextColor}"/>
 
                 <TextBlock Grid.Row="1"
                            Margin="15,0,0,0"
                            FontSize="15"
                            Text="Projets"
-                           Foreground="White"/>
+                           Foreground="{StaticResource  TextColor}"/>
 
                 <Grid Grid.Row="2">
                     <ItemsControl ItemsSource="{Binding Projects}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <Border BorderThickness="1"
-                                            BorderBrush="#323130"
-                                            Background="#323130"
-                                            Margin="30"
-                                            CornerRadius="10"
-                                            Padding="0,0,0,50">
-                                        <StackPanel>
-                                            <TextBlock Foreground="White"
+                                <Button Margin="10"
+                                        HorizontalContentAlignment="Left">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
+
+                                    <Button.Style>
+                                        <Style TargetType="{x:Type Button}">
+                                            <Setter Property="Background" 
+                                                    Value="{StaticResource  SecondColor}"/>
+
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                                BorderBrush="Transparent" 
+                                                                BorderThickness="1">
+                                                            <ContentPresenter HorizontalAlignment="Center" 
+                                                                              VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Transparent"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
+                                    <StackPanel>
+                                        <TextBlock Foreground="{StaticResource  TextColor}"
                                                        Text="{Binding NameProject}"
                                                        Margin="10"/>
 
-                                            <TextBlock Foreground="White"
+                                        <TextBlock Foreground="{StaticResource  TextColor}"
                                                        Text="Label à propos du projet"
                                                        FontSize="15"
                                                        Margin="10"/>
-                                        </StackPanel>
-                                    </Border>
-                                </StackPanel>
+                                    </StackPanel>
+                                </Button>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
 
                     <TextBlock Text="Cette équipe ne contient encore aucun projet ..."
                                HorizontalAlignment="Center"
-                               Foreground="White">
+                               Foreground="{StaticResource  TextColor}">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
                                 <Setter Property="Visibility" Value="Collapsed"/>

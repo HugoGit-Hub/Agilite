@@ -8,10 +8,11 @@
              d:DesignWidth="800"
              DataContext="{Binding DefaultViewModel, Source={StaticResource Locator}}">
 
-    <Grid>
-        <TextBlock Text="Bienvenue ">
+    <Grid Background="{StaticResource  BackgroundColor}">
+        <TextBlock Text="Bienvenue "
+                   Foreground="{StaticResource  TextColor}">
             <TextBlock Text="{Binding UserName}"
-                       Background="White"/>
+                       Foreground="{StaticResource  TextColor}"/>
         </TextBlock>
     </Grid>
 </UserControl>
