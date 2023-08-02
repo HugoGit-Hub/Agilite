@@ -9,6 +9,7 @@
              d:DesignHeight="450" 
              d:DesignWidth="800"
              DataContext="{Binding TeamViewModel, Source={StaticResource Locator}}">
+
     <Grid Background="{StaticResource  BackgroundColor}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
