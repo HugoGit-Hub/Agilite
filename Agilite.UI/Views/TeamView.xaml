@@ -10,51 +10,57 @@
              d:DesignWidth="800"
              DataContext="{Binding TeamViewModel, Source={StaticResource Locator}}">
 
-    <Grid Background="{StaticResource  BackgroundColor}">
+    <Grid Background="{StaticResource  BackgroundColor}"
+          Margin="30, 15, 30,15">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <ItemsControl Grid.Column="0"
+                      Background="{DynamicResource PrincipalColor}"
                       ItemsSource="{Binding Teams}">
+            <ItemsControl.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </ItemsControl.Resources>
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Button BorderBrush="Transparent"
-                                Background="{StaticResource  SecondColor}"
-                                BorderThickness="0"
-                                Height="40"
-                                Width="150"
-                                Margin="15"
-                                Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
-                                CommandParameter="{Binding IdTeam}">
-                            <Button.Resources>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="10"></Setter>
-                                </Style>
-                            </Button.Resources>
+                    <Button BorderBrush="Transparent"
+                            Background="{StaticResource  SecondColor}"
+                            BorderThickness="0"
+                            Height="40"
+                            Width="150"
+                            Margin="15"
+                            Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                            CommandParameter="{Binding IdTeam}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
 
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <materialDesign:PackIcon Grid.Column="0"
-                                                         Kind="People" 
-                                                         Height="20"
-                                                         Width="20"
-                                                         Foreground="{StaticResource  TextColor}"
-                                                         Margin="0,0,10,0"/>
+                            <materialDesign:PackIcon Grid.Column="0"
+                                                     Kind="People" 
+                                                     Height="20"
+                                                     Width="20"
+                                                     Foreground="{StaticResource  TextColor}"
+                                                     Margin="0,0,10,0"/>
 
-                                <TextBlock Grid.Column="1"
-                                           Text="{Binding NameTeam}"
-                                           FontSize="14"
-                                           Foreground="{StaticResource  TextColor}"/>
-                            </Grid>
-                        </Button>
-                    </StackPanel>
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding NameTeam}"
+                                       FontSize="14"
+                                       Foreground="{StaticResource  TextColor}"/>
+                        </Grid>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
@@ -83,7 +89,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Margin="10"
-                                        HorizontalContentAlignment="Left">
+                                        HorizontalContentAlignment="Left"
+                                        Command="{Binding DataContext.ShowSprintsButtonsCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
@@ -93,7 +100,7 @@
                                     <Button.Style>
                                         <Style TargetType="{x:Type Button}">
                                             <Setter Property="Background" 
-                                                    Value="{StaticResource  SecondColor}"/>
+                                                    Value="{StaticResource  PrincipalColor}"/>
 
                                             <Setter Property="Template">
                                                 <Setter.Value>
@@ -110,7 +117,7 @@
 
                                             <Style.Triggers>
                                                 <Trigger Property="IsMouseOver" Value="True">
-                                                    <Setter Property="Background" Value="Transparent"/>
+                                                    <Setter Property="Background" Value="{DynamicResource SecondColor}"/>
                                                 </Trigger>
                                             </Style.Triggers>
                                         </Style>
@@ -118,13 +125,13 @@
 
                                     <StackPanel>
                                         <TextBlock Foreground="{StaticResource  TextColor}"
-                                                       Text="{Binding NameProject}"
-                                                       Margin="10"/>
+                                                   Text="{Binding NameProject}"
+                                                   Margin="10"/>
 
                                         <TextBlock Foreground="{StaticResource  TextColor}"
-                                                       Text="Label à propos du projet"
-                                                       FontSize="15"
-                                                       Margin="10"/>
+                                                   Text="Label à propos du projet"
+                                                   FontSize="15"
+                                                   Margin="10"/>
                                     </StackPanel>
                                 </Button>
                             </DataTemplate>
