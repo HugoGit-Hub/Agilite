@@ -28,7 +28,7 @@
                         Padding="10">
                     <Button.Resources>
                         <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"></Setter>
+                            <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </Button.Resources>
 
@@ -77,15 +77,15 @@
                             CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
                         <Button.Resources>
                             <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"></Setter>
+                                <Setter Property="CornerRadius" Value="10"/>
                             </Style>
                         </Button.Resources>
 
                         <StackPanel>
                             <materialDesign:PackIcon Kind="Timelapse"
-                                                 Height="20"
-                                                 Width="20"
-                                                 HorizontalAlignment="Center"/>
+                                                     Height="20"
+                                                     Width="20"
+                                                     HorizontalAlignment="Center"/>
 
                             <TextBlock Text="Sprint"
                                    FontSize="10"/>
@@ -132,7 +132,12 @@
         </Border>
 
 
-        <StackPanel Grid.Column="1">
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
             <Grid Margin="30,15,0,0">
                 <TextBox HorizontalAlignment="Left"
                          Width="250"
@@ -156,7 +161,8 @@
                                          Height="25"/>
             </Grid>
 
-            <ContentControl Content="{Binding ActualPage}"/>
-        </StackPanel>
+            <ContentControl Grid.Row="1" 
+                            Content="{Binding ActualPage}"/>
+        </Grid>
     </Grid>
 </Window>
