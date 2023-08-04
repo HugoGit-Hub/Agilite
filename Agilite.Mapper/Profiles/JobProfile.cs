@@ -10,7 +10,6 @@ public class JobProfile : Profile
     {
         CreateMap<Job, JobDto>();
         CreateMap<JobDto, Job>()
-            .ForMember(entity => entity.IdJobStateNavigation, member => member.Ignore())
-            .ForMember(entity => entity.JobObjectives, member => member.Ignore());
+            .ForMember(entity => entity.IdJobStateNavigation, member => member.Ignore());
     }
 }

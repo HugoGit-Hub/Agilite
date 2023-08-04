@@ -1,6 +1,7 @@
 ﻿using Agilite.Api.Messaging.Commands.JobCommands.CreateJob;
 using Agilite.Api.Messaging.Commands.JobCommands.DeleteJob;
 using Agilite.Api.Messaging.Commands.JobCommands.GetAllJobs;
+using Agilite.Api.Messaging.Commands.JobCommands.GetAllJobsOfOneObjective;
 using Agilite.Api.Messaging.Commands.JobCommands.GetJob;
 using Agilite.Api.Messaging.Commands.JobCommands.UpdateJob;
 using Agilite.DataTransferObject.DTOs;
@@ -20,23 +21,27 @@ public class JobController : ControllerBase
         _sender = sender;
     }
 
-    [HttpPost(nameof(CreateTask))]
-    public async Task<JobDto> CreateTask(JobDto job)
+    [HttpPost(nameof(CreateJob))]
+    public async Task<JobDto> CreateJob(JobDto job)
         => await _sender.Send(new CreateJobCommand(job));
 
-    [HttpPut(nameof(UpdateTask))]
-    public async Task<JobDto> UpdateTask([FromBody] JobDto job)
+    [HttpPut(nameof(UpdateJob))]
+    public async Task<JobDto> UpdateJob([FromBody] JobDto job)
         => await _sender.Send(new UpdateJobCommand(job));
 
-    [HttpGet(nameof(GetAllTasks))]
-    public async Task<IEnumerable<JobDto>> GetAllTasks()
+    [HttpGet(nameof(GetAllJobs))]
+    public async Task<IEnumerable<JobDto>> GetAllJobs()
         => await _sender.Send(new GetAllJobsCommand());
 
-    [HttpGet(nameof(GetTask))]
-    public async Task<JobDto> GetTask(int id)
+    [HttpGet(nameof(GetAllJobsOfOneObjective))]
+    public async Task<IEnumerable<JobDto>> GetAllJobsOfOneObjective(int id, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllJobsOfOneObjectiveCommand(id), cancellationToken);
+
+    [HttpGet(nameof(GetJob))]
+    public async Task<JobDto> GetJob(int id)
         => await _sender.Send(new GetJobCommand(id));
 
-    [HttpDelete(nameof(DeleteTask))]
-    public async Task<JobDto> DeleteTask(JobDto job)
+    [HttpDelete(nameof(DeleteJob))]
+    public async Task<JobDto> DeleteJob(JobDto job)
         => await _sender.Send(new DeleteJobCommand(job));
 }

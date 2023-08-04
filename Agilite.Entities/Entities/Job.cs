@@ -18,5 +18,5 @@ public class Job
 
     public virtual JobState IdJobStateNavigation { get; set; } = null!;
 
-    public virtual IEnumerable<JobObjective> JobObjectives { get; set; } = new List<JobObjective>();
+    public virtual IEnumerable<Objective> Objectives { get; set; } = new List<Objective>();
 }
