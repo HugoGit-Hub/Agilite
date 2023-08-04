@@ -73,6 +73,7 @@ public static class Container
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<ISprintService, SprintService>();
         services.AddScoped<IObjectiveService, ObjectiveService>();
+        services.AddScoped<IJobService, JobService>();
 
         services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
@@ -80,6 +81,7 @@ public static class Container
         services.AddScoped<IProjectRepository, ProjectRepository>();
         services.AddScoped<ISprintRepository, SprintRepository>();
         services.AddScoped<IObjectiveRepository, ObjectiveRepository>();
+        services.AddScoped<IJobRepository, JobRepository>();
     }
 
     private static void ConfigureApplication(this WebApplication application)
