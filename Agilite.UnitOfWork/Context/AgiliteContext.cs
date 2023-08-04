@@ -16,8 +16,6 @@ public partial class AgiliteContext : DbContext
 
     public virtual DbSet<Job> Jobs { get; set; }
 
-    public virtual DbSet<JobObjective> JobObjectives { get; set; }
-
     public virtual DbSet<JobState> JobStates { get; set; }
 
     public virtual DbSet<Message> Messages { get; set; }
@@ -56,24 +54,8 @@ public partial class AgiliteContext : DbContext
 
             entity.Property(e => e.StartLogTimeJob).HasColumnType("datetime");
 
-            entity.HasMany(e => e.JobObjectives)
-                .WithOne(e => e.IdJobNavigation)
-                .HasForeignKey(e => e.IdJob);
-        });
-
-        modelBuilder.Entity<JobObjective>(entity =>
-        {
-            entity.HasKey(e => e.IdObjective);
-
-            entity.HasKey(e => e.IdJob);
-
-            entity.HasOne(e => e.IdObjectiveNavigation)
-                .WithMany(e => e.JobObjectives)
-                .HasForeignKey(e => e.IdObjective);
-
-            entity.HasOne(e => e.IdJobNavigation)
-                .WithMany(e => e.JobObjectives)
-                .HasForeignKey(e => e.IdJob);
+            entity.HasMany(e => e.Objectives)
+                .WithMany(e => e.Jobs);
         });
 
         modelBuilder.Entity<JobState>(entity =>
@@ -121,9 +103,8 @@ public partial class AgiliteContext : DbContext
             entity.HasMany(e => e.Sprints)
                 .WithMany(e => e.Objectives);
 
-            entity.HasMany(e => e.JobObjectives)
-                .WithOne(e => e.IdObjectiveNavigation)
-                .HasForeignKey(e => e.IdObjective);
+            entity.HasMany(e => e.Jobs)
+                .WithMany(e => e.Objectives);
         });
 
         modelBuilder.Entity<ObjectiveType>(entity =>
