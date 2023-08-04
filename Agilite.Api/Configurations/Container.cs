@@ -72,12 +72,14 @@ public static class Container
         services.AddScoped<ITeamService, TeamService>();
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<ISprintService, SprintService>();
+        services.AddScoped<IObjectiveService, ObjectiveService>();
 
         services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddScoped<IProjectRepository, ProjectRepository>();
         services.AddScoped<ISprintRepository, SprintRepository>();
+        services.AddScoped<IObjectiveRepository, ObjectiveRepository>();
     }
 
     private static void ConfigureApplication(this WebApplication application)
