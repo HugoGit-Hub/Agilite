@@ -90,7 +90,8 @@
                             <DataTemplate>
                                 <Button Margin="10"
                                         HorizontalContentAlignment="Left"
-                                        Command="{Binding DataContext.ShowSprintsButtonsCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}">
+                                        Command="{Binding DataContext.DisplaySprintsOfOneProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                                        CommandParameter="{Binding IdProject}">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="10"/>
