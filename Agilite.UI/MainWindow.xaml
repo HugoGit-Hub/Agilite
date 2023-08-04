@@ -5,6 +5,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
+        xmlns:ui="clr-namespace:Agilite.UI"
         mc:Ignorable="d"
         FontSize="20"
         WindowState="Maximized"
@@ -96,91 +97,56 @@
                         <Button.BorderThickness>0</Button.BorderThickness>
                     </Button>
 
-                    <Button Height="50"
-                            Margin="25,10,25,2"
-                            Padding="10"
-                            Foreground="{DynamicResource  TextColor}"
-                            Background="{DynamicResource  SecondColor}"
-                            FontSize="14">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" 
-                                        Value="10"/>
-                            </Style>
-                        </Button.Resources>
+                    <ItemsControl ItemsSource="{Binding Sprints}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Height="50"
+                                        Margin="25,10,25,2"
+                                        Padding="10"
+                                        Foreground="{DynamicResource  TextColor}"
+                                        Background="{DynamicResource  SecondColor}"
+                                        FontSize="14">
+                                    <Button.Resources>
+                                        <Style TargetType="Border">
+                                            <Setter Property="CornerRadius" 
+                                                    Value="10"/>
+                                        </Style>
+                                    </Button.Resources>
 
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Visibility" 
-                                        Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowSprints}" 
-                                                 Value="True">
-                                        <Setter Property="Visibility" 
-                                                Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Visibility" 
+                                                    Value="Collapsed"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding DataContext.ShowSprints, RelativeSource={RelativeSource AncestorType={x:Type ui:MainWindow}}}" 
+                                                             Value="True">
+                                                    <Setter Property="Visibility" 
+                                                            Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
 
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Run"
-                                                     Height="20"
-                                                     Width="20"
-                                                     HorizontalAlignment="Center"/>
+                                    <StackPanel>
+                                        <materialDesign:PackIcon Kind="Run"
+                                                                 Height="20"
+                                                                 Width="20"
+                                                                 HorizontalAlignment="Center"/>
 
-                            <TextBlock Text="Sprint 1"
-                                       FontSize="8"/>
-                        </StackPanel>
+                                        <TextBlock Text="{Binding NumberSprint}"
+                                                   FontSize="8"
+                                                   HorizontalAlignment="Center"/>
+                                    </StackPanel>
 
-                        <Button.BorderBrush>Transparent</Button.BorderBrush>
-                        <Button.BorderThickness>0</Button.BorderThickness>
-                    </Button>
-
-                    <Button Height="50"
-                            Margin="25,10,25,2"
-                            Padding="10"
-                            Foreground="{DynamicResource  TextColor}"
-                            Background="{DynamicResource  SecondColor}"
-                            FontSize="14">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" 
-                                        Value="10"/>
-                            </Style>
-                        </Button.Resources>
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Visibility" 
-                                        Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ShowSprints}" 
-                                                 Value="True">
-                                        <Setter Property="Visibility" 
-                                                Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <StackPanel>
-                            <materialDesign:PackIcon Kind="Run"
-                                                     Height="20"
-                                                     Width="20"
-                                                     HorizontalAlignment="Center"/>
-
-                            <TextBlock Text="Sprint 2"
-                                       FontSize="8"/>
-                        </StackPanel>
-
-                        <Button.BorderBrush>Transparent</Button.BorderBrush>
-                        <Button.BorderThickness>0</Button.BorderThickness>
-                    </Button>
+                                    <Button.BorderBrush>Transparent</Button.BorderBrush>
+                                    <Button.BorderThickness>0</Button.BorderThickness>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
                 </StackPanel>
             </StackPanel>
         </Border>
-
 
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>

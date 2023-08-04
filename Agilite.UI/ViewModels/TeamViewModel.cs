@@ -16,7 +16,7 @@ public class TeamViewModel : ObservableObject
     private readonly ITeamService _teamService;
     private readonly IProjectService _projectService;
     private readonly ICommand _getAllProjectsOfOneTeamCommand;
-    private readonly ICommand _showSprintsButtons;
+    private readonly ICommand _displaySprintsOfOneProjectCommand;
 
     public ICommand GetAllProjectsOfOneTeamCommand
     {
@@ -24,10 +24,10 @@ public class TeamViewModel : ObservableObject
         private init => SetProperty(ref _getAllProjectsOfOneTeamCommand, value);
     }
 
-    public ICommand ShowSprintsButtonsCommand
+    public ICommand DisplaySprintsOfOneProjectCommand
     {
-        get => _showSprintsButtons;
-        private init => SetProperty(ref _showSprintsButtons, value);
+        get => _displaySprintsOfOneProjectCommand;
+        private init => SetProperty(ref _displaySprintsOfOneProjectCommand, value);
     }
 
     public ObservableCollection<TeamModel> Teams { get; } = new();
@@ -43,7 +43,7 @@ public class TeamViewModel : ObservableObject
         GetAllTeamsOfOneUser(int.Parse(TokenService.GetClaimValue(ID_USER)));
 
         GetAllProjectsOfOneTeamCommand = new RelayCommand<int>(GetAllProjectsOfOneTeam);
-        ShowSprintsButtonsCommand = new RelayCommand(ShowSprintsButtonMessage);
+        DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
     private async void GetAllTeamsOfOneUser(int id)
@@ -68,6 +68,6 @@ public class TeamViewModel : ObservableObject
         }
     }
 
-    private static void ShowSprintsButtonMessage()
-        => WeakReferenceMessenger.Default.Send(new ShowSprintsButtonsMessage(true));
+    private static void SendDisplaySprintsOfOneProject(int idProject)
+        => WeakReferenceMessenger.Default.Send(new ShowSprintsButtonsMessage(idProject, true));
 }
