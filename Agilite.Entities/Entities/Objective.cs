@@ -16,5 +16,5 @@ public class Objective
 
     public virtual IEnumerable<Sprint> Sprints { get; set; } = new List<Sprint>();
 
-    public virtual IEnumerable<JobObjective> JobObjectives { get; set; } = new List<JobObjective>();
+    public virtual IEnumerable<Job> Jobs { get; set; } = new List<Job>();
 }
