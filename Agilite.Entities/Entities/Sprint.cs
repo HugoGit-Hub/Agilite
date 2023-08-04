@@ -14,5 +14,5 @@ public class Sprint
 
     public virtual Project IdProjectNavigation { get; set; } = null!;
     
-    public virtual IEnumerable<SprintObjective> SprintObjectives { get; set; } = new List<SprintObjective>();
+    public virtual IEnumerable<Objective> Objectives { get; set; } = new List<Objective>();
 }

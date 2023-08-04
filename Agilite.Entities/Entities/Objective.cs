@@ -14,7 +14,7 @@ public class Objective
 
     public virtual ObjectiveType IdObjectiveTypeNavigation { get; set; } = null!;
 
-    public virtual IEnumerable<SprintObjective> SprintObjectives { get; set; } = new List<SprintObjective>();
+    public virtual IEnumerable<Sprint> Sprints { get; set; } = new List<Sprint>();
 
     public virtual IEnumerable<JobObjective> JobObjectives { get; set; } = new List<JobObjective>();
 }
