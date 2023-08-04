@@ -32,8 +32,6 @@ public partial class AgiliteContext : DbContext
 
     public virtual DbSet<Sprint> Sprints { get; set; }
 
-    public virtual DbSet<SprintObjective> SprintObjectives { get; set; }
-
     public virtual DbSet<Team> Teams { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -120,9 +118,8 @@ public partial class AgiliteContext : DbContext
 
             entity.Property(e => e.TextObjective).HasMaxLength(5000);
 
-            entity.HasMany(e => e.SprintObjectives)
-                .WithOne(e => e.IdObjectiveNavigation)
-                .HasForeignKey(e => e.IdObjective);
+            entity.HasMany(e => e.Sprints)
+                .WithMany(e => e.Objectives);
 
             entity.HasMany(e => e.JobObjectives)
                 .WithOne(e => e.IdObjectiveNavigation)
@@ -180,24 +177,8 @@ public partial class AgiliteContext : DbContext
 
             entity.Property(e => e.StartDateSprint).HasColumnType("datetime");
 
-            entity.HasMany(e => e.SprintObjectives)
-                .WithOne(e => e.IdSprintNavigation)
-                .HasForeignKey(e => e.IdSprint);
-        });
-
-        modelBuilder.Entity<SprintObjective>(entity =>
-        {
-            entity.HasKey(e => e.IdObjective);
-
-            entity.HasKey(e => e.IdSprint);
-
-            entity.HasOne(e => e.IdObjectiveNavigation)
-                .WithMany(e => e.SprintObjectives)
-                .HasForeignKey(e => e.IdObjective);
-
-            entity.HasOne(e => e.IdSprintNavigation)
-                .WithMany(e => e.SprintObjectives)
-                .HasForeignKey(e => e.IdSprint);
+            entity.HasMany(e => e.Objectives)
+                .WithMany(e => e.Sprints);
         });
 
         modelBuilder.Entity<Team>(entity =>
