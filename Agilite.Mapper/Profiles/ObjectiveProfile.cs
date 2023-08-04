@@ -11,7 +11,6 @@ public class ObjectiveProfile : Profile
         CreateMap<Objective, ObjectiveDto>();
         CreateMap<ObjectiveDto, Objective>()
             .ForMember(entity => entity.IdObjectiveTypeNavigation, member => member.Ignore())
-            .ForMember(entity => entity.SprintObjectives, member => member.Ignore())
             .ForMember(entity => entity.JobObjectives, member => member.Ignore());
     }
 }

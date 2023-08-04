@@ -1,10 +1,10 @@
 ﻿using Agilite.Api.Messaging.Commands.ObjectiveCommands.CreateObjective;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.DeleteObjective;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetAllObjectives;
+using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetAllObjectivesOfOneSprint;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetObjective;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.UpdateObjective;
 using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,6 +32,10 @@ public class ObjectiveController : ControllerBase
     [HttpGet(nameof(GetAllObjectives))]
     public async Task<IEnumerable<ObjectiveDto>> GetAllObjectives()
         => await _sender.Send(new GetAllObjectivesCommand());
+
+    [HttpGet(nameof(GetAllObjectivesOfOneSprint))]
+    public async Task<IEnumerable<ObjectiveDto>> GetAllObjectivesOfOneSprint(int sprintId, CancellationToken cancellationToken)
+        => await _sender.Send(new GetAllObjectivesOfOneSprintCommand(sprintId), cancellationToken);
 
     [HttpGet(nameof(GetObjective))]
     public async Task<ObjectiveDto> GetObjective(int id)
