@@ -17,53 +17,84 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <ItemsControl Grid.Column="0"
-                      Background="{DynamicResource PrincipalColor}"
-                      ItemsSource="{Binding Teams}">
-            <ItemsControl.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="10"/>
-                </Style>
-            </ItemsControl.Resources>
+        <Border Grid.Column="0"
+                CornerRadius="10"
+                Background="{DynamicResource PrincipalColor}">
+            <StackPanel>
+                <Button BorderBrush="Transparent"
+                        Background="{DynamicResource Gradiant}"
+                        BorderThickness="0"
+                        Height="40"
+                        Width="150"
+                        Margin="15">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" 
+                                    Value="10"/>
+                        </Style>
+                    </Button.Resources>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Button BorderBrush="Transparent"
-                            Background="{StaticResource  SecondColor}"
-                            BorderThickness="0"
-                            Height="40"
-                            Width="150"
-                            Margin="15"
-                            Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
-                            CommandParameter="{Binding IdTeam}">
-                        <Button.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="10"/>
-                            </Style>
-                        </Button.Resources>
+                        <materialDesign:PackIcon Grid.Column="0"
+                                                 Kind="Plus" 
+                                                 Height="20"
+                                                 Width="20"
+                                                 Foreground="{StaticResource  TextColor}"
+                                                 Margin="0,0,10,0"/>
 
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1"
+                                   Text="Créer une équipe"
+                                   FontSize="14"
+                                   Foreground="{StaticResource  TextColor}"/>
+                    </Grid>
+                </Button>
 
-                            <materialDesign:PackIcon Grid.Column="0"
-                                                     Kind="People" 
-                                                     Height="20"
-                                                     Width="20"
-                                                     Foreground="{StaticResource  TextColor}"
-                                                     Margin="0,0,10,0"/>
+                <ItemsControl ItemsSource="{Binding Teams}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button BorderBrush="Transparent"
+                                    Background="{StaticResource  SecondColor}"
+                                    BorderThickness="0"
+                                    Height="40"
+                                    Width="150"
+                                    Margin="15"
+                                    Command="{Binding DataContext.GetAllProjectsOfOneTeamCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                                    CommandParameter="{Binding IdTeam}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" 
+                                                Value="10"/>
+                                    </Style>
+                                </Button.Resources>
 
-                            <TextBlock Grid.Column="1"
-                                       Text="{Binding NameTeam}"
-                                       FontSize="14"
-                                       Foreground="{StaticResource  TextColor}"/>
-                        </Grid>
-                    </Button>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <materialDesign:PackIcon Grid.Column="0"
+                                                             Kind="People" 
+                                                             Height="20"
+                                                             Width="20"
+                                                             Foreground="{StaticResource  TextColor}"
+                                                             Margin="0,0,10,0"/>
+
+                                    <TextBlock Grid.Column="1"
+                                               Text="{Binding NameTeam}"
+                                               FontSize="14"
+                                               Foreground="{StaticResource  TextColor}"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
 
         <StackPanel Grid.Column="1">
             <Grid>
