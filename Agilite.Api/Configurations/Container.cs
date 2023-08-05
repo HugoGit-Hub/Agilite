@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Agilite.Api.Configurations;
 
@@ -63,6 +64,11 @@ public static class Container
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("AppSettings:TokenKey").Value!)),
                 };
             });
+
+        services
+            .AddControllersWithViews()
+            .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
 
         services.AddScoped<IUnitOfWork, Repositories.UnitOfWork>();
 

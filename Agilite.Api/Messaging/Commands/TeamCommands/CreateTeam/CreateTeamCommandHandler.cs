@@ -3,7 +3,6 @@ using Agilite.Entities.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
-using Task = System.Threading.Tasks.Task;
 
 namespace Agilite.Api.Messaging.Commands.TeamCommands.CreateTeam;
 
@@ -20,15 +19,19 @@ public class CreateTeamCommandHandler : IRequestHandler<CreateTeamCommand, TeamD
 
     public Task<TeamDto> Handle(CreateTeamCommand request, CancellationToken cancellationToken)
     {
+        var user = _unitOfWork.GetRepositoryEntityById<User, int>().Get(request.Team.IdUser);
+
         var team = new Team
         {
             IdTeam = request.Team.IdTeam,
             NameTeam = request.Team.NameTeam,
-            NumberOfMembersTeam = request.Team.NumberMembersTeam
+            NumberOfMembersTeam = request.Team.NumberMembersTeam,
+            Users = new[] { user }!
         };
 
         var created = _unitOfWork.GetRepository<Team>().Create(team);
         _unitOfWork.Save();
+
         return Task.FromResult(_mapper.Map<TeamDto>(created));
     }
 }
