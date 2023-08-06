@@ -6,7 +6,7 @@ namespace Agilite.UI.Services.Services.Refit;
 public interface ITeamRefitService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_TEAM)]
-    public Task<TeamDto> Create(TeamDto entity);
+    public Task<TeamDto> Create(TeamDto team);
 
     [Put(EndPointConstantes.UPDATE_TEAM)]
     public Task<TeamDto> Update(TeamDto entity);
