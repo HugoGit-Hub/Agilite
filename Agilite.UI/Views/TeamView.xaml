@@ -117,15 +117,40 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Row="0"
-                           Margin="15"
-                           Text="Équipe ..."
-                           Foreground="{StaticResource  TextColor}"/>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Margin="15"
+                               Text="Équipe ..."
+                               Foreground="{StaticResource  TextColor}"/>
+
+                    <Button Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Content="Supprimer l'équipe"
+                            Foreground="{DynamicResource TextColor}"
+                            Background="{DynamicResource Gradiant}"
+                            Padding="5"
+                            FontSize="15"
+                            Height="40">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" 
+                                        Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+                </Grid>
 
                 <TextBlock Grid.Row="1"
                            Margin="15,0,0,0"
                            FontSize="15"
-                           Text="Projets"
+                           Text="Projets :"
                            Foreground="{StaticResource  TextColor}"/>
 
                 <Grid Grid.Row="2">
