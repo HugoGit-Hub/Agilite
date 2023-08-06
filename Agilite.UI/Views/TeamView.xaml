@@ -26,11 +26,12 @@
                         BorderThickness="0"
                         Height="40"
                         Width="150"
-                        Margin="15">
+                        Margin="0,15,0,0"
+                        Command="{Binding CreateTeamCommand}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" 
-                                    Value="10"/>
+                                    Value="10,10,0,0"/>
                         </Style>
                     </Button.Resources>
                     <Grid>
@@ -52,6 +53,18 @@
                                    Foreground="{StaticResource  TextColor}"/>
                     </Grid>
                 </Button>
+
+                <TextBox Height="40"
+                         Width="151"
+                         BorderThickness="0"
+                         BorderBrush="Transparent"
+                         VerticalContentAlignment="Center"
+                         Padding="4 0"
+                         Background="{DynamicResource BackgroundColor}"
+                         Foreground="{DynamicResource TextColor}"
+                         FontSize="15"
+                         Text="{Binding NameTeam, UpdateSourceTrigger=PropertyChanged}">
+                </TextBox>
 
                 <ItemsControl ItemsSource="{Binding Teams}">
                     <ItemsControl.ItemTemplate>
