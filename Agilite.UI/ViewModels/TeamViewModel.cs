@@ -17,6 +17,9 @@ public class TeamViewModel : ObservableObject
     private readonly IProjectService _projectService;
     private readonly ICommand _getAllProjectsOfOneTeamCommand;
     private readonly ICommand _displaySprintsOfOneProjectCommand;
+    private readonly ICommand _createTeamCommand;
+
+    private string _nameTeam;
 
     public ICommand GetAllProjectsOfOneTeamCommand
     {
@@ -28,6 +31,18 @@ public class TeamViewModel : ObservableObject
     {
         get => _displaySprintsOfOneProjectCommand;
         private init => SetProperty(ref _displaySprintsOfOneProjectCommand, value);
+    }
+
+    public ICommand CreateTeamCommand
+    {
+        get => _createTeamCommand;
+        private init => SetProperty(ref _createTeamCommand, value);
+    }
+
+    public string NameTeam
+    {   
+        get => _nameTeam;
+        set => SetProperty(ref _nameTeam, value);
     }
 
     public ObservableCollection<TeamModel> Teams { get; } = new();
@@ -43,6 +58,7 @@ public class TeamViewModel : ObservableObject
         GetAllTeamsOfOneUser(int.Parse(TokenService.GetClaimValue(ID_USER)));
 
         GetAllProjectsOfOneTeamCommand = new RelayCommand<int>(GetAllProjectsOfOneTeam);
+        CreateTeamCommand = new RelayCommand(CreateTeam);
         DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
@@ -66,6 +82,19 @@ public class TeamViewModel : ObservableObject
         {
             Projects.Add(project);
         }
+    }
+    
+    private async void CreateTeam()
+    {
+        var result = new TeamModel
+        {
+            NameTeam = NameTeam,
+            NumberMembersTeam = 1
+        };
+
+        await _teamService.Create(result);
+
+        Teams.Add(result);
     }
 
     private static void SendDisplaySprintsOfOneProject(int idProject)
