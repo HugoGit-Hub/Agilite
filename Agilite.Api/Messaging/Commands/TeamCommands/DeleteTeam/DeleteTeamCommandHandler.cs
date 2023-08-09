@@ -26,7 +26,7 @@ public class DeleteTeamCommandHandler : IRequestHandler<DeleteTeamCommand, TeamD
         var team = await _context.Teams
             .Include(e => e.Users)
             .Include(e => e.Projects)
-            .Where(e => e.IdTeam == request.Team.IdTeam)
+            .Where(e => e.IdTeam == request.Id)
             .SingleOrDefaultAsync(cancellationToken);
 
         if (team == null) throw new ArgumentNullException();
