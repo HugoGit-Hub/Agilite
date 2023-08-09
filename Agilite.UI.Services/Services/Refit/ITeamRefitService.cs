@@ -21,5 +21,5 @@ public interface ITeamRefitService : IBaseRefitClient
     public Task<TeamDto> Get(int id);
 
     [Delete(EndPointConstantes.DELETE_TEAM)]
-    public Task<TeamDto> Delete(TeamDto entity);
+    public Task<TeamDto> Delete(int id);
 }
