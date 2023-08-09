@@ -5,6 +5,7 @@
     <SolidColorBrush x:Key="BackgroundColor">#221f2e</SolidColorBrush>
     <SolidColorBrush x:Key="SecondColor">#567ad9</SolidColorBrush>
     <SolidColorBrush x:Key="TextColor">#efd9b4</SolidColorBrush>
+    <SolidColorBrush x:Key="Red">#b30d09</SolidColorBrush>
     <LinearGradientBrush x:Key="Gradiant" StartPoint="0,1" EndPoint="1,0">
         <GradientStop Color="#d56ef0" Offset="0.20"/>
         <GradientStop Color="#567ad9" Offset="0.70"/>

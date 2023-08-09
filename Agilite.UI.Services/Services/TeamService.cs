@@ -9,6 +9,7 @@ public interface ITeamService
 {
     public Task<TeamModel> Create(TeamModel entity);
     public Task<IEnumerable<TeamModel>> GetAllTeamsOfOneUser(int id);
+    public Task<TeamModel> DeleteTeam(int id);
 }
 
 public class TeamService : ITeamService
@@ -42,5 +43,11 @@ public class TeamService : ITeamService
     {
         var result = await _refitService.GetAllTeamsOfOneUser(id);
         return _mapper.Map<IEnumerable<TeamModel>>(result);
+    }
+
+    public async Task<TeamModel> DeleteTeam(int id)
+    {
+        var result = await _refitService.Delete(id);
+        return _mapper.Map<TeamModel>(result);
     }
 }

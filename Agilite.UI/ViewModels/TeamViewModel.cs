@@ -5,6 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Agilite.UI.ViewModels;
@@ -18,6 +19,7 @@ public class TeamViewModel : ObservableObject
     private readonly ICommand _getAllProjectsOfOneTeamCommand;
     private readonly ICommand _displaySprintsOfOneProjectCommand;
     private readonly ICommand _createTeamCommand;
+    private readonly ICommand _deleteTeamCommand;
 
     private string _nameTeam;
 
@@ -37,6 +39,12 @@ public class TeamViewModel : ObservableObject
     {
         get => _createTeamCommand;
         private init => SetProperty(ref _createTeamCommand, value);
+    }
+    
+    public ICommand DeleteTeamCommand
+    {
+        get => _deleteTeamCommand;
+        private init => SetProperty(ref _deleteTeamCommand, value);
     }
 
     public string NameTeam
@@ -59,6 +67,7 @@ public class TeamViewModel : ObservableObject
 
         GetAllProjectsOfOneTeamCommand = new RelayCommand<int>(GetAllProjectsOfOneTeam);
         CreateTeamCommand = new RelayCommand(CreateTeam);
+        DeleteTeamCommand = new RelayCommand<int>(DeleteTeam);
         DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
@@ -86,15 +95,22 @@ public class TeamViewModel : ObservableObject
     
     private async void CreateTeam()
     {
-        var result = new TeamModel
+        var model = new TeamModel
         {
             NameTeam = NameTeam,
             NumberMembersTeam = 1
         };
 
-        await _teamService.Create(result);
+        await _teamService.Create(model);
 
-        Teams.Add(result);
+        Teams.Add(model);
+    }
+
+    private async void DeleteTeam(int id)
+    {
+        await _teamService.DeleteTeam(id);
+
+        Teams.Remove(Teams.SingleOrDefault(e => e.IdTeam == id)!);
     }
 
     private static void SendDisplaySprintsOfOneProject(int idProject)
