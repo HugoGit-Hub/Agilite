@@ -41,6 +41,6 @@ public class TeamController : ControllerBase
         => await _sender.Send(new GetTeamCommand(id));
 
     [HttpDelete(nameof(DeleteTeam))]
-    public async Task<TeamDto> DeleteTeam(TeamDto team)
-        => await _sender.Send(new DeleteTeamCommand(team));
+    public async Task<TeamDto> DeleteTeam(int id)
+        => await _sender.Send(new DeleteTeamCommand(id));
 }
