@@ -144,20 +144,14 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <TextBlock Grid.Column="0"
-                               Margin="15"
-                               Text="Équipe ..."
-                               Foreground="{StaticResource  TextColor}"/>
-                </Grid>
+                <TextBlock Grid.Row="0"
+                           Margin="15"
+                           Text="Équipe ..."
+                           Foreground="{StaticResource  TextColor}"/>
 
                 <TextBlock Grid.Row="1"
                            Margin="15,0,0,0"
@@ -165,7 +159,53 @@
                            Text="Projets :"
                            Foreground="{StaticResource  TextColor}"/>
 
-                <Grid Grid.Row="2">
+                <StackPanel Grid.Row="2"
+                            Margin="0 20">
+                    <Button BorderBrush="Transparent"
+                            Background="{DynamicResource Gradiant}"
+                            BorderThickness="0"
+                            Height="40"
+                            Width="150"
+                            Command="{Binding CreateProjectCommand}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" 
+                                        Value="10,10,0,0"/>
+                            </Style>
+                        </Button.Resources>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <materialDesign:PackIcon Grid.Column="0"
+                                                     Kind="Plus" 
+                                                     Height="20"
+                                                     Width="20"
+                                                     Foreground="{StaticResource TextColor}"
+                                                     Margin="0,0,10,0"/>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="Créer un projet"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextColor}"/>
+                        </Grid>
+                    </Button>
+
+                    <TextBox Height="40"
+                             Width="151"
+                             FontSize="15"
+                             BorderThickness="0"
+                             BorderBrush="Transparent"
+                             VerticalContentAlignment="Center"
+                             Padding="4 0"
+                             Background="{DynamicResource PrincipalColor}"
+                             Foreground="{DynamicResource TextColor}"
+                             Text="{Binding NameProject, UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <Grid Grid.Row="3">
                     <ItemsControl ItemsSource="{Binding Projects}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>

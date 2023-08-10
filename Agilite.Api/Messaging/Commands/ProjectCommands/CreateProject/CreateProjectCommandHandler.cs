@@ -21,14 +21,14 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
     {
         var project = new Project
         {
-            IdProject = request.Project.IdProject,
-            NameProject = request.Project.NameProject,
-            DateCreationProject = request.Project.DateCreationProject,
-            DateEndedProject = request.Project.DateEndedProject
+            NameProject = request.Name,
+            DateCreationProject = DateTime.Now,
+            DateEndedProject = DateTime.Now
         };
 
         var created = _unitOfWork.GetRepository<Project>().Create(project);
         _unitOfWork.Save();
+
         return Task.FromResult(_mapper.Map<ProjectDto>(created));
     }
 }
