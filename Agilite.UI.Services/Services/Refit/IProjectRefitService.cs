@@ -6,7 +6,7 @@ namespace Agilite.UI.Services.Services.Refit;
 public interface IProjectRefitService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_PROJECT)]
-    public Task<ProjectDto> Create(ProjectDto entity);
+    public Task<ProjectDto> Create(string name);
 
     [Put(EndPointConstantes.UPDATE_PROJECT)]
     public Task<ProjectDto> Update(ProjectDto entity);

@@ -20,8 +20,11 @@ public class TeamViewModel : ObservableObject
     private readonly ICommand _displaySprintsOfOneProjectCommand;
     private readonly ICommand _createTeamCommand;
     private readonly ICommand _deleteTeamCommand;
+    private readonly ICommand _createProjectCommand;
 
     private string _nameTeam;
+    private string _nameProject;
+    private int _projectType;
 
     public ICommand GetAllProjectsOfOneTeamCommand
     {
@@ -46,14 +49,33 @@ public class TeamViewModel : ObservableObject
         get => _deleteTeamCommand;
         private init => SetProperty(ref _deleteTeamCommand, value);
     }
+    
+    public ICommand CreateProjectCommand
+    {
+        get => _createProjectCommand;
+        private init => SetProperty(ref _createProjectCommand, value);
+    }
 
     public string NameTeam
     {   
         get => _nameTeam;
         set => SetProperty(ref _nameTeam, value);
     }
+    
+    public string NameProject
+    {   
+        get => _nameProject;
+        set => SetProperty(ref _nameProject, value);
+    }
+
+    public int ProjectType
+    {
+        get => _projectType;
+        set => SetProperty(ref _projectType, value);
+    }
 
     public ObservableCollection<TeamModel> Teams { get; } = new();
+
     public ObservableCollection<ProjectModel> Projects { get; } = new();
 
     public TeamViewModel(
@@ -68,6 +90,7 @@ public class TeamViewModel : ObservableObject
         GetAllProjectsOfOneTeamCommand = new RelayCommand<int>(GetAllProjectsOfOneTeam);
         CreateTeamCommand = new RelayCommand(CreateTeam);
         DeleteTeamCommand = new RelayCommand<int>(DeleteTeam);
+        CreateProjectCommand = new RelayCommand<int>(CreateProject);
         DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
@@ -111,6 +134,20 @@ public class TeamViewModel : ObservableObject
         await _teamService.DeleteTeam(id);
 
         Teams.Remove(Teams.SingleOrDefault(e => e.IdTeam == id)!);
+    }
+
+    private async void CreateProject(int id)
+    {
+        await _projectService.Create(NameProject);
+
+        var model = new ProjectModel
+        {
+            NameProject = NameProject,
+            FkTeam = id,
+            FkProjectType = ProjectType
+        };
+
+        Projects.Add(model);
     }
 
     private static void SendDisplaySprintsOfOneProject(int idProject)

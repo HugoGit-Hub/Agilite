@@ -6,6 +6,7 @@ namespace Agilite.UI.Services.Services;
 
 public interface IProjectService
 {
+    public Task<ProjectModel> Create(string name);
     public Task<IEnumerable<ProjectModel>> GetAllProjectsOfOneTeam(int idTeam);
 }
 
@@ -18,6 +19,12 @@ public class ProjectService : IProjectService
     {
         _mapper = mapper;
         _refitService = refitService;
+    }
+
+    public async Task<ProjectModel> Create(string name)
+    {
+        var result = await _refitService.Create(name);
+        return _mapper.Map<ProjectModel>(result);
     }
 
     public async Task<IEnumerable<ProjectModel>> GetAllProjectsOfOneTeam(int idTeam)
