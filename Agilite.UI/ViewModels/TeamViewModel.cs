@@ -22,9 +22,10 @@ public class TeamViewModel : ObservableObject
     private readonly ICommand _deleteTeamCommand;
     private readonly ICommand _createProjectCommand;
 
+    private int _currentTeamId;
+    private TeamModel _currentTeam;
     private string _nameTeam;
     private string _nameProject;
-    private int _projectType;
 
     public ICommand GetAllProjectsOfOneTeamCommand
     {
@@ -68,15 +69,23 @@ public class TeamViewModel : ObservableObject
         set => SetProperty(ref _nameProject, value);
     }
 
-    public int ProjectType
+    public int CurrentTeamId
     {
-        get => _projectType;
-        set => SetProperty(ref _projectType, value);
+        get => _currentTeamId;
+        set => SetProperty(ref _currentTeamId, value);
+    }
+
+    public TeamModel CurrentTeam
+    {
+        get => _currentTeam;
+        set => SetProperty(ref _currentTeam, value);
     }
 
     public ObservableCollection<TeamModel> Teams { get; } = new();
 
     public ObservableCollection<ProjectModel> Projects { get; } = new();
+
+
 
     public TeamViewModel(
         ITeamService teamService,
@@ -90,7 +99,7 @@ public class TeamViewModel : ObservableObject
         GetAllProjectsOfOneTeamCommand = new RelayCommand<int>(GetAllProjectsOfOneTeam);
         CreateTeamCommand = new RelayCommand(CreateTeam);
         DeleteTeamCommand = new RelayCommand<int>(DeleteTeam);
-        CreateProjectCommand = new RelayCommand<int>(CreateProject);
+        CreateProjectCommand = new RelayCommand(CreateProject);
         DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
@@ -114,8 +123,11 @@ public class TeamViewModel : ObservableObject
         {
             Projects.Add(project);
         }
+
+        CurrentTeamId = id;
+        CurrentTeam = await _teamService.Get(CurrentTeamId);
     }
-    
+
     private async void CreateTeam()
     {
         var model = new TeamModel
@@ -127,6 +139,7 @@ public class TeamViewModel : ObservableObject
         await _teamService.Create(model);
 
         Teams.Add(model);
+        CurrentTeamId = model.IdTeam;
     }
 
     private async void DeleteTeam(int id)
@@ -136,16 +149,16 @@ public class TeamViewModel : ObservableObject
         Teams.Remove(Teams.SingleOrDefault(e => e.IdTeam == id)!);
     }
 
-    private async void CreateProject(int id)
+    private async void CreateProject()
     {
-        await _projectService.Create(NameProject);
-
         var model = new ProjectModel
         {
-            NameProject = NameProject,
-            FkTeam = id,
-            FkProjectType = ProjectType
+            FkTeam = _currentTeamId,
+            FkProjectType = 1,
+            NameProject = NameProject
         };
+
+        await _projectService.Create(model);
 
         Projects.Add(model);
     }

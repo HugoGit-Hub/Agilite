@@ -150,7 +150,7 @@
 
                 <TextBlock Grid.Row="0"
                            Margin="15"
-                           Text="Équipe ..."
+                           Text="{Binding CurrentTeam.NameTeam, UpdateSourceTrigger=PropertyChanged}"
                            Foreground="{StaticResource  TextColor}"/>
 
                 <TextBlock Grid.Row="1"
@@ -166,7 +166,8 @@
                             BorderThickness="0"
                             Height="40"
                             Width="150"
-                            Command="{Binding CreateProjectCommand}">
+                            Command="{Binding CreateProjectCommand}"
+                            CommandParameter="{Binding CurrentTeamId, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Resources>
                             <Style TargetType="Border">
                                 <Setter Property="CornerRadius" 
@@ -268,18 +269,51 @@
                                Foreground="{StaticResource  TextColor}">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Setter Property="Visibility" 
+                                        Value="Collapsed"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Projects.Count}"
                                                  Value="0">
-                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Setter Property="Visibility" 
+                                                Value="Visible"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
                 </Grid>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Visibility"
+                                Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentTeamId, Converter={StaticResource NonZeroConverter}}"
+                                         Value="true">
+                                <Setter Property="Visibility" 
+                                        Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Style>
             </Grid>
+
+            <TextBlock Text="Choisissez ou créez une équipe"
+                       HorizontalAlignment="Center"
+                       Foreground="{DynamicResource TextColor}">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Visibility" 
+                                Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CurrentTeamId}"
+                                         Value="0">
+                                <Setter Property="Visibility" 
+                                        Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -22,8 +22,8 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost(nameof(CreateProject))]
-    public async Task<ProjectDto> CreateProject(string name, CancellationToken cancellationToken)
-        => await _sender.Send(new CreateProjectCommand(name), cancellationToken);
+    public async Task<ProjectDto> CreateProject(ProjectDto projectDto, CancellationToken cancellationToken)
+        => await _sender.Send(new CreateProjectCommand(projectDto), cancellationToken);
 
     [HttpPut(nameof(UpdateProject))]
     public async Task<ProjectDto> UpdateProject(ProjectDto project)

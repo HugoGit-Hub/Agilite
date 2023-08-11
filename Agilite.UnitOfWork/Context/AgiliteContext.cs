@@ -26,8 +26,6 @@ public partial class AgiliteContext : DbContext
 
     public virtual DbSet<Project> Projects { get; set; }
 
-    public virtual DbSet<ProjectType> ProjectTypes { get; set; }
-
     public virtual DbSet<Sprint> Sprints { get; set; }
 
     public virtual DbSet<Team> Teams { get; set; }
@@ -133,17 +131,6 @@ public partial class AgiliteContext : DbContext
             entity.HasMany(e => e.Sprints)
                 .WithOne(e => e.IdProjectNavigation)
                 .HasForeignKey(e => e.FkProject);
-        });
-
-        modelBuilder.Entity<ProjectType>(entity =>
-        {
-            entity.HasKey(e => e.IdProjectType);
-
-            entity.Property(e => e.NameProjectType).IsRequired();
-
-            entity.HasMany(e => e.Projects)
-                .WithOne(e => e.IdProjectTypeNavigation)
-                .HasForeignKey(e => e.FkProjectType);
         });
 
         modelBuilder.Entity<Sprint>(entity =>
