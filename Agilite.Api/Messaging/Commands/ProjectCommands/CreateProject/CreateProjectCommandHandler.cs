@@ -19,12 +19,13 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
 
     public Task<ProjectDto> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
     {
-        var project = new Project
-        {
-            NameProject = request.Name,
-            DateCreationProject = DateTime.Now,
-            DateEndedProject = DateTime.Now
-        };
+        var project = _mapper.Map<Project>(request.Dto);
+        var team = _unitOfWork.GetRepositoryEntityById<Team, int>().Get(request.Dto.FkTeam) ?? throw new ArgumentNullException();
+        project.FkTeam = request.Dto.FkTeam;
+        project.NameProject = request.Dto.NameProject;
+        project.DateCreationProject = DateTime.Now;
+        project.DateEndedProject = DateTime.Now;
+        project.IdTeamNavigation = team;
 
         var created = _unitOfWork.GetRepository<Project>().Create(project);
         _unitOfWork.Save();
