@@ -1,4 +1,5 @@
-﻿using Agilite.UI.Models.Models;
+﻿using Agilite.DataTransferObject.DTOs;
+using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services.Refit;
 using AutoMapper;
 
@@ -6,7 +7,7 @@ namespace Agilite.UI.Services.Services;
 
 public interface IProjectService
 {
-    public Task<ProjectModel> Create(string name);
+    public Task<ProjectModel> Create(ProjectModel model);
     public Task<IEnumerable<ProjectModel>> GetAllProjectsOfOneTeam(int idTeam);
 }
 
@@ -21,9 +22,10 @@ public class ProjectService : IProjectService
         _refitService = refitService;
     }
 
-    public async Task<ProjectModel> Create(string name)
+    public async Task<ProjectModel> Create(ProjectModel model)
     {
-        var result = await _refitService.Create(name);
+        var dto = _mapper.Map<ProjectDto>(model);
+        var result = await _refitService.Create(dto);
         return _mapper.Map<ProjectModel>(result);
     }
 
