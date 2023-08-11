@@ -24,7 +24,6 @@ public class DeleteProjectCommandHandler : IRequestHandler<DeleteProjectCommand,
             IdProject = request.Project.IdProject,
             NameProject = request.Project.NameProject,
             FkTeam = request.Project.FkTeam,
-            FkProjectType = request.Project.FkProjectType,
             DateCreationProject = request.Project.DateCreationProject,
             DateEndedProject = request.Project.DateEndedProject
         };
