@@ -8,6 +8,7 @@ namespace Agilite.UI.Services.Services;
 public interface ITeamService
 {
     public Task<TeamModel> Create(TeamModel entity);
+    public Task<TeamModel> Get(int id);
     public Task<IEnumerable<TeamModel>> GetAllTeamsOfOneUser(int id);
     public Task<TeamModel> DeleteTeam(int id);
 }
@@ -36,6 +37,12 @@ public class TeamService : ITeamService
 
         var result = await _refitService.Create(team);
 
+        return _mapper.Map<TeamModel>(result);
+    }
+
+    public async Task<TeamModel> Get(int id)
+    {
+        var result = await _refitService.Get(id);
         return _mapper.Map<TeamModel>(result);
     }
 
