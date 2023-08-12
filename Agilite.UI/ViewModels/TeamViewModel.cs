@@ -84,9 +84,7 @@ public class TeamViewModel : ObservableObject
     public ObservableCollection<TeamModel> Teams { get; } = new();
 
     public ObservableCollection<ProjectModel> Projects { get; } = new();
-
-
-
+    
     public TeamViewModel(
         ITeamService teamService,
         IProjectService projectService)
@@ -139,7 +137,6 @@ public class TeamViewModel : ObservableObject
         await _teamService.Create(model);
 
         Teams.Add(model);
-        CurrentTeamId = model.IdTeam;
     }
 
     private async void DeleteTeam(int id)

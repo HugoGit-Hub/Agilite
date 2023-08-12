@@ -210,56 +210,81 @@
                     <ItemsControl ItemsSource="{Binding Projects}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Margin="10"
-                                        HorizontalContentAlignment="Left"
-                                        Command="{Binding DataContext.DisplaySprintsOfOneProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
-                                        CommandParameter="{Binding IdProject}">
-                                    <Button.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" 
-                                                    Value="10"/>
-                                        </Style>
-                                    </Button.Resources>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                    <Button.Style>
-                                        <Style TargetType="{x:Type Button}">
-                                            <Setter Property="Background" 
-                                                    Value="{StaticResource  PrincipalColor}"/>
+                                    <Button Grid.Column="0"
+                                            Margin="10"
+                                            HorizontalContentAlignment="Left"
+                                            Command="{Binding DataContext.DisplaySprintsOfOneProjectCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                                            CommandParameter="{Binding IdProject}">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" 
+                                                        Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
 
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="Button">
-                                                        <Border Background="{TemplateBinding Background}" 
-                                                                BorderBrush="Transparent" 
-                                                                BorderThickness="1">
-                                                            <ContentPresenter HorizontalAlignment="Center" 
-                                                                              VerticalAlignment="Center"/>
-                                                        </Border>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
+                                        <Button.Style>
+                                            <Style TargetType="{x:Type Button}">
+                                                <Setter Property="Background" 
+                                                        Value="{StaticResource  PrincipalColor}"/>
 
-                                            <Style.Triggers>
-                                                <Trigger Property="IsMouseOver" 
-                                                         Value="True">
-                                                    <Setter Property="Background" 
-                                                            Value="{DynamicResource SecondColor}"/>
-                                                </Trigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Button.Style>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}" 
+                                                                    BorderBrush="Transparent" 
+                                                                    BorderThickness="1">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
 
-                                    <StackPanel>
-                                        <TextBlock Foreground="{StaticResource  TextColor}"
-                                                   Text="{Binding NameProject}"
-                                                   Margin="10"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" 
+                                                             Value="True">
+                                                        <Setter Property="Background" 
+                                                                Value="{DynamicResource SecondColor}"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
 
-                                        <TextBlock Foreground="{StaticResource  TextColor}"
-                                                   Text="Label à propos du projet"
-                                                   FontSize="15"
-                                                   Margin="10"/>
-                                    </StackPanel>
-                                </Button>
+                                        <StackPanel>
+                                            <TextBlock Foreground="{StaticResource  TextColor}"
+                                                       Text="{Binding NameProject}"
+                                                       Margin="10"/>
+
+                                            <TextBlock Foreground="{StaticResource  TextColor}"
+                                                       Text="Label à propos du projet"
+                                                       FontSize="15"
+                                                       Margin="10"/>
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button Grid.Column="1"
+                                            Content="+ Sprint"
+                                            BorderThickness="0"
+                                            BorderBrush="Transparent"
+                                            FontSize="15"
+                                            Height="85"
+                                            Padding="10"
+                                            Foreground="{DynamicResource TextColor}"
+                                            Background="{DynamicResource Gradiant}">
+                                        
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" 
+                                                        Value="10"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
