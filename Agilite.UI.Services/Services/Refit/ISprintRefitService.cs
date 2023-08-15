@@ -6,7 +6,7 @@ namespace Agilite.UI.Services.Services.Refit;
 public interface ISprintRefitService : IBaseRefitClient
 {
     [Post(EndPointConstantes.CREATE_SPRINT)]
-    public Task<SprintDto> Create(SprintDto entity);
+    public Task<SprintDto> Create(SprintDto sprint);
 
     [Put(EndPointConstantes.UPDATE_SPRINT)]
     public Task<SprintDto> Update(SprintDto entity);
