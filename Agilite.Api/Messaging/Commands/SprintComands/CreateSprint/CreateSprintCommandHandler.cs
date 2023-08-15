@@ -1,5 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities.Entities;
+using Agilite.Services;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;
@@ -10,25 +11,25 @@ public class CreateSprintCommandHandler : IRequestHandler<CreateSprintCommand, S
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
+    private readonly ISprintService _service;
 
-    public CreateSprintCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public CreateSprintCommandHandler(
+        IUnitOfWork unitOfWork,
+        IMapper mapper,
+        ISprintService service)
     {
         _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _service = service;
     }
 
-    public Task<SprintDto> Handle(CreateSprintCommand request, CancellationToken cancellationToken)
+    public async Task<SprintDto> Handle(CreateSprintCommand request, CancellationToken cancellationToken)
     {
-        var sprint = new Sprint
-        {
-            IdSprint = request.Sprint.IdSprint,
-            NumberSprint = request.Sprint.NumberSprint,
-            StartDateSprint = request.Sprint.StartDateSprint,
-            EndDateSprint = request.Sprint.EndDateSprint
-        };
+        var sprint = _mapper.Map<Sprint>(request.Sprint);
+        sprint.IdProjectNavigation = _unitOfWork.GetRepositoryEntityById<Project, int>().Get(sprint.FkProject);
 
-        var created = _unitOfWork.GetRepository<Sprint>().Create(sprint);
-        _unitOfWork.Save();
-        return Task.FromResult(_mapper.Map<SprintDto>(created));
+        var created = await _service.Create(sprint, cancellationToken);
+        
+        return _mapper.Map<SprintDto>(created);
     }
 }

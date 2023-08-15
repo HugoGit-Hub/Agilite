@@ -21,8 +21,8 @@ public class SprintController : ControllerBase
         _sender = sender;
     }
 
-    [HttpPost(nameof(CreateSprint))]
-    public async Task<SprintDto> CreateSprint(SprintDto sprint)
+    [HttpPost(nameof(Create))]
+    public async Task<SprintDto> Create(SprintDto sprint)
         => await _sender.Send(new CreateSprintCommand(sprint));
 
     [HttpPut(nameof(UpdateSprint))]

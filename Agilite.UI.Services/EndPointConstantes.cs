@@ -23,7 +23,7 @@ public static class EndPointConstantes
     public const string GET_PROJECT = "/api/Project/GetProject";
     public const string DELETE_PROJECT = "/api/Project/DeleteProject";
 
-    public const string CREATE_SPRINT = "/api/Sprint/CreateSprint";
+    public const string CREATE_SPRINT = "/api/Sprint/Create";
     public const string UPDATE_SPRINT = "/api/Sprint/UpdateSprint";
     public const string GET_ALL_SPRINTS = "/api/Sprint/GetAllSprints";
     public const string GET_ALL_SPRINTS_OF_ONE_PROJECT = "/api/Sprint/GetAllSprintsOfOneProject";

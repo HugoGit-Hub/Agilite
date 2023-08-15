@@ -32,7 +32,7 @@ public class DeleteTeamCommandHandler : IRequestHandler<DeleteTeamCommand, TeamD
         if (team == null) throw new ArgumentNullException();
         
         var deleted = _unitOfWork.GetRepository<Team>().Delete(team);
-        await _unitOfWork.SaveAsync();
+        await _unitOfWork.SaveAsync(cancellationToken);
 
         return _mapper.Map<TeamDto>(deleted);
     }

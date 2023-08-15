@@ -5,6 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:Agilite.UI.Views"
+             xmlns:viewModels="clr-namespace:Agilite.UI.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" 
              d:DesignWidth="800"
@@ -275,7 +276,9 @@
                                             Height="85"
                                             Padding="10"
                                             Foreground="{DynamicResource TextColor}"
-                                            Background="{DynamicResource Gradiant}">
+                                            Background="{DynamicResource Gradiant}"
+                                            Command="{Binding DataContext.CreateSprintCommand, RelativeSource={RelativeSource AncestorType={x:Type views:TeamView}}}"
+                                            CommandParameter="{Binding IdProject}">
                                         
                                         <Button.Resources>
                                             <Style TargetType="Border">

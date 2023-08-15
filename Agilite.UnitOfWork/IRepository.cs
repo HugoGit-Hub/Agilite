@@ -1,6 +1,7 @@
 ﻿namespace Agilite.UnitOfWork;
 
-public interface IRepository<TEntity>
+public interface IRepository<TEntity> 
+    where TEntity : class
 {
     TEntity Create(TEntity entity);
     TEntity Update(TEntity entity);
@@ -8,7 +9,8 @@ public interface IRepository<TEntity>
     IEnumerable<TEntity> GetAll();
 }
 
-public interface IRepository<TEntity, in TId> : IRepository<TEntity>
+public interface IRepository<TEntity, in TId> : IRepository<TEntity> 
+    where TEntity : class
 {
     TEntity? Get(TId id);
 }

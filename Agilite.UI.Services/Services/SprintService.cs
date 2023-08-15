@@ -1,4 +1,5 @@
-﻿using Agilite.UI.Models.Models;
+﻿using Agilite.DataTransferObject.DTOs;
+using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services.Refit;
 using AutoMapper;
 
@@ -6,6 +7,7 @@ namespace Agilite.UI.Services.Services;
 
 public interface ISprintService
 {
+    public Task<SprintModel> Create(SprintModel sprint);
     public Task<IEnumerable<SprintModel>> GetAllSprintsOfOneProject(int id);
 }
 
@@ -18,6 +20,14 @@ public class SprintService : ISprintService
     {
         _mapper = mapper;
         _refitService = refitService;
+    }
+
+    public async Task<SprintModel> Create(SprintModel sprint)
+    {
+        var dto = _mapper.Map<SprintDto>(sprint);
+        var result = await _refitService.Create(dto);
+
+        return _mapper.Map<SprintModel>(result);
     }
 
     public async Task<IEnumerable<SprintModel>> GetAllSprintsOfOneProject(int id)

@@ -4,7 +4,7 @@ public class SprintModel
 {
     public int IdSprint { get; set; }
 
-    public int ProjectIdProject { get; set; }
+    public int FkProject { get; set; }
 
     public int NumberSprint { get; set; }
 
