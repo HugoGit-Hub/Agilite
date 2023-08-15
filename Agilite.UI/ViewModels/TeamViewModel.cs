@@ -16,11 +16,13 @@ public class TeamViewModel : ObservableObject
 
     private readonly ITeamService _teamService;
     private readonly IProjectService _projectService;
+    private readonly ISprintService _sprintService;
     private readonly ICommand _getAllProjectsOfOneTeamCommand;
     private readonly ICommand _displaySprintsOfOneProjectCommand;
     private readonly ICommand _createTeamCommand;
     private readonly ICommand _deleteTeamCommand;
     private readonly ICommand _createProjectCommand;
+    private readonly ICommand _createSprintCommand;
 
     private int _currentTeamId;
     private TeamModel _currentTeam;
@@ -57,6 +59,12 @@ public class TeamViewModel : ObservableObject
         private init => SetProperty(ref _createProjectCommand, value);
     }
 
+    public ICommand CreateSprintCommand
+    {
+        get => _createSprintCommand;
+        private init => SetProperty(ref _createSprintCommand, value);
+    }
+
     public string NameTeam
     {   
         get => _nameTeam;
@@ -87,10 +95,12 @@ public class TeamViewModel : ObservableObject
     
     public TeamViewModel(
         ITeamService teamService,
-        IProjectService projectService)
+        IProjectService projectService, 
+        ISprintService sprintService)
     {
         _teamService = teamService;
         _projectService = projectService;
+        _sprintService = sprintService;
 
         GetAllTeamsOfOneUser(int.Parse(TokenService.GetClaimValue(ID_USER)));
 
@@ -98,6 +108,7 @@ public class TeamViewModel : ObservableObject
         CreateTeamCommand = new RelayCommand(CreateTeam);
         DeleteTeamCommand = new RelayCommand<int>(DeleteTeam);
         CreateProjectCommand = new RelayCommand(CreateProject);
+        CreateSprintCommand = new RelayCommand<int>(CreateSprint);
         DisplaySprintsOfOneProjectCommand = new RelayCommand<int>(SendDisplaySprintsOfOneProject);
     }
 
@@ -158,6 +169,17 @@ public class TeamViewModel : ObservableObject
         await _projectService.Create(model);
 
         Projects.Add(model);
+    }
+
+    private async void CreateSprint(int id)
+    {
+        var model = new SprintModel
+        {
+            FkProject = id
+        };
+        await _sprintService.Create(model);
+
+        SendDisplaySprintsOfOneProject(id);
     }
 
     private static void SendDisplaySprintsOfOneProject(int idProject)
