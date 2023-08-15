@@ -8,5 +8,5 @@ public interface IUnitOfWork : IDisposable
 
     void Save();
 
-    Task SaveAsync();
+    Task SaveAsync(CancellationToken cancellationToken);
 }
