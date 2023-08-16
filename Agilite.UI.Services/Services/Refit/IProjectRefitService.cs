@@ -5,21 +5,21 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface IProjectRefitService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.CREATE_PROJECT)]
+    [Post(EndPointConstantes.CreateProject)]
     public Task<ProjectDto> Create(ProjectDto projectDto);
 
-    [Put(EndPointConstantes.UPDATE_PROJECT)]
+    [Put(EndPointConstantes.UpdateProject)]
     public Task<ProjectDto> Update(ProjectDto entity);
 
-    [Get(EndPointConstantes.GET_ALL_PROJECTS)]
+    [Get(EndPointConstantes.AllProjects)]
     public Task<IEnumerable<ProjectDto>> GetAll();
 
-    [Get(EndPointConstantes.GET_ALL_PROJECTS_OF_ONE_TEAM)]
+    [Get(EndPointConstantes.AllProjectsOfOneTeam)]
     public Task<IEnumerable<ProjectDto>> GetAllProjectsOfOneTeam(int idTeam);
 
-    [Get(EndPointConstantes.GET_PROJECT)]
+    [Get(EndPointConstantes.Project)]
     public Task<ProjectDto> Get(int id);
 
-    [Delete(EndPointConstantes.DELETE_PROJECT)]
+    [Delete(EndPointConstantes.DeleteProject)]
     public Task<ProjectDto> Delete(ProjectDto entity);
 }

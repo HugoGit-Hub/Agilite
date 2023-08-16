@@ -5,18 +5,18 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface ITaskService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.CREATE_TASK)]
+    [Post(EndPointConstantes.CreateTask)]
     public JobDto Create(JobDto entity);
 
-    [Put(EndPointConstantes.UPDATE_TASK)]
+    [Put(EndPointConstantes.UpdateTask)]
     public JobDto Update(JobDto entity);
 
-    [Get(EndPointConstantes.GET_ALL_TASKS)]
+    [Get(EndPointConstantes.AllTasks)]
     public Task<IEnumerable<JobDto>> GetAll();
 
-    [Get(EndPointConstantes.GET_TASK)]
+    [Get(EndPointConstantes.Task)]
     public JobDto Get(int id);
 
-    [Delete(EndPointConstantes.DELETE_TASK)]
+    [Delete(EndPointConstantes.DeleteTask)]
     public JobDto Delete(JobDto entity);
 }

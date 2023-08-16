@@ -5,6 +5,6 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface IAuthenticationRefitService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.LOGIN)]
+    [Post(EndPointConstantes.Login)]
     public Task<string> Login(LoginDto loginDto);
 }
