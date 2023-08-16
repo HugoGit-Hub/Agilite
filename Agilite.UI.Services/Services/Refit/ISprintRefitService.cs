@@ -5,21 +5,21 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface ISprintRefitService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.CREATE_SPRINT)]
+    [Post(EndPointConstantes.CreateSprint)]
     public Task<SprintDto> Create(SprintDto sprint);
 
-    [Put(EndPointConstantes.UPDATE_SPRINT)]
+    [Put(EndPointConstantes.UpdateSprint)]
     public Task<SprintDto> Update(SprintDto entity);
 
-    [Get(EndPointConstantes.GET_ALL_SPRINTS)]
+    [Get(EndPointConstantes.AllSprints)]
     public Task<IEnumerable<SprintDto>> GetAll();
     
-    [Get(EndPointConstantes.GET_ALL_SPRINTS_OF_ONE_PROJECT)]
+    [Get(EndPointConstantes.AllSprintsOfOneProject)]
     public Task<IEnumerable<SprintDto>> GetAllSprintsOfOneProject(int idProject);
 
-    [Get(EndPointConstantes.GET_SPRINT)]
+    [Get(EndPointConstantes.Sprint)]
     public Task<SprintDto> Get(int id);
 
-    [Delete(EndPointConstantes.DELETE_SPRINT)]
+    [Delete(EndPointConstantes.DeleteSprint)]
     public Task<SprintDto> Delete(SprintDto entity);
 }

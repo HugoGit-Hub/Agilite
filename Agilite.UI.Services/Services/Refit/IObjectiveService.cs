@@ -5,18 +5,18 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface IObjectiveService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.CREATE_OBJECTIVE)]
+    [Post(EndPointConstantes.CreateObjective)]
     public ObjectiveDto Create(ObjectiveDto entity);
 
-    [Put(EndPointConstantes.UPDATE_OBJECTIVE)]
+    [Put(EndPointConstantes.UpdateObjective)]
     public ObjectiveDto Update(ObjectiveDto entity);
 
-    [Get(EndPointConstantes.GET_ALL_OBJECTIVES)]
+    [Get(EndPointConstantes.AllObjectives)]
     public Task<IEnumerable<ObjectiveDto>> GetAll();
 
-    [Get(EndPointConstantes.GET_OBJECTIVE)]
+    [Get(EndPointConstantes.Objective)]
     public ObjectiveDto Get(int id);
 
-    [Delete(EndPointConstantes.DELETE_OBJECTIVE)]
+    [Delete(EndPointConstantes.DeleteObjective)]
     public ObjectiveDto Delete(ObjectiveDto entity);
 }

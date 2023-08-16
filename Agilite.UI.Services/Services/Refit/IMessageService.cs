@@ -5,18 +5,18 @@ namespace Agilite.UI.Services.Services.Refit;
 
 public interface IMessageService : IBaseRefitClient
 {
-    [Post(EndPointConstantes.CREATE_MESSAGE)]
+    [Post(EndPointConstantes.CreateMessage)]
     public MessageDto Create(MessageDto entity);
 
-    [Put(EndPointConstantes.UPDATE_MESSAGE)]
+    [Put(EndPointConstantes.UpdateMessage)]
     public MessageDto Update(MessageDto entity);
 
-    [Get(EndPointConstantes.GET_ALL_MESSAGES)]
+    [Get(EndPointConstantes.AllMessages)]
     public Task<IEnumerable<MessageDto>> GetAll();
 
-    [Get(EndPointConstantes.GET_MESSAGE)]
+    [Get(EndPointConstantes.Message)]
     public MessageDto Get(int id);
 
-    [Delete(EndPointConstantes.DELETE_MESSAGE)]
+    [Delete(EndPointConstantes.DeleteMessage)]
     public MessageDto Delete(MessageDto entity);
 }

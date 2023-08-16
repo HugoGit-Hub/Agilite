@@ -48,7 +48,7 @@ public class Container
                     .Where(type => type.GetInterfaces().Contains(typeof(IBaseRefitClient))))
         {
             services.AddRefitClient(type)
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri(EndPointConstantes.API_ADDRESS));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(EndPointConstantes.ApiAddress));
         }
 
         return services.BuildServiceProvider();
