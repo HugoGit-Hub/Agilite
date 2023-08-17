@@ -15,6 +15,7 @@ public class MainWindowViewModel : ObservableObject
 {
     private readonly DefaultViewModel _defaultViewModel;
     private readonly TeamViewModel _teamViewModel;
+    private readonly SprintViewModel _sprintViewModel;
     private readonly ISprintService _sprintService;
     private readonly ICommand _toggleSprintsButtons;
 
@@ -22,6 +23,7 @@ public class MainWindowViewModel : ObservableObject
 
     public static string DEFAULT_VIEW => nameof(DefaultView);
     public static string TEAM_VIEW => nameof(TeamView);
+    public static object SPRINT_VIEW => nameof(SprintView);
 
     public ObservableObject ActualPage { get; private set; }
     public ObservableCollection<SprintModel> Sprints { get; } = new();
@@ -47,6 +49,7 @@ public class MainWindowViewModel : ObservableObject
     public MainWindowViewModel(
         DefaultViewModel defaultViewModel,
         TeamViewModel teamViewModel,
+        SprintViewModel sprintViewModel,
         ISprintService sprintService)
     {
         ChangeViewCommand = new RelayCommand<string>(SwitchView);
@@ -57,8 +60,9 @@ public class MainWindowViewModel : ObservableObject
         ActualPage = defaultViewModel;
 
         _teamViewModel = teamViewModel;
-        _sprintService = sprintService;
         _defaultViewModel = defaultViewModel;
+        _sprintViewModel = sprintViewModel;
+        _sprintService = sprintService;
     }
 
     private void SwitchView(string? viewName)
@@ -68,6 +72,7 @@ public class MainWindowViewModel : ObservableObject
         ActualPage = viewName switch
         {
             nameof(TeamView) => _teamViewModel,
+            nameof(SprintView) => _sprintViewModel,
             _ => _defaultViewModel
         };
 
