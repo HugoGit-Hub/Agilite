@@ -105,7 +105,9 @@
                                         Padding="10"
                                         Foreground="{DynamicResource  TextColor}"
                                         Background="{DynamicResource  SecondColor}"
-                                        FontSize="14">
+                                        FontSize="14"
+                                        Command="{Binding DataContext.ChangeViewCommand, RelativeSource={RelativeSource AncestorType={x:Type ui:MainWindow}}}"
+                                        CommandParameter="{x:Static viewModel:MainWindowViewModel.SPRINT_VIEW}">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" 

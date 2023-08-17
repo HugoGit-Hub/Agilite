@@ -8,4 +8,7 @@
     <DataTemplate DataType="{x:Type viewModels:TeamViewModel}">
         <views:TeamView />
     </DataTemplate>
+    <DataTemplate DataType="{x:Type viewModels:SprintViewModel}">
+        <views:SprintView />
+    </DataTemplate>
 </ResourceDictionary>
