@@ -35,6 +35,7 @@ public class Container
         services.AddSingleton<LoginViewModel>();
         services.AddSingleton<DefaultViewModel>();
         services.AddSingleton<TeamViewModel>();
+        services.AddSingleton<SprintViewModel>();
 
         services.AddSingleton<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<IUserService, UserService>();
