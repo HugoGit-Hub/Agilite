@@ -4,10 +4,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" 
+             d:DesignWidth="800"
+             DataContext="{Binding SprintViewModel, Source={StaticResource Locator}}">
 
     <Grid Margin="30, 15, 30,15">
-        <TextBlock Text="Sprint View"
-                   Foreground="{DynamicResource TextColor}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0"
+                       Text="Sprint numéro ..."
+                       Margin="0,0,10,0"
+                       Foreground="{DynamicResource TextColor}"/>
+            <TextBlock Grid.Column="1"
+                       Text="Du 01/01/2000"
+                       Margin="0,0,10,0"
+                       Foreground="{DynamicResource TextColor}"/>
+            <TextBlock Grid.Column="2"
+                       Text="Au 01/01/2000"
+                       Foreground="{DynamicResource TextColor}"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0"
+                    Margin="0,25,10,0"
+                    CornerRadius="10"
+                    Height="200"
+                    Width="250"
+                    Padding="10"
+                    Background="{DynamicResource PrincipalColor}">
+                <StackPanel>
+                    <TextBlock Text="Mon objectif 1"
+                               Foreground="{DynamicResource TextColor}"/>
+
+                    <TextBlock Text="Type : Bug / Use case"
+                               Foreground="{DynamicResource TextColor}"/>
+                </StackPanel>
+            </Border>
+            
+            <Border Grid.Column="1"
+                    Margin="0,25,10,0"
+                    CornerRadius="10"
+                    Height="200"
+                    Width="250"
+                    Padding="10"
+                    Background="{DynamicResource PrincipalColor}">
+                <StackPanel>
+                    <TextBlock Text="Mon objectif 2"
+                               Foreground="{DynamicResource TextColor}"/>
+
+                    <TextBlock Text="Type : Bug / Use case"
+                               Foreground="{DynamicResource TextColor}"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

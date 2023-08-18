@@ -21,6 +21,8 @@ public class Container
     public static DefaultViewModel? DefaultViewModel => ConfigureServices().GetService<DefaultViewModel>();
 
     public static TeamViewModel? TeamViewModel => ConfigureServices().GetService<TeamViewModel>();
+    
+    public static SprintViewModel? SprintViewModel => ConfigureServices().GetService<SprintViewModel>();
 
     public static IServiceProvider ConfigureServices()
     {
