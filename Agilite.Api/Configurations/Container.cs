@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
-using Newtonsoft.Json;
 
 namespace Agilite.Api.Configurations;
 
@@ -81,13 +81,13 @@ public static class Container
         services.AddScoped<IObjectiveService, ObjectiveService>();
         services.AddScoped<IJobService, JobService>();
 
-        services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
-        services.AddScoped<IUserRepository, UserRepository>();
-        services.AddScoped<ITeamRepository, TeamRepository>();
-        services.AddScoped<IProjectRepository, ProjectRepository>();
-        services.AddScoped<ISprintRepository, SprintRepository>();
-        services.AddScoped<IObjectiveRepository, ObjectiveRepository>();
-        services.AddScoped<IJobRepository, JobRepository>();
+        services.AddTransient<IAuthenticationRepository, AuthenticationRepository>();
+        services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<ITeamRepository, TeamRepository>();
+        services.AddTransient<IProjectRepository, ProjectRepository>();
+        services.AddTransient<ISprintRepository, SprintRepository>();
+        services.AddTransient<IObjectiveRepository, ObjectiveRepository>();
+        services.AddTransient<IJobRepository, JobRepository>();
     }
 
     private static void ConfigureApplication(this WebApplication application)
