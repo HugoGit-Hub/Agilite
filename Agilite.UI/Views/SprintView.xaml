@@ -12,6 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -22,7 +23,7 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0"
-                       Text="Sprint numéro ..."
+                       Text="Sprint numéro 1"
                        Margin="0,0,10,0"
                        Foreground="{DynamicResource TextColor}"/>
             <TextBlock Grid.Column="1"
@@ -30,11 +31,28 @@
                        Margin="0,0,10,0"
                        Foreground="{DynamicResource TextColor}"/>
             <TextBlock Grid.Column="2"
-                       Text="Au 01/01/2000"
+                       Text="Au 14/01/2000"
                        Foreground="{DynamicResource TextColor}"/>
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Button Grid.Row="1"
+                HorizontalAlignment="Left"
+                Margin="0,25,0,0"
+                Width="150"
+                Height="50"
+                Content="+ Objectif"
+                BorderBrush="Transparent"
+                BorderThickness="0"
+                Background="{DynamicResource Gradiant}"
+                Foreground="{DynamicResource TextColor}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -43,7 +61,6 @@
             <Border Grid.Column="0"
                     Margin="0,25,10,0"
                     CornerRadius="10"
-                    Height="200"
                     Width="250"
                     Padding="10"
                     Background="{DynamicResource PrincipalColor}">
@@ -51,15 +68,92 @@
                     <TextBlock Text="Mon objectif 1"
                                Foreground="{DynamicResource TextColor}"/>
 
-                    <TextBlock Text="Type : Bug / Use case"
+                    <TextBlock Text="Use case"
                                Foreground="{DynamicResource TextColor}"/>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 1"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 2"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 3"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 4"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 5"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="+ Tâche"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource Gradiant}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </Border>
             
             <Border Grid.Column="1"
                     Margin="0,25,10,0"
                     CornerRadius="10"
-                    Height="200"
                     Width="250"
                     Padding="10"
                     Background="{DynamicResource PrincipalColor}">
@@ -67,8 +161,34 @@
                     <TextBlock Text="Mon objectif 2"
                                Foreground="{DynamicResource TextColor}"/>
 
-                    <TextBlock Text="Type : Bug / Use case"
+                    <TextBlock Text="Bug"
                                Foreground="{DynamicResource TextColor}"/>
+
+                    <Button Margin="0,10,0,0"
+                            Content="Job 1"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource SecondColor}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
+
+                    <Button Margin="0,10,0,0"
+                            Content="+ Tâche"
+                            BorderBrush="Transparent"
+                            BorderThickness="0"
+                            Background="{DynamicResource Gradiant}"
+                            Foreground="{DynamicResource TextColor}">
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </StackPanel>
             </Border>
         </Grid>
