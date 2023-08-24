@@ -1,6 +1,7 @@
 ﻿using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using LiveCharts;
 using System.Collections.ObjectModel;
 
 namespace Agilite.UI.ViewModels;
@@ -12,6 +13,8 @@ public class DefaultViewModel : ObservableObject
 
     private readonly ITeamService _teamService;
     private readonly int _idUser = int.Parse(TokenService.GetClaimValue(ID_USER));
+
+    public ChartValues<double> Values { get; set; } = new() { 3, 4, 6, 10, 3, 2, 6 };
 
     public DefaultViewModel(ITeamService teamService)
     {
