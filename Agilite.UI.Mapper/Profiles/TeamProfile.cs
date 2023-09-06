@@ -10,7 +10,6 @@ public class TeamProfile : Profile
     {
         CreateMap<TeamDto, TeamModel>();
         CreateMap<TeamModel, TeamDto>()
-            .ForMember(e => e.Users, prop => prop.Ignore())
-            .ForMember(e => e.Projects, prop => prop.Ignore());
+            .ForMember(dto => dto.IdUser, prop => prop.Ignore());
     }
 }
