@@ -1,6 +1,4 @@
-﻿using Agilite.Entities.Entities;
-
-namespace Agilite.DataTransferObject.DTOs;
+﻿namespace Agilite.DataTransferObject.DTOs;
 
 public class TeamDto
 {
@@ -10,9 +8,5 @@ public class TeamDto
 
     public int NumberMembersTeam { get; set; }
 
-    public virtual int IdUser { get; set; } = new();
-
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
-
-    public virtual IEnumerable<Project> Projects { get; set; } = new List<Project>();
+    public virtual int IdUser { get; set; }
 }

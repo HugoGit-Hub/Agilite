@@ -12,9 +12,9 @@ public class UserModel
 
     public string? PasswordUser { get; set; }
 
-    public int EnumRoleUser { get; set; }
-
-    public string? DateCreationUser { get; set; }
+    public DateTime DateCreationUser { get; set; }
 
     public int? AgeUser { get; set; }
+
+    public bool ArchivedUser { get; set; }
 }
