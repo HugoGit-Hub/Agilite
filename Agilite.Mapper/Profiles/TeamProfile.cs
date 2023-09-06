@@ -9,6 +9,8 @@ public class TeamProfile : Profile
     public TeamProfile()
     {
         CreateMap<Team, TeamDto>();
-        CreateMap<TeamDto, Team>();
+        CreateMap<TeamDto, Team>()
+            .ForMember(entity => entity.Users, prop => prop.Ignore())
+            .ForMember(entity => entity.Projects, prop => prop.Ignore());
     }
 }
