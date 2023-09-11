@@ -44,6 +44,7 @@ public class Container
         services.AddSingleton<ITeamService, TeamService>();
         services.AddSingleton<IProjectService, ProjectService>();
         services.AddSingleton<ISprintService, SprintService>();
+        services.AddSingleton<IObjectiveService, ObjectiveService>();
 
         foreach (var type in 
                 typeof(IBaseRefitClient).Assembly
