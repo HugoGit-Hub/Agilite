@@ -9,6 +9,7 @@ public interface ISprintService
 {
     public Task<SprintModel> Create(SprintModel sprint);
     public Task<IEnumerable<SprintModel>> GetAllSprintsOfOneProject(int id);
+    public Task<SprintModel> Get(int id);
 }
 
 public class SprintService : ISprintService
@@ -34,5 +35,11 @@ public class SprintService : ISprintService
     {
         var sprints = await _refitService.GetAllSprintsOfOneProject(id);
         return _mapper.Map<IEnumerable<SprintModel>>(sprints);
+    }
+
+    public async Task<SprintModel> Get(int id)
+    {
+        var sprint = await _refitService.Get(id);
+        return _mapper.Map<SprintModel>(sprint);
     }
 }

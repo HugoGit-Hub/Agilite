@@ -24,5 +24,10 @@ namespace Agilite.UI.Views
         {
             InitializeComponent();
         }
+
+        private void TextBlock_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+
+        }
     }
 }

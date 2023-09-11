@@ -12,6 +12,7 @@ public static class EndPointConstantes
 
     public const string CreateObjective = "/api/Objective/CreateObjective";
     public const string UpdateObjective = "/api/Objective/UpdateObjective";
+    public const string GetAllObjectivesOfOneSprint = "/api/Objective/GetAllObjectivesOfOneSprint";
     public const string AllObjectives = "/api/Objective/GetAllObjectives";
     public const string Objective = "/api/Objective/GetObjective";
     public const string DeleteObjective = "/api/Objective/DeleteObjective";
@@ -27,7 +28,7 @@ public static class EndPointConstantes
     public const string UpdateSprint = "/api/Sprint/UpdateSprint";
     public const string AllSprints = "/api/Sprint/GetAllSprints";
     public const string AllSprintsOfOneProject = "/api/Sprint/GetAllSprintsOfOneProject";
-    public const string Sprint = "/api/Sprint/GetSprint";
+    public const string Sprint = "/api/Sprint/Get";
     public const string DeleteSprint = "/api/Sprint/DeleteSprint";
 
     public const string CreateTask = "/api/Task/CreateTask";

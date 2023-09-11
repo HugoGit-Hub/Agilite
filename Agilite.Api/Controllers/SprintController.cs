@@ -37,8 +37,8 @@ public class SprintController : ControllerBase
     public async Task<IEnumerable<SprintDto>> GetAllSprintsOfOneProject(int idProject, CancellationToken cancellationToken)
         => await _sender.Send(new GetAllSprintsOfOneProjectCommand(idProject), cancellationToken);
 
-    [HttpGet(nameof(GetSprint))]
-    public async Task<SprintDto> GetSprint(int id)
+    [HttpGet(nameof(Get))]
+    public async Task<SprintDto> Get(int id)
         => await _sender.Send(new GetSprintCommand(id));
 
     [HttpDelete(nameof(DeleteSprint))]
