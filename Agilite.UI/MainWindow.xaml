@@ -3,9 +3,10 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
         xmlns:ui="clr-namespace:Agilite.UI"
+        xmlns:viewModel="clr-namespace:Agilite.UI.ViewModels"
         mc:Ignorable="d"
         FontSize="20"
         WindowState="Maximized"
@@ -23,8 +24,8 @@
             <StackPanel>
                 <Button Foreground="{DynamicResource TextColor}"
                         Background="{DynamicResource Gradiant}"
-                        Command="{Binding ChangeViewCommand}"
-                        CommandParameter="{x:Static viewModel:MainWindowViewModel.DEFAULT_VIEW}"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.DefaultView}"
                         Margin="25,10,25,2"
                         Padding="10">
                     <Button.Resources>
@@ -36,8 +37,7 @@
                     <materialDesign:PackIcon Kind="Home"
                                              Height="30"
                                              Width="30"
-                                             HorizontalAlignment="Center">
-                    </materialDesign:PackIcon>
+                                             HorizontalAlignment="Center"/>
 
                     <Button.BorderBrush>Transparent</Button.BorderBrush>
                     <Button.BorderThickness>0</Button.BorderThickness>
@@ -47,8 +47,8 @@
                         Background="Transparent"
                         Margin="25,10,25,2"
                         Padding="10"
-                        Command="{Binding ChangeViewCommand}"
-                        CommandParameter="{x:Static viewModel:MainWindowViewModel.TEAM_VIEW}">
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="{x:Static viewModel:MainWindowViewModel.TeamView}">
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" 
@@ -101,13 +101,20 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <Button Height="50"
-                                        Margin="25,10,25,2"
-                                        Padding="10"
-                                        Foreground="{DynamicResource  TextColor}"
-                                        Background="{DynamicResource  SecondColor}"
                                         FontSize="14"
-                                        Command="{Binding DataContext.ChangeViewCommand, RelativeSource={RelativeSource AncestorType={x:Type ui:MainWindow}}}"
-                                        CommandParameter="{x:Static viewModel:MainWindowViewModel.SPRINT_VIEW}">
+                                        Padding="10"
+                                        Margin="25,10,25,2"
+                                        Foreground="{DynamicResource TextColor}"
+                                        Background="{DynamicResource SecondColor}">
+                                    <b:Interaction.Triggers>
+                                        <b:EventTrigger EventName="Click">
+                                            <b:InvokeCommandAction Command="{Binding DataContext.SwitchViewCommand, RelativeSource={RelativeSource AncestorType={x:Type ui:MainWindow}}}"
+                                                                   CommandParameter="{x:Static viewModel:MainWindowViewModel.SprintView}"/>
+                                            <b:InvokeCommandAction Command="{Binding DataContext.SendSprintCommand, RelativeSource={RelativeSource AncestorType={x:Type ui:MainWindow}}}"
+                                                                   CommandParameter="{Binding IdSprint}"/>
+                                        </b:EventTrigger>
+                                    </b:Interaction.Triggers>
+
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" 

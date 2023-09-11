@@ -1,7 +1,6 @@
 ﻿using Agilite.UI.Message;
 using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
-using Agilite.UI.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -21,14 +20,19 @@ public class MainWindowViewModel : ObservableObject
 
     private bool _showSprints;
 
-    public static string DEFAULT_VIEW => nameof(DefaultView);
-    public static string TEAM_VIEW => nameof(TeamView);
-    public static object SPRINT_VIEW => nameof(SprintView);
+    public static string DefaultView => nameof(Views.DefaultView);
+    public static string TeamView => nameof(Views.TeamView);
+    public static object SprintView => nameof(Views.SprintView);
 
     public ObservableObject ActualPage { get; private set; }
     public ObservableCollection<SprintModel> Sprints { get; } = new();
-    public ICommand ChangeViewCommand { get; }
-
+    public ICommand SwitchViewCommand { get; }
+    public ICommand ToggleSprintsButtonsCommand
+    {
+        get => _toggleSprintsButtons;
+        private init => SetProperty(ref _toggleSprintsButtons, value);
+    }
+    public ICommand SendSprintCommand { get; }
     public bool ShowSprints
     {
         get => _showSprints;
@@ -40,20 +44,15 @@ public class MainWindowViewModel : ObservableObject
         }
     }
 
-    public ICommand ToggleSprintsButtonsCommand
-    {
-        get => _toggleSprintsButtons;
-        private init => SetProperty(ref _toggleSprintsButtons, value);
-    }
-
     public MainWindowViewModel(
         DefaultViewModel defaultViewModel,
         TeamViewModel teamViewModel,
         SprintViewModel sprintViewModel,
         ISprintService sprintService)
     {
-        ChangeViewCommand = new RelayCommand<string>(SwitchView);
+        SwitchViewCommand = new RelayCommand<string>(SwitchView);
         ToggleSprintsButtonsCommand = new RelayCommand(ToggleSprintsButtons);
+        SendSprintCommand = new RelayCommand<int>(SendSprint);
 
         WeakReferenceMessenger.Default.Register<ShowSprintsButtonsMessage>(this, ShowSprintsButtonsAndDisplaySprints);
 
@@ -71,14 +70,14 @@ public class MainWindowViewModel : ObservableObject
 
         ActualPage = viewName switch
         {
-            nameof(TeamView) => _teamViewModel,
-            nameof(SprintView) => _sprintViewModel,
+            nameof(Views.TeamView) => _teamViewModel,
+            nameof(Views.SprintView) => _sprintViewModel,
             _ => _defaultViewModel
         };
 
         OnPropertyChanged(nameof(ActualPage));
     }
-
+    
     private async void ShowSprintsButtonsAndDisplaySprints(object recipient, ShowSprintsButtonsMessage message)
     {
         var idProject = message.IdProject;
@@ -98,5 +97,11 @@ public class MainWindowViewModel : ObservableObject
     private void ToggleSprintsButtons()
     {
         var _ = ShowSprints ? ShowSprints = false : ShowSprints = true;
+    }
+
+    private static void SendSprint(int sprintId)
+    {
+        var sprint = new SprintModel { IdSprint = sprintId };
+        WeakReferenceMessenger.Default.Send(sprint);
     }
 }
