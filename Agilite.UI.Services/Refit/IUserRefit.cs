@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services.Refit;
+namespace Agilite.UI.Services.Refit;
 
-public interface IUserRefitService : IBaseRefitClient
+public interface IUserRefit : IBaseRefitClient
 {
     [Post(EndPointConstantes.CreateUser)]
     public Task<UserDto> Create(UserDto entity);

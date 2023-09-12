@@ -1,6 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
@@ -15,9 +15,9 @@ public interface ISprintService
 public class SprintService : ISprintService
 {
     private readonly IMapper _mapper;
-    private readonly ISprintRefitService _refitService;
+    private readonly ISprintRefit _refitService;
 
-    public SprintService(IMapper mapper, ISprintRefitService refitService)
+    public SprintService(IMapper mapper, ISprintRefit refitService)
     {
         _mapper = mapper;
         _refitService = refitService;

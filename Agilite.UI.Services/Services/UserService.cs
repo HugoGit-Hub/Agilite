@@ -1,5 +1,5 @@
 ﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 
 namespace Agilite.UI.Services.Services;
 
@@ -11,9 +11,9 @@ public interface IUserService
 
 public class UserService : IUserService
 {
-    private readonly IUserRefitService _userRefitService;
+    private readonly IUserRefit _userRefitService;
 
-    public UserService(IUserRefitService userRefitService)
+    public UserService(IUserRefit userRefitService)
     {
         _userRefitService = userRefitService;
     }

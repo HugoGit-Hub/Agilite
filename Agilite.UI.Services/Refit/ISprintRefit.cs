@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services.Refit;
+namespace Agilite.UI.Services.Refit;
 
-public interface ISprintRefitService : IBaseRefitClient
+public interface ISprintRefit : IBaseRefitClient
 {
     [Post(EndPointConstantes.CreateSprint)]
     public Task<SprintDto> Create(SprintDto sprint);

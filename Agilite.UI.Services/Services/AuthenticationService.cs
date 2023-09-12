@@ -1,5 +1,5 @@
 ﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 
 namespace Agilite.UI.Services.Services;
 
@@ -10,9 +10,9 @@ public interface IAuthenticationService
 
 public class AuthenticationService : IAuthenticationService
 {
-    private readonly IAuthenticationRefitService _authenticationRefitService;
+    private readonly IAuthenticationRefit _authenticationRefitService;
 
-    public AuthenticationService(IAuthenticationRefitService authenticationRefitService)
+    public AuthenticationService(IAuthenticationRefit authenticationRefitService)
     {
         _authenticationRefitService = authenticationRefitService;
     }

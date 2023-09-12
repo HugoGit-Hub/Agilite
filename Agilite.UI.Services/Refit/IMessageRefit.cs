@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services.Refit;
+namespace Agilite.UI.Services.Refit;
 
-public interface IMessageService : IBaseRefitClient
+public interface IMessageRefit : IBaseRefitClient
 {
     [Post(EndPointConstantes.CreateMessage)]
     public MessageDto Create(MessageDto entity);
