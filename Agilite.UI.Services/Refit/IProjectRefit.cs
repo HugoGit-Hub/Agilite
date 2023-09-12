@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services.Refit;
+namespace Agilite.UI.Services.Refit;
 
-public interface IProjectRefitService : IBaseRefitClient
+public interface IProjectRefit : IBaseRefitClient
 {
     [Post(EndPointConstantes.CreateProject)]
     public Task<ProjectDto> Create(ProjectDto projectDto);

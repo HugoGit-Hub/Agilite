@@ -1,9 +1,9 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Refit;
 
-namespace Agilite.UI.Services.Services.Refit;
+namespace Agilite.UI.Services.Refit;
 
-public interface ITaskService : IBaseRefitClient
+public interface IJobRefit : IBaseRefitClient
 {
     [Post(EndPointConstantes.CreateTask)]
     public JobDto Create(JobDto entity);
