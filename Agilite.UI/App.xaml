@@ -8,12 +8,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/ColorsResource.xaml"/>
+                <ResourceDictionary Source="Resources/DataTemplateResources.xaml" />
                 <ResourceDictionary Source="Resources/MenuButtonResource.xaml"/>
                 <ResourceDictionary Source="Resources/SearchBarResource.xaml"/>
-                <ResourceDictionary Source="Resources/CustomWindowResource.xaml"/>
-                <ResourceDictionary Source="Resources/StyleCustomWindowResource.xaml" />
-                <ResourceDictionary Source="Resources/DataTemplateResources.xaml" />
-                <ResourceDictionary Source="Resources/ColorsResource.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <ui:Container x:Key="Locator" />
             <converter:NonZeroConverter x:Key="NonZeroConverter"/>
