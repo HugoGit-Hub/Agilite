@@ -2,13 +2,13 @@
 using Agilite.UI.Mapper.Configuration;
 using Agilite.UI.Services;
 using Agilite.UI.Services.Services;
-using Agilite.UI.Services.Services.Refit;
 using Agilite.UI.ViewModels;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using System;
 using System.Linq;
+using Agilite.UI.Services.Refit;
 
 namespace Agilite.UI;
 

@@ -1,6 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
@@ -14,9 +14,9 @@ public interface IProjectService
 public class ProjectService : IProjectService
 {
     private readonly IMapper _mapper;
-    private readonly IProjectRefitService _refitService;
+    private readonly IProjectRefit _refitService;
 
-    public ProjectService(IMapper mapper, IProjectRefitService refitService)
+    public ProjectService(IMapper mapper, IProjectRefit refitService)
     {
         _mapper = mapper;
         _refitService = refitService;

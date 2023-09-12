@@ -1,5 +1,5 @@
 ﻿using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
@@ -12,9 +12,9 @@ public interface IObjectiveService
 public class ObjectiveService : IObjectiveService
 {
     private readonly IMapper _mapper;
-    private readonly IObjectiveRefitService _objectiveRefitService;
+    private readonly IObjectiveRefit _objectiveRefitService;
 
-    public ObjectiveService(IMapper mapper, IObjectiveRefitService objectiveRefitService)
+    public ObjectiveService(IMapper mapper, IObjectiveRefit objectiveRefitService)
     {
         _mapper = mapper;
         _objectiveRefitService = objectiveRefitService;

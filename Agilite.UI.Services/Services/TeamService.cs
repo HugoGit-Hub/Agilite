@@ -1,6 +1,6 @@
 ﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.UI.Models.Models;
-using Agilite.UI.Services.Services.Refit;
+using Agilite.UI.Services.Refit;
 using AutoMapper;
 
 namespace Agilite.UI.Services.Services;
@@ -17,10 +17,10 @@ public class TeamService : ITeamService
 {
     private const string ID_USER = "sub";
 
-    private readonly ITeamRefitService _refitService;
+    private readonly ITeamRefit _refitService;
     private readonly IMapper _mapper;
 
-    public TeamService(ITeamRefitService refitService, IMapper mapper)
+    public TeamService(ITeamRefit refitService, IMapper mapper)
     {
         _refitService = refitService;
         _mapper = mapper;
