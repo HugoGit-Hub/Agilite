@@ -1,4 +1,4 @@
-﻿using Agilite.Entities.Entities;
+﻿using Agilite.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Agilite.UnitOfWork.Context;

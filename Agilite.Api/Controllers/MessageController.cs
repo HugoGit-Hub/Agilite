@@ -3,7 +3,7 @@ using Agilite.Api.Messaging.Commands.MessageCommands.DeleteMessage;
 using Agilite.Api.Messaging.Commands.MessageCommands.GetAllMessages;
 using Agilite.Api.Messaging.Commands.MessageCommands.GetMessage;
 using Agilite.Api.Messaging.Commands.MessageCommands.UpdateMessage;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -3,7 +3,7 @@ using Agilite.Api.Messaging.Commands.ObjectiveTypeCommands.DeleteObjectiveType;
 using Agilite.Api.Messaging.Commands.ObjectiveTypeCommands.GetAllObjectiveTypes;
 using Agilite.Api.Messaging.Commands.ObjectiveTypeCommands.GetObjectiveType;
 using Agilite.Api.Messaging.Commands.ObjectiveTypeCommands.UpdateObjectiveType;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

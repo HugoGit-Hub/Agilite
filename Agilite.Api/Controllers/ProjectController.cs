@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjects;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetAllProjectsOfOneTeam;
 using Agilite.Api.Messaging.Commands.ProjectCommands.GetProject;
 using Agilite.Api.Messaging.Commands.ProjectCommands.UpdateProject;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

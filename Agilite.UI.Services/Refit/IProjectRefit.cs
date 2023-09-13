@@ -1,4 +1,4 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.DataTransferObject;
 using Refit;
 
 namespace Agilite.UI.Services.Refit;

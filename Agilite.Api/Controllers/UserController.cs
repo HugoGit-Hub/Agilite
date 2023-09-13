@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.UserCommands.GetAllUsers;
 using Agilite.Api.Messaging.Commands.UserCommands.GetUser;
 using Agilite.Api.Messaging.Commands.UserCommands.GetUserByEmail;
 using Agilite.Api.Messaging.Commands.UserCommands.UpdateUser;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

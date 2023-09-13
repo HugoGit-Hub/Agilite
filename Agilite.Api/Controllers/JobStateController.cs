@@ -3,7 +3,7 @@ using Agilite.Api.Messaging.Commands.JobStateCommands.DeleteJobState;
 using Agilite.Api.Messaging.Commands.JobStateCommands.GetAllJobStates;
 using Agilite.Api.Messaging.Commands.JobStateCommands.GetJobState;
 using Agilite.Api.Messaging.Commands.JobStateCommands.UpdateJobState;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

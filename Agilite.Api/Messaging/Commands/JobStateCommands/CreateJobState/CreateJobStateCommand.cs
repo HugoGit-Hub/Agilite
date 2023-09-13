@@ -1,5 +1,4 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
+﻿using Agilite.DataTransferObject;
 using MediatR;
 
 namespace Agilite.Api.Messaging.Commands.JobStateCommands.CreateJobState;
