@@ -84,6 +84,9 @@
                 <TextBlock Text="Validé"
                            HorizontalAlignment="Center"
                            Foreground="{DynamicResource TextColor}"/>
+                <ItemsControl ItemsSource="{Binding Obj}">
+                    <
+                </ItemsControl>
                 <Border Margin="0,25,10,0"
                         CornerRadius="10"
                         Padding="10"
