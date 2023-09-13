@@ -14,7 +14,6 @@ public class SprintViewModel : ObservableObject
 {
     private readonly IObjectiveService _objectiveService;
     private readonly ISprintService _sprintService;
-    private readonly ICommand _LoadSprintCommand;
 
     private SprintModel _sprint;
 
@@ -31,6 +30,8 @@ public class SprintViewModel : ObservableObject
         ISprintService sprintService)
     {
         WeakReferenceMessenger.Default.Register<SprintModel>(this, GetSprint);
+
+        LoadObjectives(Sprint.IdSprint);
 
         _objectiveService = objectiveService;
         _sprintService = sprintService;
