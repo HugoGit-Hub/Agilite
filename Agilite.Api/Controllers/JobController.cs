@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.JobCommands.GetAllJobs;
 using Agilite.Api.Messaging.Commands.JobCommands.GetAllJobsOfOneObjective;
 using Agilite.Api.Messaging.Commands.JobCommands.GetJob;
 using Agilite.Api.Messaging.Commands.JobCommands.UpdateJob;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

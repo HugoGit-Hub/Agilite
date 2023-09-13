@@ -1,4 +1,4 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.DataTransferObject;
 using Agilite.UI.Models.Models;
 using AutoMapper;
 

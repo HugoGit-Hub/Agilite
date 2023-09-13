@@ -1,4 +1,4 @@
-﻿using Agilite.DataTransferObject.DTOs;
+﻿using Agilite.DataTransferObject;
 using Agilite.Services;
 using AutoMapper;
 using MediatR;

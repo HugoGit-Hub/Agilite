@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeams;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetAllTeamsOfOneUser;
 using Agilite.Api.Messaging.Commands.TeamCommands.GetTeam;
 using Agilite.Api.Messaging.Commands.TeamCommands.UpdateTeam;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

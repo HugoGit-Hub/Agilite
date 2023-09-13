@@ -1,5 +1,5 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.Entities.Entities;
+﻿using Agilite.DataTransferObject;
+using Agilite.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
 using MediatR;

@@ -1,4 +1,4 @@
-﻿namespace Agilite.Entities.Entities;
+﻿namespace Agilite.Entities;
 
 public class ObjectiveType
 {

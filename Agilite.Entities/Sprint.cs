@@ -1,4 +1,4 @@
-﻿namespace Agilite.Entities.Entities;
+﻿namespace Agilite.Entities;
 
 public class Sprint
 {
@@ -13,6 +13,6 @@ public class Sprint
     public DateTime EndDateSprint { get; set; }
 
     public virtual Project IdProjectNavigation { get; set; } = null!;
-    
+
     public virtual IEnumerable<Objective> Objectives { get; set; } = new List<Objective>();
 }

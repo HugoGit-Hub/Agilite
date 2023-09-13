@@ -1,5 +1,5 @@
 ﻿using Agilite.Api.Messaging.Commands.AuthCommands.Login;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using Agilite.Services.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

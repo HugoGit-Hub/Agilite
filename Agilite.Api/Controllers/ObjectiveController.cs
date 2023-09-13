@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetAllObjectives;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetAllObjectivesOfOneSprint;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.GetObjective;
 using Agilite.Api.Messaging.Commands.ObjectiveCommands.UpdateObjective;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

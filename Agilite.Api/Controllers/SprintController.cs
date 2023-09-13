@@ -4,7 +4,7 @@ using Agilite.Api.Messaging.Commands.SprintComands.GetAllSprints;
 using Agilite.Api.Messaging.Commands.SprintComands.GetAllSprintsOfOneProject;
 using Agilite.Api.Messaging.Commands.SprintComands.GetSprint;
 using Agilite.Api.Messaging.Commands.SprintComands.UpdateSprint;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

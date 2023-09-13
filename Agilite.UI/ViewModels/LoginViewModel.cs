@@ -1,5 +1,4 @@
-﻿using Agilite.DataTransferObject.DTOs;
-using Agilite.UI.Models.Models;
+﻿using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
 using Agilite.UI.Views;
 using AutoMapper;
@@ -8,6 +7,7 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Windows;
 using System.Windows.Input;
+using Agilite.DataTransferObject;
 
 namespace Agilite.UI.ViewModels;
 

@@ -3,7 +3,7 @@ using Agilite.Api.Messaging.Commands.SprintObjectiveCommands.DeleteSprintObjecti
 using Agilite.Api.Messaging.Commands.SprintObjectiveCommands.GetAllSprintObjectives;
 using Agilite.Api.Messaging.Commands.SprintObjectiveCommands.GetSprintObjective;
 using Agilite.Api.Messaging.Commands.SprintObjectiveCommands.UpdateSprintObjective;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

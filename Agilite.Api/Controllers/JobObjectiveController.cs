@@ -3,7 +3,7 @@ using Agilite.Api.Messaging.Commands.JobObjectiveCommands.DeleteJobObjective;
 using Agilite.Api.Messaging.Commands.JobObjectiveCommands.GetAllJobObjectives;
 using Agilite.Api.Messaging.Commands.JobObjectiveCommands.GetJobObjective;
 using Agilite.Api.Messaging.Commands.JobObjectiveCommands.UpdateJobObjective;
-using Agilite.DataTransferObject.DTOs;
+using Agilite.DataTransferObject;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

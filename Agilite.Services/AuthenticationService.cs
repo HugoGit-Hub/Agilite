@@ -1,4 +1,4 @@
-﻿using Agilite.Entities.Entities;
+﻿using Agilite.Entities;
 using Agilite.Repositories.Repositories;
 using Agilite.Services.Exceptions;
 using Agilite.Services.Managers;

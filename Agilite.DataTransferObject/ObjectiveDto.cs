@@ -1,8 +1,10 @@
-﻿namespace Agilite.DataTransferObject.DTOs;
+﻿namespace Agilite.DataTransferObject;
 
 public class ObjectiveDto
 {
     public int IdObjective { get; set; }
+
+    public int FkObjectiveType { get; set; }
 
     public string NameObjective { get; set; } = null!;
 
