@@ -1,4 +1,4 @@
-﻿namespace Agilite.DataTransferObject.DTOs;
+﻿namespace Agilite.DataTransferObject;
 
 public class ObjectiveTypeDto
 {
