@@ -46,13 +46,13 @@ public class TeamViewModel : ObservableObject
         get => _createTeamCommand;
         private init => SetProperty(ref _createTeamCommand, value);
     }
-    
+
     public ICommand DeleteTeamCommand
     {
         get => _deleteTeamCommand;
         private init => SetProperty(ref _deleteTeamCommand, value);
     }
-    
+
     public ICommand CreateProjectCommand
     {
         get => _createProjectCommand;
@@ -66,13 +66,13 @@ public class TeamViewModel : ObservableObject
     }
 
     public string NameTeam
-    {   
+    {
         get => _nameTeam;
         set => SetProperty(ref _nameTeam, value);
     }
-    
+
     public string NameProject
-    {   
+    {
         get => _nameProject;
         set => SetProperty(ref _nameProject, value);
     }
@@ -92,10 +92,10 @@ public class TeamViewModel : ObservableObject
     public ObservableCollection<TeamModel> Teams { get; } = new();
 
     public ObservableCollection<ProjectModel> Projects { get; } = new();
-    
+
     public TeamViewModel(
         ITeamService teamService,
-        IProjectService projectService, 
+        IProjectService projectService,
         ISprintService sprintService)
     {
         _teamService = teamService;

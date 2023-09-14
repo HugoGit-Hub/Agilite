@@ -1,6 +1,7 @@
 ﻿using Agilite.UI.Mapper;
 using Agilite.UI.Mapper.Configuration;
 using Agilite.UI.Services;
+using Agilite.UI.Services.Refit;
 using Agilite.UI.Services.Services;
 using Agilite.UI.ViewModels;
 using MediatR;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using System;
 using System.Linq;
-using Agilite.UI.Services.Refit;
 
 namespace Agilite.UI;
 
@@ -21,7 +21,7 @@ public class Container
     public static DefaultViewModel? DefaultViewModel => ConfigureServices().GetService<DefaultViewModel>();
 
     public static TeamViewModel? TeamViewModel => ConfigureServices().GetService<TeamViewModel>();
-    
+
     public static SprintViewModel? SprintViewModel => ConfigureServices().GetService<SprintViewModel>();
 
     public static IServiceProvider ConfigureServices()
@@ -46,7 +46,7 @@ public class Container
         services.AddSingleton<ISprintService, SprintService>();
         services.AddSingleton<IObjectiveService, ObjectiveService>();
 
-        foreach (var type in 
+        foreach (var type in
                 typeof(IBaseRefitClient).Assembly
                     .GetTypes()
                     .Where(type => type.GetInterfaces().Contains(typeof(IBaseRefitClient))))

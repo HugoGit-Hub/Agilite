@@ -35,7 +35,7 @@ public static class Container
         services.ConfigureMappers();
         services.AddMediatR(AssemblyMarker.Assembly);
 
-        services.AddDbContext<AgiliteContext>(optionBuilder => 
+        services.AddDbContext<AgiliteContext>(optionBuilder =>
             optionBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddSwaggerGen(options =>

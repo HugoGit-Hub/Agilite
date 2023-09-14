@@ -1,7 +1,6 @@
 ﻿using Agilite.Repositories.Repositories;
 using Agilite.UnitOfWork;
 using Agilite.UnitOfWork.Context;
-using System.Security.Cryptography;
 
 namespace Agilite.Repositories;
 
@@ -35,7 +34,7 @@ public class UnitOfWork : IUnitOfWork
         {
             return (IRepository<TEntity, TId>)_repositories[typeof(TEntity)];
         }
-        
+
         var reposiotry = new RepositoryEtityById<TEntity, TId>(_context);
         _repositories.Add(typeof(TEntity), reposiotry);
 

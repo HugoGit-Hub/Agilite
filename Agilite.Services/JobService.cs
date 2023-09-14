@@ -15,6 +15,6 @@ public class JobService : IJobService
     public JobService(IJobRepository repository)
         => _repository = repository;
 
-    public async Task<IEnumerable<Job>> GetAllJobsOfOneObjective(int id, CancellationToken cancellationToken) 
+    public async Task<IEnumerable<Job>> GetAllJobsOfOneObjective(int id, CancellationToken cancellationToken)
         => await _repository.GetAllJobsOfOneObjective(id, cancellationToken);
 }

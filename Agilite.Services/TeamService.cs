@@ -8,7 +8,7 @@ public interface ITeamService
     public Task<IEnumerable<Team>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken);
 }
 
-public class TeamService: ITeamService
+public class TeamService : ITeamService
 {
     private readonly ITeamRepository _repository;
 

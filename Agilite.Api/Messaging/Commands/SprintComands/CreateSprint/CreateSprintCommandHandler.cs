@@ -29,7 +29,7 @@ public class CreateSprintCommandHandler : IRequestHandler<CreateSprintCommand, S
         sprint.IdProjectNavigation = _unitOfWork.GetRepositoryEntityById<Project, int>().Get(sprint.FkProject);
 
         var created = await _service.Create(sprint, cancellationToken);
-        
+
         return _mapper.Map<SprintDto>(created);
     }
 }

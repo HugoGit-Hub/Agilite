@@ -1,4 +1,4 @@
-﻿using Agilite.DataTransferObject;
+﻿using Agilite.DataTransferObject.DTOs;
 using MediatR;
 
 namespace Agilite.Api.Messaging.Commands.JobCommands.GetAllJobsOfOneObjective;

@@ -37,7 +37,7 @@ public class AuthenticationService : IAuthenticationService
         var decryptedSalt = AuthenticationManager.DecryptData(encryptedSalt, _configuration.GetSection("AppSettings:EncryptDecryptKey").Value!);
         var hashedAndSaltPassword = AuthenticationManager.HashPasswordSaltCombination(password, decryptedSalt);
         var isCredantialsValide = await _authenticationRepository.IsCredentialsValid(email, hashedAndSaltPassword, cancellationToken);
-        
+
         if (!isCredantialsValide)
         {
             throw new WrongCredentialsException();

@@ -77,7 +77,7 @@ public class MainWindowViewModel : ObservableObject
 
         OnPropertyChanged(nameof(ActualPage));
     }
-    
+
     private async void ShowSprintsButtonsAndDisplaySprints(object recipient, ShowSprintsButtonsMessage message)
     {
         var idProject = message.IdProject;
