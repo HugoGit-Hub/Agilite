@@ -1,12 +1,8 @@
 ﻿using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace Agilite.UI.ViewModels;
 

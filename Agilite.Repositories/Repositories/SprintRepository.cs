@@ -29,7 +29,7 @@ public class SprintRepository : ISprintRepository
     {
         var result = _unitOfWork.GetRepository<Sprint>().Create(sprint);
         await _unitOfWork.SaveAsync(cancellationToken);
-        
+
         return result;
     }
 

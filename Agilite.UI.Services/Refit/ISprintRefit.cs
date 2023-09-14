@@ -13,7 +13,7 @@ public interface ISprintRefit : IBaseRefitClient
 
     [Get(EndPointConstantes.AllSprints)]
     public Task<IEnumerable<SprintDto>> GetAll();
-    
+
     [Get(EndPointConstantes.AllSprintsOfOneProject)]
     public Task<IEnumerable<SprintDto>> GetAllSprintsOfOneProject(int idProject);
 

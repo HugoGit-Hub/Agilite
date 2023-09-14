@@ -13,8 +13,8 @@ public class TeamRepository : ITeamRepository
 {
     private readonly AgiliteContext _context;
 
-    public TeamRepository(AgiliteContext context) 
-        =>   _context = context;
+    public TeamRepository(AgiliteContext context)
+        => _context = context;
 
     public async Task<IEnumerable<Team>> GetAllTeamsOfOneUser(int idUser, CancellationToken cancellationToken)
         => await _context.Teams

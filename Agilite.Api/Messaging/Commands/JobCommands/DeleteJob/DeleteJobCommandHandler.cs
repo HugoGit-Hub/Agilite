@@ -1,4 +1,4 @@
-﻿using Agilite.DataTransferObject;
+﻿using Agilite.DataTransferObject.DTOs;
 using Agilite.Entities;
 using Agilite.UnitOfWork;
 using AutoMapper;
@@ -16,7 +16,7 @@ public class DeleteJobCommandHandler : IRequestHandler<DeleteJobCommand, JobDto>
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
-    
+
     public Task<JobDto> Handle(DeleteJobCommand request, CancellationToken cancellationToken)
     {
         var job = new Job

@@ -1,4 +1,5 @@
-﻿using Agilite.UI.Models.Models;
+﻿using Agilite.DataTransferObject;
+using Agilite.UI.Models.Models;
 using Agilite.UI.Services.Services;
 using Agilite.UI.Views;
 using AutoMapper;
@@ -7,7 +8,6 @@ using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Windows;
 using System.Windows.Input;
-using Agilite.DataTransferObject;
 
 namespace Agilite.UI.ViewModels;
 
@@ -81,7 +81,7 @@ public class LoginViewModel : ObservableObject
     {
         var customWindow = new MainWindow();
         customWindow.Show();
-        
+
         foreach (Window window in Application.Current.Windows)
         {
             if (window is not LoginView) continue;
