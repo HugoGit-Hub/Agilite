@@ -18,7 +18,7 @@ public class SprintViewModel : ObservableObject
     public SprintModel Sprint
     {
         get => _sprint;
-        set => SetProperty(ref _sprint, value);
+        private set => SetProperty(ref _sprint, value);
     }
 
     public SprintViewModel(
@@ -27,8 +27,6 @@ public class SprintViewModel : ObservableObject
     {
         WeakReferenceMessenger.Default.Register<SprintModel>(this, GetSprint);
 
-        LoadObjectives(Sprint.IdSprint);
-
         _objectiveService = objectiveService;
         _sprintService = sprintService;
     }
@@ -36,13 +34,13 @@ public class SprintViewModel : ObservableObject
     private async void GetSprint(object recipient, SprintModel sprint)
     {
         Sprint = await _sprintService.Get(sprint.IdSprint);
+
+        LoadObjectives(Sprint.IdSprint);
     }
 
     private async void LoadObjectives(int id)
     {
         var result = await _objectiveService.GetAllObjectivesOfOneSprint(id);
-
-        Objectives.Clear();
 
         foreach (var objective in result)
         {
